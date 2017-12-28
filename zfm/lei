@@ -1,0 +1,194 @@
+#encoding=utf8
+如果继承的子类没有__init__函数，实例化对象的时候 给对象右边的的参数一定要和父类一样
+还有就是类方法里面如果是__ddd这个是私有的  __xxx__这个不是私有的 外面可以调用
+
+如果只看这个图,很多人可能会看的一头雾水,特别是学过完全面向对象语言的同学, Python 是双面向的,既可以面向函数编程,也可以面向对象编程,所谓面向函数就是单独一个. py 文件,里面没有类,全是一些函数,调用的时候导入模块,通过模块名.函数名()即可调用,完全不需要类,那么你可能会问,那要类还有什么毛用? 类就是用来面向对象编程啦,类可以有自己的属性,类可以创建很多实例,每个实例可以有不同的属性,这也就保存了很多私有的数据,总之都有存在的必要.
+
+再来看上面这张图,在类里面定义的函数就是方法,类方法需要@ classmethod 修饰并且有个隐藏参数 cls,实例方法必须有个参数 self, 静态方法必须有 @staticmethod修饰,类和实例都可以访问静态方法,实例可以访问实例方法也可以访问类方法,类可以访问类方法也可以访问实例方法,访问实例方法必须要带参数 self, 可以理解为类其实也是一个实例,类访问实例方法不带参数会报错的.类本身可以访问函数,实例却不行.
+
+区别： 
+类方法和静态方法都可以被类和类实例调用，类实例方法仅可以被类实例调用
+类方法的隐含调用参数是类，而类实例方法的隐含调用参数是类的实例，静态方法没有隐含调用参数
+
+
+四种类型，均可以被“对象”进行调用，但不建议使用“对象”调用“静态方法”和“静态字段”，而建议使用“类”对其进行调用
+“动态方法”和“动态字段”只能由“对象”进行调用，而无法使用“类”进行调用
+
+
+class Wangchao():
+	def tt(self,name):
+		self.name = name
+		print(self.name)
+		return self.name
+	def tt1(self):
+		print(Wangchao.tt(self,"chaochao")) # print(self.tt('chaochao'))   这2个用法是一样的 谨记 ！！！！！！！！！！！！！！！！！！！
+
+
+============================================================================================================================================
+#!/usr/bin/python
+#coding=utf8
+
+class wangchao(object):
+    wangchao1 = "wangchao1"
+    def __init__(self,name):
+        self.name = name
+        print(self.name)
+
+    def wang(self):
+        print(self.name)
+
+
+class chaowang(wangchao):
+    chaowang1 = "chaowang1"
+    def __init__(self,old,name):
+        self.old = old
+        print(self.old)
+       # wangchao.__init__(self,name)   ###################      这种是可以的
+        super(chaowang,self).__init__(name)  ####################     这种也是可以的   super的用法
+
+    def chao(self):
+        print(self.name)
+
+a = chaowang(18,"nidaye1111111111")
+a.wang()
+
+================================================================================================================================================
+
+class Wangchao():
+        def __init__(self):
+                print("Wangchao init")
+        def tt(self,name):
+                self.name = name
+                print(self.name)
+                return self.name
+        def tt1(self):
+                print(Wangchao.tt(self,"chaochao"))
+
+
+class Chaowang(Wangchao):
+	def __init__(self):
+		print(Wangchao.__init__(self))
+        def ttt(self,old):
+                self.name = old
+                print(self.old)
+                return self.old
+
+b = Chaowang()                     ############   如果继承的类 没有init那实例化的时候就执行被执行类的__init__函数   如果继承的类 有init那实例化的时候就执行自己的__init__  而且__init__函数是没有return的
+bb = b.tt("caosi")
+print(bb)
+
+
+
+
+
+
+
+-----------------------------------------  下面是实例  ---------------------------------------
+ass NewLei(object):
+    __ww__ = "__ww__"
+    __ww = "__ww"
+    ww = "ww"
+
+    def __init__(self,name,old):
+        self.name = name
+        self.old = old
+        print("NewLei的%s" %self.name)
+        print("NewLei的%s" %self.old)
+
+    def objmethod(self,objname):
+        return objname
+
+    @classmethod
+    def leimethod(cls,leiname):
+        return leiname
+
+    @staticmethod
+    def staticcmethod(staticname):
+        return staticname
+
+    @property
+    def ziduanmethod(self):
+        return "我现在用   对象    调用ziduanmetho         (字段方法)"
+
+    def huizong(self):
+        print(self.objmethod(1))
+        print(self.staticcmethod(2))
+        print(self.leimethod(3))
+        print(self.ziduanmethod)
+
+
+
+class JiChengLei(NewLei):
+
+    def __init__(self,name,old):
+        self.name = name 
+        self.old = old   
+        print("JiNewLei的%s" %self.name)
+        print("JiNewLei的%s" %self.old)
+
+    def Jcobjmethod(self,objname):
+        return objname   
+                            
+    @classmethod            
+    def Jcleimethod(cls,leiname):
+        return leiname   
+                            
+    @staticmethod           
+    def Jcstaticcmethod(staticname):
+        return staticname
+                            
+    @property               
+    def Jcziduanmethod(self):
+        return "我现在用   对象    调用ziduanmetho         (字段方法)"
+
+objj = NewLei("my name is wangchao",28)
+
+#-----------------------------------------------------------------   对象方法   ----------------------------------------------------------------
+print(objj.objmethod("我现在是用   对象   调用objmethod         (对象方法)"))
+#print(NewLei.objmethod("我现在是用    类     调用objmethod"))   类是不能直接调用对象方法的
+print(objj.name,objj.old)
+
+#--------------------------------------------   字段方法   -------------------------------------------
+print(objj.ziduanmethod)   
+#   静态字段只能用对象调用
+
+#----------------------------------------------------------  静态方法  --------------------------------------------
+print(objj.staticcmethod("我现在是用   对象    调用staticmethod        (静态方法)"))
+print(NewLei.staticcmethod("我现在是用   类    调用staticmethod        (静态方法)"))
+
+#-----------------------------------------------------------  类方法  -------------------------------------------------------
+print(objj.leimethod("我现在是用   对象    调用leimethod         (类方法)"))
+print(NewLei.leimethod("我现在是用   类调    用leimethod         (类方法)"))
+
+#--------------------------------------------------   静态字段  -----------------------------------
+print(objj.ww,objj.__ww__)
+print(NewLei.ww,NewLei.__ww__)
+
+#--------------------  开启类中相互调用  ---------------------
+print(objj.huizong())
+print("""
+    def huizong(self):
+        print(self.objmethod(1))
+        print(self.staticcmethod(2))
+        print(self.leimethod(3))
+        print(self.ziduanmethod)
+""")
+
+
+#--------------------------------------   类继承  ------------------------------------
+Ljobjj = JiChengLei("my name is wangchao",28)
+print(Ljobjj.objmethod("我现在是用   对象   调用objmethod         (对象方法)"))
+
+#-------------------------------------   经典类和新式类  -------------------------------#
+class a():
+	var = xxxa
+
+class b(a):
+	
+class c():
+	var = xxxc
+
+class d(b,c)
+	xxxa
+
+上面是经典类  如果是新式类 就是xxxc了

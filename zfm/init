@@ -1,0 +1,38 @@
+#!/usr/bin/python
+#encoding=utf8
+
+class Java():
+	java_process = 'usercenterjingtai'
+
+	def __init__(self,name,cmd):
+		self.__name = name
+		self.cmd = cmd
+		print('start')
+
+	def run(self,pakname):
+		print(self.__name)
+		print(Java.java_process)
+		print(self.java_process)
+		return pakname + "测试环境"
+
+	def res1(self,pakname):
+		ress = self.__run(pakname)
+		print(ress)
+
+class H5(Java):
+	__h5name = '/usr/local/h5'
+	
+	def __init__(self,name):
+		self.__name = name
+		print('h5start')
+		Java.__init__(self,'name','cmd')		
+
+	def run2(self):
+		print('h5run')
+
+
+
+res = Java("usercenter",'ls')
+res1 = H5("H5项目")
+res.run("java")
+#res1.run("ttt")

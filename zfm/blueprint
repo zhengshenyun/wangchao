@@ -1,0 +1,45 @@
+flask 的蓝图
+
+启动入口（netmange/app.py 的源码)
+
+# -*- coding: utf-8 -*-
+from flask import Flask
+from netmange.netflow.views  import netflow_manager
+app = Flask(__name__)
+app.register_blueprint(netflow_manager)
+
+@app.route("/", methods=["GET"])
+def index():
+    return "index !"
+
+if __name__ == '__main__':
+    app.run(debug=True, host='127.0.0.1', port=7888,threaded=True) #此处 threaded=True 为多线程启动
+
+
+
+
+
+
+
+
+
+
+第一个Blueprint案例 （netmange/netflow/views.py 的源码)
+
+# -*- coding: utf-8 -*-
+from flask import Blueprint, render_template, abort
+from jinja2 import TemplateNotFound
+
+netflow_manager = Blueprint("netflow", __name__, static_folder="assets",template_folder='templates')
+#这是 app设置的方式：app = Flask(__name__, static_folder='', template_folder='')
+#这行设置这个项目的静态根目录和模版目录，直接暴露assets文件夹为静态
+
+@netflow_manager.route("/show", methods=['GET'])
+def show():
+    return "show !"
+
+
+
+如果还想用manager管理app
+
+则可以  在1上面 添加 manager = Manager(app)   最后跑的时候用 manager.run()就不要用那个app.run(xxxxxxxx)了

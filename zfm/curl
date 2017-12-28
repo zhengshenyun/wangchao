@@ -1,0 +1,10 @@
+curl -i -sSL --connect-timeout 1 -m 2 $url   ########### i就是不仅打印状态码 还打印内容   I就是只打印状态码 但是他是HEAD请求可以加上 -X GET xxx                                --connect-timeout 1 连接超时时间1秒   -m 2  整个超时时间就是2秒  2 秒后就会返回    s就是返回数据  其他不要
+
+curl -s /dev/null 这个是如果错误的话就不输出
+
+curl -o /dev/null --retry 3 --retry-max-time 8 -s -w %{http_code} http:whdkaskdhsajhdiosah.com    如果是不能解析就返回000  正常情况下就返回状态吗
+如果上面需求是 要有返回值 而且是Json格式  那么可以这样
+
+curl -o /dev/null --retry 3 --retry-max-time 8 -s -w %{http_code} %{1} http:whdkaskdhsajhdiosah.com
+
+curl -i -SL -s /dev/null --connect-timeout 10 -m 10  这样也是可疑的

@@ -1,0 +1,8 @@
+#!/usr/bin/python
+#encoding=utf8
+import sys
+savedStdout = sys.stdout  #保存标准输出流
+with open('out.txt', 'w+') as file:
+    sys.stdout = file  #标准输出重定向至文件
+    for i in range(1,10):
+        print(i)

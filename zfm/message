@@ -1,0 +1,6 @@
+#encoding=utf8
+import yagmail
+yag = yagmail.SMTP(user='xianjinxiang@163.com', password='@#xiang123', host='smtp.163.com', port='465')
+body = "老师，你好！这是最近工作的文件，请查收。"
+yag.send(to='961084497@qq.com', subject='工作文件', contents=[body, 'everyday.txt'])  ############contents=[body, 'everyday.txt']  everyday.txt是同级目录文件
+print("已发送邮件")

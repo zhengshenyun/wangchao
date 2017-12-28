@@ -1,0 +1,23 @@
+# coding=utf-8  
+__author__ = 'liu.chunming'  
+import logging  
+import traceback
+
+  
+logging.basicConfig(level=logging.WARNING,     定义日志级别
+		    filename='./log.txt',      定义日志 目录
+                    filemode='a'	       定义日志是追加
+                    format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')     定义日志格式
+# use logging  
+logging.info('this is a loggging info message')  
+logging.debug('this is a loggging debug message')  
+logging.warning('this is loggging a warning message')  
+logging.error('this is an loggging error message')  
+logging.critical('this is a loggging critical message')
+
+try:
+	os.system("ls")
+except:
+	ex = traceback.print_exc()              命令行打印错误信息
+	logging.exception("错误信息")           日志记录错误信息
+

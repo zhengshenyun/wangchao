@@ -1,0 +1,12 @@
+#encoding=utf8
+
+这个就定义了文本是utf8格式
+
+那如果想要转成gbk模式   那就先要
+
+a = "xxxx"  是utf8
+
+
+那就先转吧 a.decode("utf8") 这样就转成unicode模式
+
+如果再由unicode转成gbk模式   a.decode("utf8").encode('gbk')  反正记住一个定律  utf8----------unicode-----------gbk    就是这样转的

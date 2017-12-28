@@ -1,0 +1,57 @@
+#!/usr/bin/python
+#coding=utf8
+"""
+# Author: wangchao
+# Created Time : 2017-11-03 11:45:41
+
+# File Name: fanshe.py
+# Description:
+
+"""
+
+import sys
+
+class New(object):
+
+    def ww(self):
+        print("ok")
+        return "返回值"
+
+    def www(self):
+        print("www")
+        return "www返回值"
+
+
+if __name__ == '__main__':
+    bb = New()
+    func = getattr(bb,sys.argv[1])
+    res = func()
+    print(res)
+
+[root@test-app2 ~]# /usr/bin//python fanshe.py ww
+ok
+返回值
+[root@test-app2 ~]# /usr/bin//python fanshe.py www
+www
+www返回值
+[root@test-app2 ~]# 
+
+
+#!/usr/bin/python
+
+
+def www():
+	a = 6
+	print(a)
+
+
+def wwww():
+    print("wwww")
+
+import rr   #####  这个是此脚本模块名
+
+if __name__ == '__main__':
+    import sys
+    res1 = sys.argv[1]
+    res = getattr(rr,res1)
+    res()

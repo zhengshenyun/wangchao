@@ -1,0 +1,67 @@
+MongoDB shell version v3.4.4
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.4
+> 
+           ########       首次进入芒果db 先在admin 建立一个管理用户
+
+>use admin   
+ver={user:"root",pwd:"root123",roles:[{role:"userAdminAnyDatabase", db:"admin"}]} 
+db.createUser(user)
+ 
+-----------------------------------------------------------------------------  先忽略  ----------------------------------- 
+> use admini                          进入admin库
+switched to db admin
+> db.auth("wangchao","wangchao")     认证   admin下面有个wangchao的用户   后面wangchao为密码
+1
+> show collections                    查看下面有哪些库
+cname
+honglu
+system.users
+system.version
+t1
+> db.t1.find()
+{ "_id" : ObjectId("599e78347e8195119f224467"), "name" : "zhangsan", "old" : 34 }
+{ "_id" : ObjectId("599e78367e8195119f224468"), "name" : "zhangsan", "old" : 35 }
+{ "_id" : ObjectId("599e78387e8195119f224469"), "name" : "zhangsan", "old" : 36 }
+{ "_id" : ObjectId("599e783a7e8195119f22446a"), "name" : "zhangsan", "old" : 37 }
+{ "_id" : ObjectId("599e783b7e8195119f22446b"), "name" : "zhangsan", "old" : 38 }
+> 
+> 
+> use zhitou                             去其他库
+switched to db zhitou
+> db.auth("neihaiyong2","123456")         认证    
+1 
+> show collections                        查看有哪些库
+t2
+yy
+> 
+> db.yy.find()                                                           查询
+{ "_id" : ObjectId("599ea00f73911f7dab04cee1"), "name" : "ddd" }
+{ "_id" : ObjectId("599ea01273911f7dab04cee2"), "name" : "dddd" }
+{ "_id" : ObjectId("599ea01373911f7dab04cee3"), "name" : "ddddd" }
+{ "_id" : ObjectId("599ea01573911f7dab04cee4"), "name" : "dddddf" }
+{ "_id" : ObjectId("599ea01673911f7dab04cee5"), "name" : "dddddfg" }
+{ "_id" : ObjectId("599ea08073911f7dab04cee7"), "name" : "dddddfgddd" }
+{ "_id" : ObjectId("599ea08273911f7dab04cee8"), "name" : "dddddfgdddffff" }
+{ "_id" : ObjectId("599ea08473911f7dab04cee9"), "name" : "dddddfgdddffffggg" }
+-------------------------------------------------------------------------------------------一直到这---------------------------------------
+
+========================================================================================================================
+
+> use qihuo                            暂且没有这个库  但是我先进入这个库
+switched to db yangjun
+> var user={user:"rrr",pwd:"rrr",roles:[{role:"readWrite", db:"yangjun"}]}        在这个库创建
+> db.createUser(user)
+Successfully added user: {
+	"user" : "rrr",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "yangjun"
+		}
+	]
+}
+> db.auth("rrr","rrr")                        认证   如果这步出现问题 可以use admin ; db.grantRolesToUser( "root" , [ { role: "dbOwner", db: "qihuo" } ])  # 是有
+1
+> show collections                  查看
+

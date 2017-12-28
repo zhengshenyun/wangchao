@@ -1,0 +1,37 @@
+from sh import ls;  ls("./",_out="ls.wangchao",_err="lserr.wangchao");#####_out是正确输出  _err是错误输出      print(output.exit_code) #应该是0  这个是返回值
+
+if ((5>4));then
+    echo "ok"
+else
+    echo "no"
+fi
+
+if ((4==4));then
+    echo "4==4"
+else
+    echo "no"
+fi
+
+for ((i=1;i<=7;i++));do
+    echo $i
+done
+
+i=1
+while ((i<=7));do
+    let i++
+    echo $i
+done
+
+a="ww"
+
+if (("${a}dd" == "wwdd"));then
+    echo "相同"
+else
+    echo "不相同"
+fi
+
+if ((3>4 && 6>5));then
+    echo "对的"
+else
+    echo "不对的"
+fi

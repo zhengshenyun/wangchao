@@ -1,0 +1,21 @@
+test   #################test同级目录执行 python -m test.wangchao.ww 
+├── chaowang
+│   ├── cc.py
+│   ├── cc.pyc
+│   ├── __init__.py
+│   └── __init__.pyc
+├── __init__.py
+├── __init__.pyc
+└── wangchao
+    ├── __init__.py
+    ├── __init__.pyc
+    └── ww.py      这边使用 from ..chaowang import cc
+
+from wenjian.mokuai import fangfa
+
+from wenjian import mokuai
+
+from mokuai import fangfa
+
+import mokuai
+

@@ -1,0 +1,106 @@
+#!/usr/bin/python
+#encoding=utf8
+---------------------------------------------------     __call__    -----------------------------------------------------
+class ClassA:
+
+    def __call__(self, *args, **kwargs):
+        print('call ClassA instance')
+
+
+if __name__ == '__main__':
+    # ClassA实现了__call__方法
+    a = ClassA()
+    '''
+    这个时候，ClassA的实例a，就变成可调用对象
+    调用a()，输出call ClassA instance，说明是调用了
+    __call__函数
+    '''
+    a()   ##################################################开始有print了
+    # 其实a()等同于a.__call__()，它本质上就是后者的缩写
+    a.__call__()       ##########################################开始有print了
+    # 判断是否可调用，输出True
+    #print(callable(a))
+
+
+--------------------------------------------------     __dict__    ---------------------------------------------------
+
+class ClassA:
+    
+    name = "wangchao"    
+
+    def __call__(self, *args, **kwargs):
+        print('call ClassA instance')
+
+a = ClassA()
+a.name = "wangchao"
+a.old = 19
+print(a.__dict__) ###########################  这样就打印出了 {'old': 19, 'name': 'wangchao'}
+如果是对象的__dict__则打印出 self.xxx:xxx   的值   和如果之前给了值 也打印出
+
+bokeyuan={"b":1,
+       "o":2,
+       "k":3,
+       "e":4,
+       "y":5,
+       "u":6,
+       "a":7,
+       "n":8,     
+       }
+复制代码
+现在想将其转换为一个对象，通常会这样写:
+
+复制代码
+ 1 class Dict2Obj:
+ 2     def __init__(self,bokeyuan):
+ 3         self.b = bokeyuan['b']
+ 4         self.o = bokeyuan['o']
+ 5         self.k = bokeyuan['k']
+ 6         self.e = bokeyuan['e']
+ 7         self.y = bokeyuan['y']
+ 8         self.u = bokeyuan['u']
+ 9         self.a = bokeyuan['a']
+10         self.n = bokeyuan['n']
+复制代码
+但是在了解了__dict__属性之后可以这样写：
+
+1 class Dict2Obj:
+2     def __init__(self,bokeyuan):
+3         self.__dict__.update(bokeyuan)  
+--------------------------------------------------   __getattr__   --------------------------------------------
+#!/usr/bin/python
+class wangchao(object):
+
+	namee = "namee"
+
+	def __init__(self,nameold):
+		self.name = "self.name"
+
+	def __getattr__(self,ddd):
+	
+		try:
+			return wangchao.__getattribute__(ddd)
+		except:
+			return "NOT found"
+
+	def __setattr__(self,key,value):
+                if key == "elk" and value == "eee":
+                        object.__setattr__(self,key,value+"llllkkkkk")
+                else:
+                        object.__setattr__(self,key,value)
+
+a = wangchao('ww')
+print(a.namee)  ########################  调用__getattr__方法   找到了 namee = "namee"  所以返回namee   
+print(a.nameee)  ####################    这个也是调用__getattr__ 没有找到 所以返回not found
+print(a.nameeeeeeeeeeeee)  ############    下面这个和上面的一样
+a.elk = "eeee"  ###########   这个走的是 object.__setattr__(self,key,value) 所以出的是 eeee     如果是 a.elk = 'eee'  出的就是 eeellllkkkkk
+print(a.elk)
+
+__getattr__为内置方法，当使用点号获取实例属性时，如果属性不存在就自动调用__getattr__方法
+__setattr__当设置类实例属性时自动调用，如j.name=5 就会调用__setattr__方法  self.[name]=5
+因为这个类是从dict继承来的，是dict的超类
+所以 self[attr]=value 相当于调用dict的下标方法
+与 a={}   ; a[attr]=value意思一样
+
+--------------------------------------------  __str__  和 __repr__ 差不多  (但是要有返回值)------------------
+
+__str__ 必须要print(对象)   __repr__直接对象就好了  不需要print

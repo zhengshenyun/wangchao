@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+import pymysql,xlwt
+__author__ = 'wangchao'
+
+class Mysql_conn(object):
+
+    ip = "127.0.0.1"
+    port = 3306
+    username = 'root'
+    password = '123456'
+    db = 'calftrader'
+    charset = 'utf8'
+    def __init__(self):
+        self.conn = pymysql.connect(host=Mysql_conn.ip,
+                               user=Mysql_conn.username,
+                               passwd=Mysql_conn.password,
+                               port=Mysql_conn.port,
+                               db=Mysql_conn.db,
+                               charset=Mysql_conn.charset)
+
+    def command_select(self,cmd,param=None):
+        cur = self.conn.cursor()
+        cur.execute(cmd, param)
+        self.conn.commit()
+        date = cur.fetchall()
+        cur.close()
+        self.conn.close()
+        return date
+
+    def command_delete(self,cmd):
+        pass
+
+    def command_update(self,cmd):
+        pass
+
+    def command_insert(self,cmd):
+        pass
+
+
+#!/usr/bin/python
+#coding=utf8
+"""
+# Author: wangchao
+# Created Time : 2017-11-06 19:26:16
+
+# File Name: ex.py
+# Description:
+"""
+import  xlwt
+
+from testmysql import *
+
+def Makeexcle(i,exclename):
+            a = Mysql_conn()
+            bb = a.command_select(i.strip())
+            wbk = xlwt.Workbook()
+            sheet = wbk.add_sheet("Sheet1")
+            styleBoldRed=xlwt.easyxf('font: color-index red, bold on')
+            headerStyle=styleBoldRed
+            sheet.write(0,0,"phone_num",headerStyle)
+            sheet.write(0,1,"phone_dummy",headerStyle)
+            sheet.write(0,2,"member_name",headerStyle)
+            rewlen = len(bb)
+            for i in range(rewlen):
+                for j in range(len(bb[0])):
+                    sheet.write(i+1,j,bb[i][j])
+            wbk.save("/data/script/%s.xls" %(exclename))
+
+if __name__ == '__main__':
+    Makeexcle('select %s,%s,%s from sys_user' %("sys_user_name","user_type","mobile"),"wangchaotest")
+

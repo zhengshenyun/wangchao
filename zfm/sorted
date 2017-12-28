@@ -1,0 +1,16 @@
+#!/usr/bin/python
+def rev(x,y):
+	if int(x[1]) > int(y[1]):   #######传进列表元素 以元素[1]来比较大小
+		return -1
+	if int(x[1]) < int(y[1]):
+		return 1
+	return 0
+
+with open("1",'r') as f:
+	res = []
+	for i in f:
+		res.append(filter(lambda x:x and x.strip(),i.strip().split(" ")))   ###########分割 去除 空格连续和不连续
+	print(res)
+	for ii in res:
+		print(ii[1])
+	print(sorted(res,rev))

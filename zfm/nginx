@@ -1,0 +1,136 @@
+-----------------------------------nginx  执行顺序 -----------------------------
+(location =) > (location ^~ 路径) > (location ~,~* 正则顺序) ~* 后面是匹配文件 > (location 部分起始路径) location /static/> (/)
+-----------------------------------nginx  upstream 脚本--------------------------
+#!/usr/bin/python
+#coding=utf8
+import re
+
+with open("upstream.conf","r") as f:
+    res = [line.strip().split(" ")[1] for line in f.readlines() if re.match(r'^upstream',line) or re.match(r'\s+server',line)]
+    Upstream = [i for i in res if re.match(r'[a-zA-Z]',i)]
+    #print(res)
+    b = []
+    for i in res:
+        if re.match(r'[a-zA-Z]',i):
+            if res.index(i) == 0:
+                pass
+            else:
+                b.append(a)
+            a = []
+            a.append(i)
+        else:
+            a.append(i)
+    b.append(a)
+    print(b)
+
+------------------------如下是一个nginx中geo限速白名单的配置实例--------------------------
+[root@localhost ~]# cat /usr/local/nginx/conf/vhosts/wangshibo.conf
+geo $whiteiplist  {
+ default 1;
+ 127.0.0.1 0;
+ 192.168.0.0/16 0;   
+ 58.68.230.0/24 0;
+ }
+   
+ map $whiteiplist  $limit {
+ 1 $binary_remote_addr;
+ 0 "";
+ }
+   
+ limit_conn_zone $limit zone=limit:10m;
+ 
+ server {
+    listen 80;
+    server_name dev.wangshibo.com wangshibo.com *.wangshibo.com;
+    
+    access_log  /usr/local/nginx/logs/8080-access.log main;
+    error_log  /usr/local/nginx/logs/8080-error.log;
+      
+   
+    location ~ / {
+    root /var/www/html/8080;        
+    index index.html index.php index.htm;
+    }
+ 
+    location ^~ /download/ {
+          limit_conn limit 4;        //最大的并发连接数    #############  具体的可以对应到location模块
+          limit_rate 200k;           //每个连接的带宽
+          alias /data/wangshibo/download/;
+        }
+  }
+ 
+ 
+配置要点解释：
+1）geo指令定义一个白名单$whiteiplist, 默认值为1, 所有都受限制。 如果客户端IP与白名单列出的IP相匹配，则$whiteiplist值为0也就是不受限制。
+2）map指令是将$whiteiplist值为1的，也就是受限制的IP，映射为客户端IP。将$whiteiplist值为0的，也就是白名单IP，映射为空的字符串。
+3）limit_conn_zone和limit_req_zone指令对于键为空值的将会被忽略，从而实现对于列出来的IP不做限制。
+
+
+#访问频率配置
+        limit_req_zone $binary_remote_addr zone=one:10m rate=300r/s ;                   #限制每个ip平均每秒不超过300个请求
+        limit_req_zone  $uri zone=two:10m rate=60r/s ;                                                          #限制每个ip平均每秒不超过60个请求
+        limit_req_zone  $args zone=three:10m rate=30r/s;                               #表示当相同的ip地址并且访问相同的uri同时参数也相同，会导致进入limit req的限制。
+
+        #并发限制
+        limit_conn_zone $binary_remote_addr zone=addr:10m;
+
+        #静态缓存配置
+        proxy_temp_path  /data/nginx/cache/tmp;
+        proxy_cache_path  /data/nginx/cache/cache  levels=1:2 keys_zone=ngx_cache:10m inactive=1d max_size=1g;
+
+
+
+
+mit_req_zone $binary_remote_addr zone=allips:10m rate=20r/s;
+    ...
+    server{
+        ...
+        location {
+            ...
+            #限制每ip每秒不超过20个请求，漏桶数burst为5
+            #brust的意思就是，如果第1秒、2,3,4秒请求为19个，
+            #第5秒的请求为25个是被允许的。
+            #但是如果你第1秒就25个请求，第2秒超过20的请求返回503错误。
+            #nodelay，如果不设置该选项，严格使用平均速率限制请求数，                            
+            #第1秒25个请求时，5个请求放到第2秒执行，
+            #设置nodelay，25个请求将在第1秒执行。
+            limit_req zone=allips burst=5 nodelay;      总之 (如果用户第一秒有25个请求) 设置了nodelay 就代表你超过了限制让你第一秒完成但是不能超过20+5   如果不设置就代表了第一秒只能执行20  剩下的5个留在第二秒执行
+
+location /test/
+ {
+ proxy_pass http://t6:8300; ############### url = http://server/test/test.jsp，则被nginx代理后，请求路径会便问http://proxy_pass/test/test.jsp
+ }
+
+
+location /test/  
+ {  
+                 proxy_pass http://t6:8300/;  #########      url = http://server/test/test.jsp，则被nginx代理后，请求路径会便问http://proxy_pass/test.jsp
+  } 
+
+proxy_cache_valid 200 302 304 5s;   #############不管前面是多少设置多长时间不访问就删除   这边定义就是 5秒后就删除原来的
+
+
+------------------------------------------------------------------------------------------------   另外一个   ------------------------------------------------------------------------------------------------
+location /break/ {  
+     rewrite ^/break/(.*) /test/$1 break;  
+     return 402;  
+}  
+  
+location /last/ {  
+     rewrite ^/last/(.*) /test/$1 last;  
+     return 403;  
+}  
+  
+location /test/ {  
+     return 508;  
+}  
+
+请求： http://domain/break/*     ##################   如果遇见break  成功就200   失败就404
+返回：404
+
+请求： http://domain/last/*      ##################   如果遇见last   则继续往下面走 则返回508          
+
+返回：508
+
+
+roor 和alias root定义的时候就是相加   alias定义的时候就是不加location匹配的那个字段  而且alias最后一定是有/结尾的

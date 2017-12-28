@@ -1,0 +1,25 @@
+#################  soup直接用法###########################
+pip install beautifulsoup4
+pip install lxml
+pip install html5lib
+
+html = requests.get("http://www.jianshu.com")
+soup = BeautifulSoup(html.content, 'html.parser', from_encoding='utf-8')
+result = soup('div') ################这样打印出一个列表  列表中都是div标签的值包括div标签
+result = soup(['div',"a"]) ################这样打印出一个列表  列表中都是div标签的值和a标签的值  包括div标签和a标签
+
+
+################   soup的findall  ##################
+
+soup = BeautifulSoup(html.content, 'html.parser', from_encoding='utf-8')
+res = soup.find_all('li', class_="have-img")  ##########  这是一个列表 ###########
+for tag in res:  ##########  这个时候tag  是一个对象  不是字符串  这个res就是一个大列表
+        image = tag.img['src'] ########### 这个是查找里面的img (图片)用的   
+        article_user = tag.p.a.get_text()   #########  这个是查找 tag里面 p标签里面的a标签的text() 就是字
+        article_user_url = tag.p.a['href']      #######  这个是查找 tag里面 p标签里面的a标签中的href值
+        created = tag.p.span['data-shared-at']       
+        article_url = tag.h4.a['href']
+
+#######    可以在查找的 tag 下继续使用 find_all()  ######
+        tag_span = tag.div.div.find_all('span')
+        likes = tag_span[0].get_text(strip=True)

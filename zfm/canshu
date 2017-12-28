@@ -1,0 +1,52 @@
+#!/usr/bin/python
+
+def wangchao(aaa,*a,**aa):
+	print(aaa)
+	print(a)
+	print(aa)
+
+1
+#wangchao(1,2,3)            1 (2,3) {}
+
+2
+#b = (1,2,3)
+#wangchao(b)       (1,2,3) () {}
+
+
+3
+#a = (1,2,3)
+#wangchao(*a)       1 (2,3) {}
+#b = (1,2,3)
+#wangchao(*b)       1 (2,3) {}
+
+1和3的结果是一样的
+
+
+
+还有一种情况 a = {"port":6666,"host":"192.168.1.1"}
+
+
+def ww(port=6388,host="localhost")
+
+如果是 ww(a) 则 a被当作是一个参数传进去了 传给了port
+
+
+如果是 ww(*a)  则应为a是字典型 所以 *a对参数a没有任何意义  相当于传进去("port","host")
+
+如果是 ww(**a) 则这样是有意义的  其实传进去是这种形式的 ww(port=6666,host="192.168.1.1")
+
+def wangchao(name,a="wang",*args,**knows):print(name);print(a);print(args);print(knows)
+>>> bb = dict(a1=1,a2=2,a3=3)
+>>> bb
+{'a1': 1, 'a3': 3, 'a2': 2}
+>>> wangchao(**bb)  ######################如果用这种方式他找的全是函数里面**knows这个   如果是wangchao(bb) 则他会把字典传给name   所以  为了对应第一种 必须要传给name
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+    wangchao(**bb)
+TypeError: wangchao() takes at least 1 non-keyword argument (0 given)
+>>> wangchao(1,**bb)  ###############这样就对了
+1
+wang
+()
+{'a1': 1, 'a3': 3, 'a2': 2}
+

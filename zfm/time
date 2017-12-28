@@ -1,0 +1,179 @@
+lei time zhuangshiqi canshu log nginx mangguo shellshuzu popen module message sorted blueprint __xx__ shuchu ping curl fanshe excle yaml sh beautifulsoup meili requirements.txt code set panduan zhengze 
+
+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))  时间戳转 00-00-00 00:00:00
+time.mktime(time.strptime("2018-09-09 00:00:00", "%Y-%m-%d %H:%M:%S"))  转成时间戳
+
+time_tuple = (2017, 6, 23, 18, 17, 27, 2, 317, 0)
+time.mktime(time_tuple)
+
+
+date -s "2017-04-08 `date +%T`"
+
+with open('filename', 'wt') as f:  
+    f.write('hello, world!')
+
+
+
+class MyEx(Exception):  
+    pass
+a = "bbb"
+if len(a) <= 6:
+#b = a[6]
+	raise MyEx("输入的值小于6")
+else:
+	print("您输入的是对的")
+
+
+/usr/local/redis-6397/src/redis-cli -p 6397  -a 'honglu!@#123'>/tmp/redis.txt<<EOF
+	del wangchao        #######这里面是支持变量的
+	keys *
+EOF
+
+
+payload = {xxx:xxx,xxx:xxx}
+r = requests.get('http://httpbin.org/get', params=payload)
+r = requests.post('http://httpbin.org/get', data=payload)
+
+ping -c 2 -w 5 192.168.1.1
+
+grep -P 匹配扩展   grep -P '(^ +upstr|^ +server)'| grep -v off
+grep -o  精确匹配
+sed -r 支持正则扩展
+sed  -n 's/.*-\(c.*\)$/\1/p'
+sed -n '/href/,/href/p' php.log   ##########打印区间的内容
+
+select * from cu_customer where create_time>date_sub(curdate(),interval 1 day);
+DATE(a.`create_time`) >= date_sub(CURRENT_DATE,INTERVAL  3 day)   ##############三天前的
+
+cd /home/wls81/tomcat && for i in `ls | egrep -v '(dubbo|jenkins)'`;do echo `ps aux| grep $i/conf/logging.properties|grep -v 'grep'`| awk  '{if (length($0)==0){printf"%s没有起来",i;print ""} else if ($1=="wls81") {printf"进程号为  %s,项目为   %s",$2,$12;print ""} else if ($1=="root") {printf"%s进程使用root启动的    进程号为    %s",i,$2;print ""} else {print "111"}}' i=$i;done || echo "第一步错误"
+cat /etc/passwd | awk -F ":" -v a="test" '{if ($1==a) {print $0}}'  或者 cat /etc/passwd | awk -F ":" '{if ($1==a) {print $0}}' a="test"  都是可以的
+
+{printf"\033[1;31m%s    没有起来xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\033[0m",a;print ''}}   #########   awk 打印颜色
+
+df -h  | grep /xv |awk '{split($5,a,"%");print 'a[1]'}'  #######   awk切割
+
+substr($0,1,2) ####截取字符串前2个  
+
+awk '{gsub("gg","GG",$0);print $0}' 1    ####替换打印  但不是真实的替换
+
+awk '{if ($1 ~/111/ && $2 ~/111/)}'     
+
+echo "123"|awk '{system("echo "$0)}'   #######调用系统命令
+NR 是行数 1 2 3 4 5 6  NF 是几个域 默认以空格分隔
+
+import sys
+reload(sys)
+sys.setdefaultencoding("utf8")
+
+sys.path[0]  #####这个是执行的脚本所在的位置  不是在哪个位置执行脚本的  类似于 dirname $0
+
+--set-gtid-purged=OFF
+create table t3(select * from t1)   t3表没有
+rename table t1 to t2   改变表名字
+
+
+userid   username   usepassword
+1          张三       1234
+2          李四       2345
+
+
+RoleID           RoleName          RoleNote
+01                  系统管理员      /test1.html
+02                  监控人员        /test2.html
+03                  调度人员        /test3.html
+04                  一般工作人员    /test4.html
+05                  调度人员        /test4.html
+
+
+UserRoleID           userid           RoleID  
+1                     1                 02        
+2                     2                 02
+3                     1                 03
+
+
+a = 'sdasdsadsa www.baidu.com  sadsad'
+b = re.compile(r'.+?(www.+?)\s.+?')
+
+iptables -t nat -A OUTPUT -p tcp --dport 6397 -j DNAT --to-destination 127.0.0.1:6379
+
+configobj
+
+float("%.2f" %(8/float(3)))  保留2位小数(这个在python2.6就不好用了) 但是python 2.6中可以这样  只不过是str类型 "%.2f" %(8/float(3))  from decimal import getcontext,Decimal;getcontext().prec = 7;a = "7";b = "3";print(Decimal(a) / Decimal(b))
+
+b = lambda x,y:1 if x>y else -1  如果x>y返回b = 1 x<y返回b = -1    ####### [ii for i in a for ii in i]  ########还有   [i for i in a if i > 4] ## a = [] or "" or 5 最后a = 5
+
+for k,v in itertools.groupby(a)  &&  for k,v in itertools.groupby(a,lambda x:upper(x))    ;print(k,list(v))   #######
+for k,v in enumerate("dasdhshflsdhfiuhhfisdhfio"):print(k,v)  #####这个是列出当前索引位置和数据
+
+from configobj import ConfigObj
+
+for k,v in ([1,2],[3,4],[5,6]):
+
+import glob
+files = glob.glob('*.py')
+
+isinstance(a, list) 判断类型
+
+>>> a = "[1,2,3,4]";eval(a)
+[1, 2, 3, 4]
+
+split -b 5M calfTrader_kline_jns_1.log.2017-08-29 -d -a 3 wangchao.log ###吧calfTrader_kline_jns_1.log.2017-08-29日志切割成每个5M大小的文件 以wangchao.log后面加3位数的文件
+
+pip install -t /usr/local/lib/python2.7/site-packages/ yagmail  ####这个是pip下载的是python2.7的库  放在/usr/local/lib/python2.7/site-packages/下面
+
+pip install -U pip pip自更新
+
+WeRobot ################### python微信接口
+
+a = [1,2,3,4]
+b = a[:] ############列表复制  但是不随原来的变化而变化
+
+from collections import Counter  ########统计个数挺好用的  这个只有在2.7以上才能用
+
+http高于tcp  一次http请求  先建立tcp  然后再tcp的基础上创建http传输
+
+a = [[1,2,3],[1,2,3],[1,2,3]]  ### sum(a,[])
+a = {"aa":1,"bb":1};b = {"aa1":1,"bb1":1}; a.update(b) 得出的结果是a的  结果为 {"aa":1,"bb":1,"aa1":1,"bb1":1}
+
+a = [{1:2},{1:2},{3:4},{3:4}]   #################### 去重    [{iii[0]:iii[1]} for iii in list(set([ii for i in a for ii in i.items()]))]  
+
+a = ["","123"," ",[1,2,3]];    filter(lambda x:x and x.strip() if not isinstance(x,list) else x,a)
+
+a = {} or 1 or []  ##############为a赋值  最终a=1  剩下的都是false
+
+res = aa.command_select('select * from sys_user where sys_user_name=%s','双双')  这种方式的 是玩那种where条件的    这个其实是传了二个参数
+res = aa.command_select('select %s from sys_user' %'sys_user_name')  这种方式的 是玩那种select xx,xx from sys_user  这个其实是传了一个参数
+数据库查处的datetime.datetime类型 一定要转成 str 模式 才能用转成时间戳
+
+yum -y install cyrus-sasl-md5 && yum  -y install cyrus-sasl-plain
+
+每五分钟执行  */5 * * * *  -------  每小时执行 0 * * * * --------  每天执行   0 0 * * * -------  每周执行  0 0 * * 0  --------  每月执行 0 0 1 * * ------- 每年执行  0 0 1 1 *
+
+rsync -av --delete -e 'ssh -p 22' ./ root@web01:/tmp/honglu  ##########你要同步的东西都在./下面 ./*这种写法是错误的   如果不要全部可以./7 8这样同步过去
+
+rsync -av --delete -e 'ssh -p 22' root@web01:/tmp/honglu/ ./  #######吧对方的/tmp/honglu/下面所有的复制过来  如果我这边有多余的  则直接删除   这个 /tmp/honglu/ 如果是/tmp/honglu  则把honglu这个目录复制过来了
+
+1. import  commons  2. __import__('commons')  果是多层导入: 1 from list.text import commons ;__import__(' list.text.commons',fromlist=True) #如果不加上fromlist=True,只会导入list目录
+
+ssh-keygen;ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.16.0.194
+
+yum install python-devel libffi-devel openssl-devel;pip install pyopenssl ndg-httpsclient pyasn1      ######## requests 到https网站问题
+
+pip freeze > requirements.txt;pip install -r requirements.txt
+
+yum -y install pwgen ;   pwgen 15 1 (生成一个15密码的命令) 这个蛮好用的
+
+a = [[1,3,5],[2,4,6]]; zip(a[0],a[1]);[(1, 2), (3, 4), (5, 6)]
+
+from collections import Counter;Counter("dkashdkshkjfhsdkjhfksd");Counter({'k': 5, 'd': 4, 'h': 4, 's': 4, 'f': 2, 'j': 2, 'a': 1}) ######好用的计数
+
+from collections import OrderedDict; d1 = OrderedDict();然后可以这样加  不能直接update一个字典  要不然又是无序的 
+aa = [("a",1),("b",2),("c",3),("d",4)]
+>>> d1 = collections.OrderedDict()
+>>> for k,v in aa:
+...     d1[k]= v
+这样得出的字典结果就是有序的
+
+frozenset(range(4))  #################这个是批量生成set 集合
+
+ls | grep -P --color .*.sh\|py$   ####其实正常的应该是py|sh  但是  shell中不是有个|管道符么  所以  要转义啊 哥
