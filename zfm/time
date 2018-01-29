@@ -215,3 +215,9 @@ dd if=/dev/zero of=/root/test.iso bs=1024M count=1 conv=fdatasync  #############
 dd if=/root/test.iso of=/dev/zero bs=1024M count=1 iflag=direct  ##########测试读入的速度                 检测用的是 iostat -d -k 1
 
 Pillow  ######### python 图片处理库  可以用作验证码
+
+1.PREROUTING (路由前)
+2.INPUT (数据包流入口)
+3.FORWARD (转发管卡)
+4.OUTPUT(数据包出口)
+5.POSTROUTING（路由后）
