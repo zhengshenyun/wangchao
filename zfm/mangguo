@@ -65,3 +65,70 @@ Successfully added user: {
 1
 > show collections                  查看
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------
+2018-01-22T16:30:25.618+0800 I CONTROL  [initandlisten] 
+> 
+> use admin
+switched to db admin
+> db.createUser({user:"root", pwd: "wangchaoroot", roles: ["root"]})
+2018-01-22T16:31:11.840+0800 E QUERY    [thread1] Error: couldn't add user: User "root@admin" already exists :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+DB.prototype.createUser@src/mongo/shell/db.js:1290:15
+@(shell):1:1
+         > db.createUser({user:"wangchaonew", pwd: "wangchaonew", roles: ["root"]})
+         Successfully added user: { "user" : "wangchaonew", "roles" : [ "root"  ]  }
+         > db
+         admin
+         > db.createUser({user:"admin", pwd:"admin", roles:
+                 ... [{role:"userAdminAnyDatabase", db:"admin"}]})^C
+
+         > 
+         > 
+         > db.createUser({user:"wangchaoadmin", pwd:"wangchaoadmin", roles:[{role:"userAdminAnyDatabase", db:"admin"}]})
+         Successfully added user: {
+                "user" : "wangchaoadmin",
+                    "roles" : [
+                    {
+                                    "role" : "userAdminAnyDatabase",
+                                                "db" : "admin"
+                                                            
+                    }
+                    
+                    ]
+
+         }
+> use wangchaodatabase
+switched to db wangchaodatabase
+> db.createUser({user:"wangchaotestku", pwd:"wangchaotestku", roles:["readWrite", "dbAdmin"]})
+Successfully added user: { "user" : "wangchaotestku", "roles" : [ "readWrite", "dbAdmin"  ]  }
+> db.auth("wangchaotestku","wangchaotestku")
+1
+> exit
+bye
+
+
+
+
+
+
+
+
+mongodb 有三种模式
+
+1  就是主从  他是启动的时候 --master  --slave  启动的
+2  就是副本集  他是mongod --port 27017 --dbpath "D:\set up\mongodb\data" --replSet rs0   先启动一个实例  然后进入这个实力 添加别的(此时别的mongod也是起来了) 然后再rs.add("ip:27017")  好的网站 
+    https://www.cnblogs.com/ee900222/p/mongodb_2.html     mongod -f ../conf/MongoDB1.conf --port 27018 --replSet rs0
+3  就是分片的概念了

@@ -1,5 +1,3 @@
-#!/usr/bin/python
-#encoding=utf8
 ---------------------------------------------------     __call__    -----------------------------------------------------
 class ClassA:
 
@@ -104,3 +102,26 @@ __setattr__当设置类实例属性时自动调用，如j.name=5 就会调用__s
 --------------------------------------------  __str__  和 __repr__ 差不多  (但是要有返回值)------------------
 
 __str__ 必须要print(对象)   __repr__直接对象就好了  不需要print
+
+----------------------------------------------------------------------类的扩展属性----------------------------------------------------------------------------
+
+>>> class Student(object):
+__slots__ = ('name', 'age') ###################### 用tuple定义允许绑定的属性名称  这样就定义了绑定属性只能是name,age(限制对象增加属性)
+
+对象增添的属性跟class 无关
+
+----------------------------------------------------------------------类的扩展02-----------------------------------------------------------------------
+
+class Student(object):
+
+            @property
+            def score(self):
+                return self._score
+
+            @score.setter
+            def score(self, value):
+                if not isinstance(value, int):
+                    raise ValueError('score must be an integer!')
+                if value < 0 or value > 100:
+                    raise ValueError('score must between 0 ~ 100!')
+                self._score = value

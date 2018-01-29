@@ -81,11 +81,13 @@ geo $whiteiplist  {
 
 
 
-mit_req_zone $binary_remote_addr zone=allips:10m rate=20r/s;
+    limit_req_zone $binary_remote_addr zone=allips:10m rate=20r/s;
+    limit_req zone=allips burst=5 nodelay;  ############  这种是定义全局的
+
     ...
     server{
         ...
-        location {
+        location / {
             ...
             #限制每ip每秒不超过20个请求，漏桶数burst为5
             #brust的意思就是，如果第1秒、2,3,4秒请求为19个，
@@ -94,7 +96,7 @@ mit_req_zone $binary_remote_addr zone=allips:10m rate=20r/s;
             #nodelay，如果不设置该选项，严格使用平均速率限制请求数，                            
             #第1秒25个请求时，5个请求放到第2秒执行，
             #设置nodelay，25个请求将在第1秒执行。
-            limit_req zone=allips burst=5 nodelay;      总之 (如果用户第一秒有25个请求) 设置了nodelay 就代表你超过了限制让你第一秒完成但是不能超过20+5   如果不设置就代表了第一秒只能执行20  剩下的5个留在第二秒执行
+            limit_req zone=allips burst=5 nodelay; ######  这种是location里面定义的    总之 (如果用户第一秒有25个请求) 设置了nodelay 就代表你超过了限制让你第一秒完成但是不能超过20+5   如果不设置就代表了第一秒只能执行20  剩下的5个留在第二秒执行
 
 location /test/
  {
@@ -111,17 +113,19 @@ proxy_cache_valid 200 302 304 5s;   #############不管前面是多少设置多�
 
 
 ------------------------------------------------------------------------------------------------   另外一个   ------------------------------------------------------------------------------------------------
+
+#########################################所有的rewrite你都可以看成一个if语句  如果匹配上去了 就走匹配的  如果没有匹配上去的 就不要去匹配了直接return后面的#####################################
 location /break/ {  
-     rewrite ^/break/(.*) /test/$1 break;  
+     rewrite ^/break/(.*) /test/$1 break; ############如果匹配到了 那就跳出去了 调出去后如果有那就200 如果没有那就按跳出去的那个算     如果没匹配到那就返回402
      return 402;  
 }  
   
 location /last/ {  
-     rewrite ^/last/(.*) /test/$1 last;  
+     rewrite ^/last/(.*) /test/$1 last;  ######  如果匹配到了 那就跳出去了 调出去后都是按照跳出去的来算 如果没有那就按跳出去的那个算     如果没匹配到那就返回403
      return 403;  
 }  
   
-location /test/ {  
+location /test/ { ######################这个只要匹配上去了 都是返回508  匹配上去后 后面没有的也返回508 不会返回404 
      return 508;  
 }  
 
@@ -134,3 +138,5 @@ location /test/ {
 
 
 roor 和alias root定义的时候就是相加   alias定义的时候就是不加location匹配的那个字段  而且alias最后一定是有/结尾的
+
+nginx做网站验证的时候 location 里面只能用 proxy_pass 如果用rewrite是没有效果的

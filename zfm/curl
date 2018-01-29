@@ -7,4 +7,6 @@ curl -o /dev/null --retry 3 --retry-max-time 8 -s -w %{http_code} http:whdkaskdh
 
 curl -o /dev/null --retry 3 --retry-max-time 8 -s -w %{http_code} %{1} http:whdkaskdhsajhdiosah.com
 
-curl -i -SL -s /dev/null --connect-timeout 10 -m 10  这样也是可疑的
+curl -i -SL -s /dev/null --connect-timeout 10 -m 10  这样也是可疑的   第一个10是连接超时时间   第二个是处理一个qps总共时间
+
+curl -O 是下载文件

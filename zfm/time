@@ -1,4 +1,4 @@
-lei time zhuangshiqi canshu log nginx mangguo shellshuzu popen module message sorted blueprint __xx__ shuchu ping curl fanshe excle yaml sh beautifulsoup meili requirements.txt code set panduan zhengze 
+lei time zhuangshiqi canshu log nginx mangguo shellshuzu popen module message sorted blueprint __xx__ shuchu ping curl fanshe excle yaml sh beautifulsoup meili requirements.txt code set panduan zhengze elk rabbitmq wangchaocmd.py wenjianserver.py wenjianclient.py
 
 time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))  时间戳转 00-00-00 00:00:00
 time.mktime(time.strptime("2018-09-09 00:00:00", "%Y-%m-%d %H:%M:%S"))  转成时间戳
@@ -34,13 +34,14 @@ payload = {xxx:xxx,xxx:xxx}
 r = requests.get('http://httpbin.org/get', params=payload)
 r = requests.post('http://httpbin.org/get', data=payload)
 
-ping -c 2 -w 5 192.168.1.1
+ping -c 2 -w 5 192.168.1.1 #############ping 一个ip 2次 在5秒内完成
 
 grep -P 匹配扩展   grep -P '(^ +upstr|^ +server)'| grep -v off
 grep -o  精确匹配
 sed -r 支持正则扩展
 sed  -n 's/.*-\(c.*\)$/\1/p'
 sed -n '/href/,/href/p' php.log   ##########打印区间的内容
+sed -n '/^\s*rrr\|^\s*eeee/p' 1  ###########匹配| 或的时候要要写上\|
 
 select * from cu_customer where create_time>date_sub(curdate(),interval 1 day);
 DATE(a.`create_time`) >= date_sub(CURRENT_DATE,INTERVAL  3 day)   ##############三天前的
@@ -48,7 +49,23 @@ DATE(a.`create_time`) >= date_sub(CURRENT_DATE,INTERVAL  3 day)   ##############
 cd /home/wls81/tomcat && for i in `ls | egrep -v '(dubbo|jenkins)'`;do echo `ps aux| grep $i/conf/logging.properties|grep -v 'grep'`| awk  '{if (length($0)==0){printf"%s没有起来",i;print ""} else if ($1=="wls81") {printf"进程号为  %s,项目为   %s",$2,$12;print ""} else if ($1=="root") {printf"%s进程使用root启动的    进程号为    %s",i,$2;print ""} else {print "111"}}' i=$i;done || echo "第一步错误"
 cat /etc/passwd | awk -F ":" -v a="test" '{if ($1==a) {print $0}}'  或者 cat /etc/passwd | awk -F ":" '{if ($1==a) {print $0}}' a="test"  都是可以的
 
+df -h | grep vda1 |awk '{split($5,a,"%"); if (a[1]>=90) {printf"\033[1;31m磁盘使用率过大 现在为%s%  请联系龚军清理\033[0m",a[1];print ""}}''"]]"}}'  ##########   awk打印颜色
+
 {printf"\033[1;31m%s    没有起来xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\033[0m",a;print ''}}   #########   awk 打印颜色
+
+awk 'BEGIN{sum=0}{sum+=$1}END{print sum}' 1  ########   像这种的我们可以怎样想  可以想象成一个脚本
+
+|--------------------
+|sum=0
+|
+for xxx;do
+|let   sum+=$sum
+|done
+|
+|print($sum)
+|
+|
+|--------------------
 
 df -h  | grep /xv |awk '{split($5,a,"%");print 'a[1]'}'  #######   awk切割
 
@@ -145,7 +162,7 @@ res = aa.command_select('select * from sys_user where sys_user_name=%s','双双'
 res = aa.command_select('select %s from sys_user' %'sys_user_name')  这种方式的 是玩那种select xx,xx from sys_user  这个其实是传了一个参数
 数据库查处的datetime.datetime类型 一定要转成 str 模式 才能用转成时间戳
 
-yum -y install cyrus-sasl-md5 && yum  -y install cyrus-sasl-plain
+yum -y install cyrus-sasl-md5 && yum  -y install cyrus-sasl-plain ########## svn  出现问题可以这样
 
 每五分钟执行  */5 * * * *  -------  每小时执行 0 * * * * --------  每天执行   0 0 * * * -------  每周执行  0 0 * * 0  --------  每月执行 0 0 1 * * ------- 每年执行  0 0 1 1 *
 
@@ -177,3 +194,24 @@ aa = [("a",1),("b",2),("c",3),("d",4)]
 frozenset(range(4))  #################这个是批量生成set 集合
 
 ls | grep -P --color .*.sh\|py$   ####其实正常的应该是py|sh  但是  shell中不是有个|管道符么  所以  要转义啊 哥
+
+result = subprocess.Popen("awk '/KILL QUERY/ {print $2}' /tmp/rm-uf674qnrl41677g0s.log",shell=True, stdout=subprocess.PIPE)
+s = result.stdout.readlines()
+
+mysql -umysqlroot -psch6IisicsZsYx9k < 1.sql >wang  ######################通过1.sql的sql语句  导入到wang这个文件
+
+rabbitmq  如果开启消息持久化 如果消费者没有发送ack  那么可能出现一直持久化 就会出现内存溢出
+
+sed awk grep 匹配或者大匹配
+|------------
+|grep -P '^rrr|^\s+rrr' 1   #####  注意 这边是| + 应为是扩展正则
+|sed -n '/^rrr\|\s\+rr/p' 1  #####  注意 这边没有写成 -r  所以  要用 \| \+
+|awk '{if ($0 ~/^rrr|^[[:space:]]+rr/) {print $0}}' 1  #### awk 支持扩展正则  但是空格只能是[[:space:]]
+|-------------
+
+iptables -D f2b-nginx-limit-req -s 139.224.23.111 -j REJECT  ############  临时删除ip 被fail2ban挡住的ip
+
+dd if=/dev/zero of=/root/test.iso bs=1024M count=1 conv=fdatasync  ###################测试写入的速度
+dd if=/root/test.iso of=/dev/zero bs=1024M count=1 iflag=direct  ##########测试读入的速度                 检测用的是 iostat -d -k 1
+
+Pillow  ######### python 图片处理库  可以用作验证码

@@ -1,0 +1,25 @@
+ 前提：两个节点(A和B)组成一个镜像队列。
+
+ * 场景1：A先停，B后停。
+
+ 该场景下B是master，只要先启动B，再启动A即可。或者先启动A，再在30秒之内启动B即可恢复镜像队列。
+
+ * 场景2: A, B同时停。
+
+ 该场景可能是由掉电等原因造成，只需在30秒之内连续启动A和B即可恢复镜像队列。
+
+ * 场景3：A先停，B后停，且A无法恢复。
+
+ 该场景是场景1的加强版，因为B是master，所以等B起来后，在B节点上调用rabbitmqctl forget_cluster_node A，解除与A的cluster关系，再将新的slave节点加入B即可重新恢复镜像队列。
+
+ * 场景4：A先停，B后停，且B无法恢复。
+
+ 该场景是场景3的加强版，比较难处理，早在3.1.x时代之前貌似都没什么好的解决方法，可能是我不知道，但是现在已经有解决方法了，在3.4.2 版本亲测有效。因为B是master，所以直接启动A是不行的，当A无法启动时，也就没办法在A节点上调用rabbitmqctl forget_cluster_node B了。新版本中，forget_cluster_node支 持–offline参数，offline参数允许rabbitmqctl在离线节点上执行forget_cluster_node命令，迫使 RabbitMQ在未启动的slave节点中选择一个作为master。当在A节点执行rabbitmqctl forget_cluster_node –offline B时，RabbitMQ会mock一个节点代表A，执行forget_cluster_node命令将B剔出cluster，然后A就能正常启动了。最后 将新的slave节点加入A即可重新恢复镜像队列。
+
+ * 场景5: A先停，B后停，且A、B均无法恢复，但是能得到A或B的磁盘文件。
+
+ 该场景是场景4的加强版，更加难处理。将A或B的数据库文件(默认在$RABBIT_HOME/var/lib目录中)拷贝至新节点C的目录下，再 将C的hostname改成A或B的hostname。如果拷过来的是A节点磁盘文件，按场景4处理方式；如果拷过来的是B节点磁盘文件，按场景3处理方 式。最后将新的slave节点加入C即可重新恢复镜像队列。
+
+ * 场景6：A先停，B后停，且A、B均无法恢复，且无法得到A或B的磁盘文件。
+
+ 洗洗睡吧，该场景下已无法恢复A、B队列中的内容了。
