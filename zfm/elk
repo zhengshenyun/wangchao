@@ -14,4 +14,4 @@ ln -s /etc/logstash/ config  #########吧/etc/logstash/ 链接到 /usr/share/log
 
 config/jvm.options   ##############解决ela不能以root运行的情况
 
-tomcat.conf　里面 index时间 要加时间  这样以后删除数据的时候方便  一定要记住  比如 tomcat-access-log-%{+YYYY.MM.dd}
+tomcat.conf　里面 index时间 要加时间  这样以后删除数据的时候方便  一定要记住  比如 tomcat-access-log-%{+YYYY.MM.dd}   ######还有tomcat.conf支持 /usr/local/*/*.log这种写法的
