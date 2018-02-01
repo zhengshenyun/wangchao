@@ -221,3 +221,5 @@ Pillow  ######### python 图片处理库  可以用作验证码
 3.FORWARD (转发管卡)
 4.OUTPUT(数据包出口)
 5.POSTROUTING（路由后）
+
+端口映射 rinetd

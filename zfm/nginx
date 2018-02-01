@@ -140,3 +140,7 @@ location /test/ { ######################这个只要匹配上去了 都是返回
 roor 和alias root定义的时候就是相加   alias定义的时候就是不加location匹配的那个字段  而且alias最后一定是有/结尾的
 
 nginx做网站验证的时候 location 里面只能用 proxy_pass 如果用rewrite是没有效果的
+
+
+
+location ~ /futures-mobile-api/user/info/(register|register/send/sms)$
