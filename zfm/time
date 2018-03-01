@@ -190,7 +190,7 @@ aa = [("a",1),("b",2),("c",3),("d",4)]
 >>> for k,v in aa:
 ...     d1[k]= v
 
-然后 json.dumps(d1)
+然后 json.dumps(d1);对方解析就要 json.loads(bbb,object_pairs_hook=OrderedDict) 只支持2.7
 
 这样得出的字典结果就是有序的
 
