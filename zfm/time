@@ -236,3 +236,9 @@ redis-cli -a "REDISredis888666" -h r-uf6c5bbb82356e64.redis.rds.aliyuncs.com key
 ansible ppb-web02,ppb-web03 -m shell -a "a=\$(ps aux| grep /pairCenter/| grep -v grep| awk '{print \$2}');sudo -u wls81 jstack  \$a| grep -i stat"
 
 svn 管理工具 if.svnadmin
+
+sorted(aa,key=lambda x:x[0],reverse=False)   ###################按照首字母排序 不倒序
+
+re.compile(r'\w+').findall(a)   #####得出的是一个列表
+
+flask redirect(url_for('hello_world')) redirect() 都是可以的  但是 第一个方便点  应为你如果删除了html 就会报错了 而且整体的逻辑不一样
