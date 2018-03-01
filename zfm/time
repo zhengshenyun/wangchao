@@ -189,6 +189,9 @@ aa = [("a",1),("b",2),("c",3),("d",4)]
 >>> d1 = collections.OrderedDict()
 >>> for k,v in aa:
 ...     d1[k]= v
+
+然后 json.dumps(d1)
+
 这样得出的字典结果就是有序的
 
 frozenset(range(4))  #################这个是批量生成set 集合
