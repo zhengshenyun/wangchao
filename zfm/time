@@ -248,3 +248,5 @@ python 美化表格库 from prettytable import PrettyTable
 {printf 'PID\tUSER\tAPPNAME\n';printf '%s\t%s\t%s\n' "1" "john" "foo bar";printf '%s\t%s\t%s\n' "12345678" "someone_with_a_long_name" "blub blib blab bam boom";} | prettytable.sh 3 ######美化输出挺好的 首先先要source ./prettytable.sh一下 接下来就可以用了
 { echo "www\t ccc\t fff\t hhh"; echo "www\t ccc\t fff\t hhh";  }|prettytable 4 green  ######这样也是可以的
 cat /etc/passwd| awk -F : 'BEGIN {print"AAA\tBBB\tCCC\tDDD"}''{printf"%s\t%s\t%s\t%s\n",$1,$2,$3,$4}'|prettytable 4; ######## 这样也是可以的
+
+openpyxl  ############# python一个更简单的操作excle的库
