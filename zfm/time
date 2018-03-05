@@ -122,7 +122,7 @@ b = lambda x,y:1 if x>y else -1  如果x>y返回b = 1 x<y返回b = -1    #######
 for k,v in itertools.groupby(a)  &&  for k,v in itertools.groupby(a,lambda x:upper(x))    ;print(k,list(v))   #######
 for k,v in enumerate("dasdhshflsdhfiuhhfisdhfio"):print(k,v)  #####这个是列出当前索引位置和数据
 
-from configobj import ConfigObj
+from configobj import ConfigObj   #############读写配置文件方便
 
 for k,v in ([1,2],[3,4],[5,6]):
 
@@ -242,3 +242,7 @@ sorted(aa,key=lambda x:x[0],reverse=False)   ###################按照首字母�
 re.compile(r'\w+').findall(a)   #####得出的是一个列表
 
 flask redirect(url_for('hello_world')) redirect() 都是可以的  但是 第一个方便点  应为你如果删除了html 就会报错了 而且整体的逻辑不一样
+
+python 美化表格库 from prettytable import PrettyTable
+
+{printf 'PID\tUSER\tAPPNAME\n';printf '%s\t%s\t%s\n' "1" "john" "foo bar";printf '%s\t%s\t%s\n' "12345678" "someone_with_a_long_name" "blub blib blab bam boom";} | prettytable.sh 3 ######美化输出挺好的
