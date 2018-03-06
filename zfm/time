@@ -250,3 +250,5 @@ python 美化表格库 from prettytable import PrettyTable
 cat /etc/passwd| awk -F : 'BEGIN {print"AAA\tBBB\tCCC\tDDD"}''{printf"%s\t%s\t%s\t%s\n",$1,$2,$3,$4}'|prettytable 4; ######## 这样也是可以的
 
 openpyxl  ############# python一个更简单的操作excle的库
+
+a = "wangchao";b="zhangshenyun";print("{0} ai {1}".format(a,b))    ########### format格式化输出
