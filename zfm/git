@@ -1,0 +1,4 @@
+-----------------------------  git 回退 ------------------------
+git log --pretty=oneline
+git reset --hard xxxxxxxxxxxx
+git push -f -u origin master
