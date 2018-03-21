@@ -1,0 +1,30 @@
+discovery.zen.minimum_master_nodes: 2 #至少要发现集群可做master的节点数， 集群中可以用作master的个数  如果配置文件中master 设置为true的个数小于这个数 则默认为集群不可用 防止脑裂
+
+------------------------------------------------------  查看els中有多少行数据 --------------------
+curl -XGET 'http://localhost:9200/_count?pretty' -d '
+{
+"query": {
+"match_all": {}
+}
+}
+'
+------------------------------------------------------
+
+curl -XGET 'http://172.24.34.49:9200/_cat/nodes?pretty'  查看集群状态 下面还有一个
+curl localhost:9200/_cat/indices?v 显示集体状态是什么颜色
+curl localhost:9200/_cluster/health?pretty   这个更详细
+
+
+-----------------  添加索引 ----------------
+curl -XPUT 'localhost:9200/customer/external/1?pretty' -d '
+{
+  "name": "John Doe"
+}'
+
+
+----------------  再查看刚才添加的索引 --------------
+curl -XGET 'localhost:9200/customer/external/1?pretty'
+
+
+----------------  再删除刚才添加的索引 --------------
+curl -XDELETE 'localhost:9200/customer'  ##直接删除索引 这个索引下面的数据都没有了
