@@ -252,3 +252,5 @@ cat /etc/passwd| awk -F : 'BEGIN {print"AAA\tBBB\tCCC\tDDD"}''{printf"%s\t%s\t%s
 openpyxl  ############# python一个更简单的操作excle的库
 
 a = "wangchao";b="zhangshenyun";print("{0} ai {1}".format(a,b))    ########### format格式化输出
+
+python manage.py makemigrations cmdb; python manage.py migrate
