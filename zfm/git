@@ -2,3 +2,27 @@
 git log --pretty=oneline
 git reset --hard xxxxxxxxxxxx
 git push -f -u origin master
+
+
+
+
+
+
+--------------------------------------------------------
+
+[user]                                #####改了这个地方
+    name = zhengshenyun                   #####这个地方
+        email = 961084497@qq.com     #####这个地方
+        [core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+            logallrefupdates = true
+                ignorecase=true  
+                    precomposeunicode=true
+                    [remote "origin"]
+                    url = https://zhengshenyun:wangchao123@github.com/zhengshenyun/wangchao.git   ###就改了这个地方
+                    fetch = +refs/heads/*:refs/remotes/origin/*
+                    [branch "master"]
+                    remote = origin
+                    merge = refs/heads/master""]""]
