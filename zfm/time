@@ -254,3 +254,5 @@ openpyxl  ############# python一个更简单的操作excle的库
 a = "wangchao";b="zhangshenyun";print("{0} ai {1}".format(a,b))    ########### format格式化输出
 
 python manage.py makemigrations cmdb; python manage.py migrate
+
+print(json.dumps(json.loads(r.text),indent=4)) 得到的数据美化json数据  其实就是先loads  在dumps
