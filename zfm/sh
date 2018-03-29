@@ -1,6 +1,6 @@
 from sh import ls;  ls("./",_out="ls.wangchao",_err="lserr.wangchao");#####_out是正确输出  _err是错误输出      print(output.exit_code) #应该是0  这个是返回值
 
-
+------------------------------------
 for ((i=1;i<=7;i++));do
     echo $i
 done
