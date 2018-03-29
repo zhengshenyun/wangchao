@@ -26,3 +26,9 @@ git push -f -u origin master
                     [branch "master"]
                     remote = origin
                     merge = refs/heads/master""]""]
+
+--------------------------------------------------------
+git 只更新一个文件
+
+git fetch
+git checkout origin/master -- path/to/file   ###例如 git checkout origin/master -- sh
