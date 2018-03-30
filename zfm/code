@@ -10,3 +10,4 @@ a = "xxxx"  是utf8
 那就先转吧 a.decode("utf8") 这样就转成unicode模式
 
 如果再由unicode转成gbk模式   a.decode("utf8").encode('gbk')  反正记住一个定律  utf8----------unicode-----------gbk    就是这样转的
+                                                                               (str对象)     (unicode对象)     (str对象)
