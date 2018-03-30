@@ -257,4 +257,4 @@ python manage.py makemigrations cmdb; python manage.py migrate
 
 print(json.dumps(json.loads(r.text),indent=4)) 得到的数据美化json数据  其实就是先loads  在dumps 一定要知道
 
---replacepkgs ###rpm重新安装
+rpm --replacepkgs ###rpm重新安装
