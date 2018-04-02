@@ -54,3 +54,8 @@ wang
 
 
 ps   #########################   **knowd  里面真要传值  只能是 a = 3  wangchao(a="wangchao")
+
+def wangchao(name,a="wang",b = "chao",*args,**knows):print(name);print(a);print(b);print(args);print(knows)
+
+bbb = {"a": "b11","b": "c11", "d11": "d1"}
+wangchao(1,**bbb)    ###########传入字典**bbb全部赋值给**knows  但是有一点 如果用wangchao(1,a="ccc",**bbb) 就会报错 应为已经定义了a="ccc" 后面又是定义 a="b11" 所以会冲突
