@@ -258,3 +258,29 @@ python manage.py makemigrations cmdb; python manage.py migrate
 print(json.dumps(json.loads(r.text),indent=4)) 得到的数据美化json数据  其实就是先loads  在dumps 一定要知道
 
 rpm --replacepkgs ###rpm重新安装
+
+
+----------------------------------------------------------------------------------------------------
+因为python是弱类型语言，赋值语句和其定义变量的语句一样，所以a=[4,5,6]'这句中，它是“有歧义的“，因为它既可以是表示
+
+引用全局变量a，也可以是创建一个新的局部变量，所以在python中，默认它的行为是创建局部变量，除非显式声明global，
+
+global定义的本地变量会变成其对应全局变量的一个别名，即是同一个变量。
+
+什么样的情况下，list和dict不用global呢？当在函数内是用list或dict的内置函数进行修改时，如append、remove等方法，
+
+而非‘=’赋值时，可以不用global声明
+class wangchao(object):
+    a = {"ss":2, "dd":3}
+
+a1 = wangchao()
+print(a1.a)
+a2 = wangchao()
+print(a2.a)
+print(wangchao.a)
+wangchao.a["ss"] = 22    ##################这样改的话是全局
+print(a1.a,a2.a)
+a1.a = {"a1a":12}    #################这样定义的话是局部    a1.a["ss"] = 22  ##############这样改的话也就是全局了  他隐性用了global参数
+print("-"*100)
+print(a1.a,a2.a)
+------------------------------------------------------------------------------------------------------
