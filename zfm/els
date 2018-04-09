@@ -24,7 +24,10 @@ curl -XPUT 'localhost:9200/customer/external/1?pretty' -d '
 
 ----------------  再查看刚才添加的索引 --------------
 curl -XGET 'localhost:9200/customer/external/1?pretty'
+                            索引名   type名  id名   #####id如果塞入的时候不自己添加的话 他会默认加密  那就不能用上面那个方式3 4 5来获取了    
 
 
 ----------------  再删除刚才添加的索引 --------------
 curl -XDELETE 'localhost:9200/customer'  ##直接删除索引 这个索引下面的数据都没有了
+
+http://keenwon.com/1404.html  ######els  ik分词器 搜索神器
