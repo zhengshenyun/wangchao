@@ -32,3 +32,4 @@ curl -XDELETE 'localhost:9200/customer'  ##直接删除索引 这个索引下面
 
 http://keenwon.com/1404.html  ######els  ik分词器 搜索神器
 http://lua.ren/topic/232/es-elasticsearch-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%B8%8Epython%E5%AE%A2%E6%88%B7%E7%AB%AF ###els牛逼 增删查改
+##################### els默认地址有好几个  所以跟那个zookeeper一样的  都是些好几个就可以了    连接es集群
