@@ -132,3 +132,6 @@ mongodb 有三种模式
 2  就是副本集  他是mongod --port 27017 --dbpath "D:\set up\mongodb\data" --replSet rs0   先启动一个实例  然后进入这个实力 添加别的(此时别的mongod也是起来了) 然后再rs.add("ip:27017")  好的网站 
     https://www.cnblogs.com/ee900222/p/mongodb_2.html     mongod -f ../conf/MongoDB1.conf --port 27018 --replSet rs0
 3  就是分片的概念了
+
+
+https://www.jianshu.com/p/d5e693f99760 ########mongodb  分片集群最佳网站
