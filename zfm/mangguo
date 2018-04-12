@@ -135,6 +135,10 @@ mongodb 有三种模式
 
 
 https://www.jianshu.com/p/d5e693f99760 ########mongodb  分片集群最佳网站
+https://www.cnblogs.com/ityouknow/p/7566682.html
+https://www.jianshu.com/p/6648efd24f25
 
 bsondump  mongo  mongod  mongodump  mongoexport  mongofiles  mongoimport  mongooplog  mongoperf  mongorestore  mongos  mongostat  mongotop
           mangodb分片和config启动                                                                          mongodb路由启动
+
+
