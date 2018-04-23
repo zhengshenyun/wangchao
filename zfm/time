@@ -288,3 +288,13 @@ print(a1.a,a2.a)
 https://www.cnblogs.com/yingchen/p/6763524.html  ######redis-clustem集群  前端可以放一个中间件 twemproxy  反向代理
 
 sys.exit(8)  ####python 程序退出 返回8
+
+---------------------------  python 按照多个字符切割 -----------------
+>>> a
+'my[name is wang:chao]shide'
+>>> re.split('[\[\s\]]',a)
+['my', 'name', 'is', 'wang:chao', 'shide']
+>>>
+----------------------------------
+
+Linux建立软连接 ln -s /data/auto(目录) /root/backauto    #####注意/data/auto 一定要是全路径 否则就是错误的   删除的时候要rm -rf /root/backauto 不能是/root/backauto/否则全删除了
