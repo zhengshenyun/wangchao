@@ -166,3 +166,12 @@ bsondump  mongo  mongod  mongodump  mongoexport  mongofiles  mongoimport  mongoo
 
 		上面配置好了之后 需要进入路由配置端口里面 然后 sh.addShard("10.20.20.239:40000")添加集群信息 sh.enableSharding("shardtest"){这里面shardtest是一个库 意思就是开启这个库的分片}
 		sh.shardCollection("shardtest.user",{"age":1}) ##对集合user以age作为片键进行分片  
+
+------------------------架构图(所以可以清楚地看见 其实分片结构都是事先设置好的)------------------------
+
+服务器	    	234	235		235
+组件1	mongos	mongos	mongos
+组件2	config server	config server	config server
+组件3	shard server1主	shard server1副	shard server1仲裁
+组件4	shard server2仲裁  shard server2主	shard server2副
+组件5	shard server3副	shard server3仲裁	shard server3主
