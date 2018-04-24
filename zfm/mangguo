@@ -138,7 +138,8 @@ https://www.jianshu.com/p/d5e693f99760 ########mongodb  分片集群最佳网站
 https://www.cnblogs.com/ityouknow/p/7566682.html
 https://www.jianshu.com/p/6648efd24f25
 
+-------------------------------------------------------------
 bsondump  mongo  mongod  mongodump  mongoexport  mongofiles  mongoimport  mongooplog  mongoperf  mongorestore  mongos  mongostat  mongotop
           mangodb分片和config启动                                                                          mongodb路由启动
-
-
+上面配置好了之后 需要进入路由配置端口里面 然后 sh.addShard("10.20.20.239:40000")添加集群信息 sh.enableSharding("shardtest"){这里面shardtest是一个库 意思就是开启这个库的分片}
+sh.shardCollection("shardtest.user",{"age":1}) ##对集合user以age作为片键进行分片  
