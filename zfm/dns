@@ -1,0 +1,7 @@
+resolv-file=/etc/resolv.conf  服务器从上往下dns解析过程
+strict-order   严格按照上面顺序
+address=/.hello.me/10.10.10.8	吧xxx.hello.me解析到哪台服务器上面(内网和外网都可以)
+listen-address=10.254.232.125,127.0.0.1	监听的本地地址(本地就是dns服务器)
+addn-hosts=/etc/hosts  排除本地host的解析 意思就是本地hosts解析依然有效
+cache-size=1024
+conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig
