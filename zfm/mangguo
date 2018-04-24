@@ -156,7 +156,7 @@ bsondump  mongo  mongod  mongodump  mongoexport  mongofiles  mongoimport  mongoo
 			sudo /usr/local/server/mongodb/bin/mongod --shardsvr --replSet shard1ReplSet --port 22001 --dbpath /data/mongodb/shard1/data --logpath /data/mongodb/shard1/log/shard1.log --fork --nojournal
     			sudo /usr/local/server/mongodb/bin/mongod --shardsvr --replSet shard2ReplSet --port 22002 --dbpath /data/mongodb/shard2/data --logpath /data/mongodb/shard2/log/shard2.log --fork --nojournal
     			sudo /usr/local/server/mongodb/bin/mongod --shardsvr --replSet shard3ReplSet --port 22003 --dbpath /data/mongodb/shard3/data --logpath /data/mongodb/shard3/log/shard3.log --fork --nojournal
-			先进入到一台机器的分片端口里面添加副本集信息(例如登陆这台机器的分片端口 配置其他的端口加进来 其实就是添加副本集)
+			先进入到一台机器的分片端口里面添加副本集信息(例如登陆这台机器的分片端口 配置其他的端口加进来 其实就是添加当前进入端口的分片副本集)
 			rs.initiate({_id:"shard1ReplSet",
          		members:[{_id:0,host:"mdb1:22001"},
                   	{_id:1,host:"mdb2:22001"},
