@@ -148,10 +148,8 @@ bsondump  mongo  mongod  mongodump  mongoexport  mongofiles  mongoimport  mongoo
                       	{_id:1,host:"mdb2:21000"},
                       	{_id:2,host:"mdb3:21000"}]})
 			
-	  2 在启动 路由 (路由集群)
-			sudo  /usr/local/server/mongodb/bin/mongos  --configdb cfgReplSet/mdb1:21000,mdb2:21000,mdb3:21000 --port  20000  --logpath  /data/mongodb/mongos/log/mongos.log --fork
 
-	  3 然后启动分片
+	  2 然后启动分片
 			启动的时候添加原始分片(首先是添加副本集的名字 此时还没有添加副本集)
 			sudo /usr/local/server/mongodb/bin/mongod --shardsvr --replSet shard1ReplSet --port 22001 --dbpath /data/mongodb/shard1/data --logpath /data/mongodb/shard1/log/shard1.log --fork --nojournal
     			sudo /usr/local/server/mongodb/bin/mongod --shardsvr --replSet shard2ReplSet --port 22002 --dbpath /data/mongodb/shard2/data --logpath /data/mongodb/shard2/log/shard2.log --fork --nojournal
@@ -162,7 +160,9 @@ bsondump  mongo  mongod  mongodump  mongoexport  mongofiles  mongoimport  mongoo
                   	{_id:1,host:"mdb2:22001"},
                   	{_id:2,host:"mdb3:22001"}]})
 
-	  4 最后添加分片到路由信息里面(此时分片和副本集都已经弄好了)
+	  3 在启动 路由 (路由集群)
+			sudo  /usr/local/server/mongodb/bin/mongos  --configdb cfgReplSet/mdb1:21000,mdb2:21000,mdb3:21000 --port  20000  --logpath  /data/mongodb/mongos/log/mongos.log --fork
+	  4 最后添加分片到路由信息里面(如下此时分片和副本集都已经弄好了)
 
 		上面配置好了之后 需要进入路由配置端口里面 然后 sh.addShard("10.20.20.239:40000")添加集群信息 sh.enableSharding("shardtest"){这里面shardtest是一个库 意思就是开启这个库的分片}
 		sh.shardCollection("shardtest.user",{"age":1}) ##对集合user以age作为片键进行分片  
