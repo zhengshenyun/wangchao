@@ -19,3 +19,18 @@ from mokuai import fangfa
 
 import mokuai
 
+################ a.py (准备调用b模块 但是b模块代码中怎样知道被谁调用了呢)###########
+#!/usr/bin/python
+import b
+
+b.wangchao(__name__)
+
+############### b.py (模块记录被谁调用了 和调用者的路劲) ##########
+#!/usr/bin/python
+#encoding=utf8
+import sys,os
+print(__name__)
+
+def wangchao(ss):
+	res = sys.modules.get(ss)
+	print("当前调用我的模块为:%s" %(os.path.dirname(os.path.abspath(res.__file__)) + "/" + res.__file__))
