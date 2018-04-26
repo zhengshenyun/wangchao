@@ -36,3 +36,5 @@ sudo gitlab-ctl reconfigure
 --------------------------------------
 vim /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml 
 host: localhost         >> 这里改为主机的IP或者域名就好了
+
+如果查看历史可以使用 在项目里面 active里面查看(项目里面导航栏可以看见 应该是active)
