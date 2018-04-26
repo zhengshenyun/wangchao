@@ -31,3 +31,8 @@ sudo gitlab-ctl reconfigure
 安装成功会有如下提示：
 
 3.第一次访问GitLab，系统会重定向页面到重定向到重置密码页面，你需要输入初始化管理员账号的密码，管理员的用户名为root，初始密码为5iveL!fe。重置密码后，新密码即为刚输入的密码。
+
+
+--------------------------------------
+vim /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml 
+host: localhost         >> 这里改为主机的IP或者域名就好了
