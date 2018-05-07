@@ -1,0 +1,45 @@
+user表(用户表)
+
+userid  username  password  nickname
+1	zhangsan   xxxxxxx    xxxxx
+2	lisi       xxxxxx     xxxxx
+3	wangwu     xxxxxx     xxxxx
+----------------------------------
+role表(角色表)
+
+roleid  jiaosename
+1	   超级管理员
+2	   管理员
+3	   普通用户
+---------------------------------
+tree表(菜单表)
+
+treeid       quanxianmenu
+1		/test
+2		/install
+3		/salt
+4		/cmdb
+--------------------------------
+user-jiaose表(角色菜单表)
+
+roleid      treeid     isnot(1为可用 0为不可用) 
+1  		1           1
+1	        2           1
+1               3           1
+1               4           1
+2               1	    1
+2               2	    1
+2               3	    1
+2               4           0
+3               1	    1
+3               2	    1
+3		3 	    0
+3		4	    0
+---------------------------------------
+jiaose-quanxian表(用户角色表)
+
+userid   roleid
+1	  1           #####张三是超级管理员
+2	  1	      #####李四是超级管理员
+3	  3	      #####王五是普通用户
+--------------------------------------------
