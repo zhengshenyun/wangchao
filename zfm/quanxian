@@ -43,3 +43,4 @@ userid   roleid
 2	  1	      #####李四是超级管理员
 3	  3	      #####王五是普通用户
 --------------------------------------------
+select quanxianmune from tree where treeid in (SELECT treeid from userjiaose where roleid = (select roleid from jiaosequanxian where userid=1) and isnot =1)
