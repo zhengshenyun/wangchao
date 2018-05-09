@@ -1,0 +1,7 @@
+#encoding=utf8
+import yagmail
+yag = yagmail.SMTP(user='xianjinxiang@163.com', password='@#xiang123', host='smtp.163.com', port='465')
+body = "老师，你好！这是最近工作的文件，请查收。"
+html = '<img src="http://116.85.47.84:8080/nginx.png"  alt="nginx访问统计" />'  ##########这种外连接暂且做不了
+yag.send(to='chao.wang@shandjj.com', subject='工作文件', contents=[body,html,"nginx.png",'everyday.txt'])  ############contents=[body, 'everyday.txt']  everyday.txt是同级目录文件
+print("已发送邮件")
