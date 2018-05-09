@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #encoding=utf8
+
 import plotly.plotly
 import plotly.offline as pltoff
 import plotly.graph_objs as go
