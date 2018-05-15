@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #encoding=utf8
-
+###############################这个描绘出的是一个网页
 import plotly.plotly
 import plotly.offline as pltoff
 import plotly.graph_objs as go
