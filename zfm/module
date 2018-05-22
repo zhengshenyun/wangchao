@@ -17,7 +17,7 @@ from wenjian import mokuai
 
 from mokuai import fangfa
 
-import mokuai  #############必须是模块
+import mokuai  #############必须是模块 (但是 如果是直接import pakage的话  那这个pakage里面的__init__.py就要导入了)
 
 ################ a.py (准备调用b模块 但是b模块代码中怎样知道被谁调用了呢)###########
 #!/usr/bin/python
