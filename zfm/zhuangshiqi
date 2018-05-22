@@ -75,3 +75,27 @@ dd
 
 ######## 限制类的fun使用
 @abstractmethod 如果在class里面使用了这个 则这个class不能被实例化   而且他的子类如果继承他 必须要重写父类函数里面加了@abstractmethod的函数
+
+#################################下面是python2的用法  python3的写法不一样 用法是一样的
+class wangchao(object):
+    __metaclass__ = ABCMeta
+    @abstractmethod
+    def ww(self):
+        print("ww")
+
+
+
+class chaowang(wangchao):
+    def www(self):
+        print("www")
+
+
+    def __call__(self):
+        print("this is a lei")
+
+    def __str__(self):
+        print("this is a str")
+        return "ssss"
+
+bb = chaowang()
+print(bb())
