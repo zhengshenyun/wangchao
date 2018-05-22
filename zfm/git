@@ -21,7 +21,7 @@ git push -f -u origin master
                 ignorecase=true  
                     precomposeunicode=true
                     [remote "origin"]
-                    url = https://zhengshenyun:wangchao123@github.com/zhengshenyun/wangchao.git   ###就改了这个地方
+                    url = https://zhengshenyun:wangchao123@github.com/zhengshenyun/wangchao.git   ###就改了这个地方  加这个以后就不用输入账户密码了
                     fetch = +refs/heads/*:refs/remotes/origin/*
                     [branch "master"]
                     remote = origin
