@@ -32,3 +32,6 @@ git 只更新一个文件
 
 git fetch
 git checkout origin/master -- path/to/file   ###例如 git checkout origin/master -- sh
+
+------------------------------------------------------
+自己改变的文件  再pull的话就会有问题此时可以用带git stash;git pull;git stash pop stash@{0};然后再手动改
