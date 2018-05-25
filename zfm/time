@@ -300,3 +300,5 @@ sys.exit(8)  ####python 程序退出 返回8
 Linux建立软连接 ln -s /data/auto(目录) /root/backauto    #####注意/data/auto 一定要是全路径 否则就是错误的   删除的时候要rm -rf /root/backauto 不能是/root/backauto/否则全删除了
 
 echo "this is my test mail" | mail -s 'mail test' xxx@yyy.com  ##################### Linux发邮件
+
+ls |xargs -i cp -rf {} ../chaowang    #####################xargs 的用法 一定要加上-i {}的意思就是把前面找处的值复制给{}
