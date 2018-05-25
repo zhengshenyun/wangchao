@@ -67,3 +67,6 @@ curl -XPUT http://192.168.1.2/_cluster/settings -d'
 -------------------------------es手动分配分片  默认是5个 但是可以分配三个  但是分过后  这个索引就不能跟改了--
 curl -XPOST 'localhost:9200/_cluster/reroute' -d '{      "commands" : [ {               "allocate" : 	    {                "index" : "virus-gather", "shard" : 3, "node" : "Tommy", "allow_primary" : true            }        } ]  }'
 
+----------------------------------------------------es和普通关系型数据库的对比--------------------------------------------------
+关系数据库 ⇒ 数据库 ⇒ 表 ⇒ 行 ⇒ 列(Columns)
+Elasticsearch ⇒ 索引 ⇒ 类型 ⇒ 文档 ⇒ 字段(Fields)
