@@ -166,7 +166,7 @@ yum -y install cyrus-sasl-md5 && yum  -y install cyrus-sasl-plain ########## svn
 
 每五分钟执行  */5 * * * *  -------  每小时执行 0 * * * * --------  每天执行   0 0 * * * -------  每周执行  0 0 * * 0  --------  每月执行 0 0 1 * * ------- 每年执行  0 0 1 1 *
 
-rsync -av --delete -e 'ssh -p 22' ./ root@web01:/tmp/honglu  ##########你要同步的东西都在./下面 ./*这种写法是错误的   如果不要全部可以./7 8这样同步过去
+rsync -av --delete -e 'ssh -p 22' ./ root@web01:/tmp/honglu  ##########你要同步的东西都在./下面 ./*这种写法是错误的   如果不要全部可以./7 8这样同步过去 对方多余的会删除
 
 rsync -av --delete -e 'ssh -p 22' root@web01:/tmp/honglu/ ./  #######吧对方的/tmp/honglu/下面所有的复制过来  如果我这边有多余的  则直接删除   这个 /tmp/honglu/ 如果是/tmp/honglu  则把honglu这个目录复制过来了
 
