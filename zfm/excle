@@ -70,4 +70,8 @@ def Makeexcle(i,exclename):
 
 if __name__ == '__main__':
     Makeexcle('select %s,%s,%s from sys_user' %("sys_user_name","user_type","mobile"),"wangchaotest")
+    ####Makeexcle([["1","2","3"],["4","5","6"],["7","8","9"]],"wangchao") 类似于这种
+	#1 2 3
+	#4 5 6
+	#7 8 9
 
