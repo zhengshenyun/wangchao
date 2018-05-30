@@ -308,3 +308,9 @@ ls |xargs -i cp -rf {} ../chaowang    #####################xargs 的用法 一�
 for i in `ls *.apk`;do newname=`echo $i|sed 's/wang/dd/g'`;mv $i $newname;done #################################批量修改文件名
 
 shell中 for i in `cat 3` 这样是默认对空格做切割字符串的   cat 3|while read line;这个是对一行一行分析
+
+-------------------------------------------------
+xx.replace("s","m")全部替换s-->m		-						-
+xx.replace("s","m",3)替换前3个a-->m 后面的不处理						-
+xx.find("m")###可以用 找到就是索引位置 没找到就是-1  此外a.find要好于a.index 应为a.index找不到会报错 a.find不会报错					-
+-------------------------------------------------
