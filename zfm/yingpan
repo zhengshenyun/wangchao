@@ -1,0 +1,15 @@
+for i in `ls /dev/sd*| grep -v 'sda'`;do parted $i;done  ###修改分区表格式
+pvcreate /dev/sd{b..l}1   #####创建pv
+pvs
+ls /dev/sd*
+pvs
+vgcreate vg_data /dev/sd{b..l}1  ##创建卷组
+vgs
+lvcreate -l +100%FREE    -n lv_data vg_data  ####创建lvm
+lvs
+ls /dev/mapper/vg_data-lv_data
+mkfs.xfs  /dev/mapper/vg_data-lv_data   #####格式化硬盘
+fdisk -l
+df -h
+;ls
+mount /dev/mapper/vg_data-lv_data /data   ####挂载
