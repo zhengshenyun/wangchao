@@ -314,3 +314,6 @@ xx.replace("s","m")全部替换s-->m		-						-
 xx.replace("s","m",3)替换前3个a-->m 后面的不处理						-
 xx.find("m")###可以用 找到就是索引位置 没找到就是-1  此外a.find要好于a.index 应为a.index找不到会报错 a.find不会报错					-
 -------------------------------------------------
+awk '{max=0;for (i=1;i<=NF;i++){if ($i>=max) {max=$i} };print max}' gg.txt  #########################每行最大的值
+awk '{min=9999999999;for (i=1;i<=NF;i++){if ($i<=min) {min=$i} };print min}' gg.txt  ##########每行最小的值
+awk '{max=0;for (i=1;i<=NF;i++){{max+=$i} };print max/(i-1)}' gg.txt   #########每行的平均数
