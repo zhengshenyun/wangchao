@@ -1,8 +1,0 @@
-wangchao
-wangwang
-chaochao
-wwwwww
-<<<<<<< Updated upstream
-=======
-cccccc
->>>>>>> Stashed changes
