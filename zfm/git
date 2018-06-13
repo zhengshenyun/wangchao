@@ -35,3 +35,5 @@ git checkout origin/master -- path/to/file   ###例如 git checkout origin/maste
 
 ------------------------------------------------------
 自己改变的文件  再pull的话就会有问题此时可以用带git stash;git pull;git stash pop stash@{0};然后再手动改
+
+git stash(吧改的缓存起来) ; git pull(这个时候拉的屎服务器端的 就是跟服务端是一样的) ; git stash apply (把自己改的东西加进来) ----》下一步就是该冲突了(意思就是你们改的一个文件)
