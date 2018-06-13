@@ -2,4 +2,8 @@ wangchao
 wangwang
 chaochao
 wwwwww
+<<<<<<< Updated upstream
 cccccc
+=======
+vvvvvv
+>>>>>>> Stashed changes
