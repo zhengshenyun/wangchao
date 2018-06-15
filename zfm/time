@@ -12,6 +12,8 @@ date -s "2017-04-08 `date +%T`"
 with open('filename', 'wt') as f:  
     f.write('hello, world!')
 
+w类同于 重定向 >
+a类同于 重定向 >>  但是a的时候默认是不换行的 自己可以添加\nhello.world
 
 
 class MyEx(Exception):  
