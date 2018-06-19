@@ -11,3 +11,4 @@ curl -i -SL -s /dev/null --connect-timeout 10 -m 10  这样也是可疑的   第
 
 curl -O 是下载文件
 
+curl -I 可以查看当前的文件最后修改的时间
