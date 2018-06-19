@@ -96,3 +96,25 @@ view plaincopy to clipboardprint?
 if($("#id").attr("disabled")){}//判断不可用   
 if($("#id").attr("disabled")==undefined){}//判断可用  
 
+-----------------------------------------------------------------  选区表格里面的onclick最好的发法-------------------------------------------
+<html>
+<head>
+<script type="text/javascript" src="/jquery/jquery.js"></script>
+<script type="text/javascript">
+function nihao(that){                         //接受this 但是用that代表this  千万不能使用this
+   var Text = $(that).text()
+   alert(Text)
+};
+</script>
+</head>
+<body>
+<p>这是一个段落。</p>
+<button onclick="nihao(this)">切换1</button>    //传递一个this
+<button onclick="nihao(this)">切换2</button>
+<button onclick="nihao(this)">切换3</button>
+<button onclick="nihao(this)">切换4</button>
+<button onclick="nihao(this)">切换5</button>
+<button onclick="nihao(this)">切换6</button>
+</body>
+</html>
+-----------------------------------------------------------------------
