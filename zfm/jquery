@@ -1,3 +1,98 @@
 1 遍历
 	parent() 首先他无论如何最后肯定只是一个元素 这是他和children相反 但是和find不相同的一个地方  一个人只能有一个父亲 但是可能有好多个儿子
 	parents() 这个是所有祖先  parents("ul") 所有ul父元素
+
+先给一个例子:
+假设在一个表单中有一个按钮id="save"
+$(document).ready(function(){
+     $("#save").click(function(){
+        $("#save").attr("disabled",true);//设为不可用                         
+        $("#form1")[0].submit();//如果你有很多个id为form1的表单也没关系，只有第一个会提交的哈哈.
+     });
+});
+
+
+取下拉菜单选中项的文本； 
+获取和设置下拉菜单的值； 
+清空下拉菜单； 
+给下列菜单添加元素； 
+取单选框值； 
+单选或复选按钮的选择； 
+取复选框值； 
+判断单选或复选框是否被选中； 
+元素可用不可用； 
+判断元素可用不可用。 
+
+1.取下拉菜单选中项的文本 
+
+view plaincopy to clipboardprint? 
+$("#select option[selected]").text();//select和option之间有空格，option为select的子元素   
+$("#select option:selected").text();//如果写成$("#select").text();会把所有下拉菜单的文本选择出来   
+
+
+2.获取和设置下拉菜单的值 
+
+view plaincopy to clipboardprint? 
+$("#select").val();//取值   
+$("#select").val("value");//设置,如果select中有值为value的选项,该选项就会被选中,如果不存在,则select不做任何变动  
+
+
+3.清空下拉菜单 
+
+view plaincopy to clipboardprint? 
+$("#select").empty();   
+$("#select").html("");  
+
+
+4.给下列菜单添加元素 
+
+view plaincopy to clipboardprint? 
+$('<option value="1">1</option>').appendTo($("#select"));   
+$("#select").append('<option value="1">1</option>');  
+
+
+5.取单选框值 
+
+view plaincopy to clipboardprint? 
+$("#id[checked]").val();  
+
+
+6.单选或复选按钮的选择 
+
+view plaincopy to clipboardprint? 
+$("#id[value=val]").attr("checked",true);//选择   
+$("#id[value=val]").attr("checked","");//取消选择   
+$("#id[value=val]").attr("checked",false);//取消选择   
+$("#id[value=val]").removeAttr("checked");//取消选择  
+
+
+7.取复选框值 
+
+view plaincopy to clipboardprint? 
+$("input[type=checkbox][checked]").each(function(){   
+alert($(this).val());   
+})   
+//如果用$("input[type=checkbox][checked]").val(),只会返回第一个被选中的值  
+
+
+8.判断单选或复选框是否被选中 
+
+view plaincopy to clipboardprint? 
+if($("#id").attr("checked")){}//判断选中   
+if($("#id").attr("checked")==true){}//判断选中   
+if($("#id").attr("checked")==undefined){}//判断未选中  
+
+
+9.元素可用不可用 
+
+view plaincopy to clipboardprint? 
+$("#id").attr("disabled",false);//设为可用   
+$("#id").attr("disabled",true);//设为不可用  
+
+
+10.判断元素可用不可用 
+
+view plaincopy to clipboardprint? 
+if($("#id").attr("disabled")){}//判断不可用   
+if($("#id").attr("disabled")==undefined){}//判断可用  
+
