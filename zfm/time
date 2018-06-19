@@ -133,8 +133,13 @@ files = glob.glob('*.py')
 
 isinstance(a, list) 判断类型
 
+------------------------------------
 >>> a = "[1,2,3,4]";eval(a)
 [1, 2, 3, 4]
+
+a = "print(\"ok\")"
+exec(a)
+-----------------------------
 
 split -b 5M calfTrader_kline_jns_1.log.2017-08-29 -d -a 3 wangchao.log ###吧calfTrader_kline_jns_1.log.2017-08-29日志切割成每个5M大小的文件 以wangchao.log后面加3位数的文件
 
