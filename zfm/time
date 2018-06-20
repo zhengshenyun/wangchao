@@ -332,3 +332,5 @@ ps aux| grep java| grep /usr/local/tomcat/| awk '{print $2}'|xargs kill -9 && ec
 a='{"a1":"a11","a22":"a22","a3":"a33"}'
 python -c "New=[i for i in $a.values()];print \"\".join(New)"
 ------------------------------------------------------------
+
+yum -y install MySQL-python* #######安装MySQLdb模块
