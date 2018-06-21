@@ -1,0 +1,31 @@
+#!/usr/bin/python
+#encoding=utf8
+import threading
+import time,os,Queue
+from conn_mysql import Mysqlconn
+from initcmd import Cmd
+
+class MyThread(threading.Thread):
+    def __init__(self,ip):
+        super(MyThread, self).__init__()
+        self.ip=ip
+
+    def run(self):
+        exit_code = os.system("ping -c 3 -w 5 %s >/dev/null" %(self.ip))
+        if exit_code == 0:
+                Mysqlconn("update cmdb_cmdbmanage set status = %s where server_ip = %s",("在线",self.ip))
+        else:
+                print("%s no" %(self.ip))
+                Mysqlconn("update cmdb_cmdbmanage set status = %s where server_ip = %s",("失联",self.ip))
+
+
+if __name__ == '__main__':
+        q = Queue.Queue()
+        while True:
+                length = Mysqlconn("select server_ip from cmdb_cmdbmanage")
+        #print(length)
+                for i in length:
+                        t =MyThread(i[0])
+                        t.start()
+                t.join()
+                time.sleep(600)
