@@ -332,5 +332,26 @@ ps aux| grep java| grep /usr/local/tomcat/| awk '{print $2}'|xargs kill -9 && ec
 a='{"a1":"a11","a22":"a22","a3":"a33"}'
 python -c "New=[i for i in $a.values()];print \"\".join(New)"
 ------------------------------------------------------------
-
 yum -y install MySQL-python* #######安装MySQLdb模块
+
+-----------------------------------------------------------
+#!/usr/bin/python
+import threading
+import time
+from conn_mysql import Mysqlconn
+
+class MyThread(threading.Thread):
+    def __init__(self,ip):      ###############################这个为传递的参数
+        super(MyThread, self).__init__()
+        self.ip=ip
+
+    def run(self):
+        print("%s %s" %(self.ip,int(time.time())))              ######self.ip  这个类的一些形式 简单而已
+
+if __name__ == '__main__':
+        length = Mysqlconn("select server_ip from cmdb_cmdbmanage")
+        print(length)
+        for i in length:
+                t =MyThread(i[0])
+                t.start()
+-----------------------------------------------------------------
