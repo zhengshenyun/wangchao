@@ -1,0 +1,25 @@
+iimport MySQLdb,sys
+
+def Mysqlconn(cmd=None,param=None): 
+	try:
+		conn = MySQLdb.connect("10.9.192.143","webadmin","78tLIZgICuHSr0Tn5t9l","release_sdjj",charset="utf8")
+	except MySQLdb.OperationalError, message:
+		print "link error"
+		sys.exit(1)
+	cursor=conn.cursor()
+	cursor.execute(cmd,param)
+	conn.commit()
+	data=cursor.fetchall()
+	cursor.close()
+	conn.close()
+	print(data)
+	return data
+
+if __name__ == '__main__':
+	Mysqlconn()
+
+#res = aa.command_select('select * from sys_user where sys_user_name=%s','双双')  这种方式的 是玩那种where条件的    这个其实是传了二个参数
+#res = aa.command_select('select %s from sys_user' %'sys_user_name')  这种方式的 是玩那种select xx,xx from sys_user  这个其实是传了一个参数
+#数据库查处的datetime.datetime类型 一定要转成 str 模式 才能用转成时间戳
+#Mysqlconn("update cmdb_cmdbmanage set server_mem = %s,server_cpu = %s,server_system = %s where server_ip = %s",(Res.Mem(),Res.Cpu(),Res.Release(),Res.Ip()))
+#Mysqlconn("insert into cmdb_cmdbmanage(uid,server_ip,server_mem,server_cpu,server_system,server_service,server_position,`group`,env) values(%s,%s,%s,%s,%s,%s,%s,%s,%s)",(str(uuid.uuid1()).split("-")[0],Res.Ip(),Res.Mem(),Res.Cpu(),Res.Release(),"空","空","空","空"))

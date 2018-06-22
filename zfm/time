@@ -165,9 +165,6 @@ a = ["","123"," ",[1,2,3]];    filter(lambda x:x and x.strip() if not isinstance
 
 a = {} or 1 or []  ##############为a赋值  最终a=1  剩下的都是false
 
-res = aa.command_select('select * from sys_user where sys_user_name=%s','双双')  这种方式的 是玩那种where条件的    这个其实是传了二个参数
-res = aa.command_select('select %s from sys_user' %'sys_user_name')  这种方式的 是玩那种select xx,xx from sys_user  这个其实是传了一个参数
-数据库查处的datetime.datetime类型 一定要转成 str 模式 才能用转成时间戳
 
 yum -y install cyrus-sasl-md5 && yum  -y install cyrus-sasl-plain ########## svn  出现问题可以这样
 
