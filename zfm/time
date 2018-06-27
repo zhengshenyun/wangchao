@@ -111,7 +111,7 @@ UserRoleID           userid           RoleID
 
 
 a = 'sdasdsadsa www.baidu.com  sadsad'
-b = re.compile(r'.+?(www.+?)\s.+?')
+b = re.compile(r'.+?(www.+?)\s.+?')  #####()里面是匹配出来的内容 ?是非贪婪模式
 
 iptables -t nat -A OUTPUT -p tcp --dport 6397 -j DNAT --to-destination 127.0.0.1:6379
 
