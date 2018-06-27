@@ -3,7 +3,8 @@ __author__ = 'liu.chunming'
 import logging  
 import traceback
 
-  
+--------------------------------------- 这个是用了logging模块的 -----------------------------------
+
 logging.basicConfig(level=logging.WARNING,     定义日志级别
 		    filename='./log.txt',      定义日志 目录
                     filemode='a'	       定义日志是追加
@@ -20,4 +21,22 @@ try:
 except:
 	ex = traceback.print_exc()              命令行打印错误信息
 	logging.exception("错误信息")           日志记录错误信息
+-------------------------------------------------------------------
 
+-------------------------下面是不用logging模块的-------------------------
+try:
+	name = "namee"
+	name[10]
+except Exception as e:
+	#print("no")
+	traceback.print_exc(file=open('error.txt','a')) ###############这样是记录完整信息
+
+
+
+try:
+        name = "namee"
+        name[10]
+except Exception as e:
+        #print("no")
+        with open('error.txt','a') as f:
+		f.write(e)  ###########################这种只是记录错误的最后一行不是全部
