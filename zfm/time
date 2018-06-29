@@ -44,6 +44,7 @@ sed -r 支持正则扩展
 sed  -n 's/.*-\(c.*\)$/\1/p'
 sed -n '/href/,/href/p' php.log   ##########打印区间的内容
 sed -n '/^\s*rrr\|^\s*eeee/p' 1  ###########匹配| 或的时候要要写上\|
+sed -n l file  #####查看文件  后面可以 sed  's/\o240\|\o302//g' file
 
 select * from cu_customer where create_time>date_sub(curdate(),interval 1 day);
 DATE(a.`create_time`) >= date_sub(CURRENT_DATE,INTERVAL  3 day)   ##############三天前的
