@@ -1,1 +1,3 @@
 docker run --name initcentos -itd 10.254.232.125:5000/init/centos7.5 /bin/bash   ####--name 新的名字 -itd 镜像名字
+
+docker commit 95b5243264d0 10.254.232.125:5000/nginx/centos7.5   ####制作镜像的时候顺便把名字换成push时候的名字 这样正好可以放到仓库  commit后面是跑的容器名字
