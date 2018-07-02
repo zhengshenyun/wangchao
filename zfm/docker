@@ -1,3 +1,22 @@
 docker run --name initcentos -itd 10.254.232.125:5000/init/centos7.5 /bin/bash   ####--name 新的名字 -itd 镜像名字
 
 docker commit 95b5243264d0 10.254.232.125:5000/nginx/centos7.5   ####制作镜像的时候顺便把名字换成push时候的名字 这样正好可以放到仓库  commit后面是跑的容器名字
+
+
+---------------------镜像仓库-----------------------------
+1 解决https问题  
+cat /etc/docker/daemon.json   写上{ "insecure-registries":["10.254.232.125:5000"] }
+好像这个也要改 cat /usr/lib/systemd/system/docker.service   ExecStart=/usr/bin/dockerd --registry-mirror=http://019a7061.m.daocloud.io  --insecure-registry 10.254.232.125:5000
+
+2 制作仓库
+docker pull registry
+docker run -d -ti --restart always --name docker-hub -p 5000:5000 -v /docker-hub/registry:/var/lib/registry registry  #######/docker-hub/registry 必须是存在的目录
+
+3 最红要的逻辑关系 
+	1)如果你是想吧已有的镜像添加进仓库 那直接docker tag old new 就好了 （对应下面的commit  new的镜像名字可以直接写成ip:5000/xxxx）
+	2)如果是新的容器打成镜像 那必须先要commit（commit 上面写了）
+	3)上面的新的镜像名字可以直接写成ip:5000/xxxx  
+	4)docker push new的名字  他直接就可以认出了ip和端口 多方便
+	5)curl http://10.254.232.125:5000/v2/_catalog 查看仓库所有的镜像
+	5)docker pull ip:5000/xxxxxx就可以直接拉取了
+--------------------------------------------------------------------
