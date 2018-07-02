@@ -1,0 +1,1 @@
+docker run --name initcentos -itd 10.254.232.125:5000/init/centos7.5 /bin/bash   ####--name 新的名字 -itd 镜像名字
