@@ -29,3 +29,15 @@ docker run -d -ti --restart always --name docker-hub -p 5000:5000 -v /docker-hub
 		touch chaowang.txt
 		tailf chaowang.txt
 
+---------------------------------------------------------------------
+5 附一个完整的启动参数
+	 docker run \
+	-d \
+	--name private_registry --restart=always \
+	-u root \
+	-p 5000:5000 \
+	-v /docker/data/private_registry:/var/lib/registry \
+	-v /docker/certs:/certs \
+	-e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
+	-e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
+	registry:2
