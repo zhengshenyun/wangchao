@@ -177,7 +177,7 @@ rsync -av --delete -e 'ssh -p 22' root@web01:/tmp/honglu/ ./  #######吧对方�
 
 1. import  commons  2. __import__('commons')  果是多层导入: 1 from list.text import commons ;__import__(' list.text.commons',fromlist=True) #如果不加上fromlist=True,只会导入list目录
 
-ssh-keygen;ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.16.0.194  ###本地的pub导入到authorized_keys
+ssh-keygen;ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.16.0.194  ###本地的pub导入到authorized_keys  公钥私钥和用户没关系只要放到那个用户家目录传过去公钥就可以通
 
 ssh -n ls  ######################以后尽量用这个参数-n
 
