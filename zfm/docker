@@ -44,4 +44,4 @@ docker run -d -ti --restart always --name docker-hub -p 5000:5000 -v /docker-hub
 
 -----------------------------------------------------------------------
 6 使用docker-compose简化docker run 运行参数
-
+	-v的参数可以用到很多地方 比如说共享dns的那个配置文件  方便查看日志
