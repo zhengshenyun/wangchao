@@ -46,3 +46,7 @@ docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingngi
 -----------------------------------------------------------------------
 6 使用docker-compose简化docker run 运行参数
 	-v的参数可以用到很多地方 比如说共享dns的那个配置文件  方便查看日志
+
+------------------------------------------------------------------------
+7 解决systemctl的问题
+	--privileged=true centos:7 /usr/sbin/init
