@@ -50,3 +50,7 @@ docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingngi
 ------------------------------------------------------------------------
 7 解决systemctl的问题
 	--privileged=true centos:7 /usr/sbin/init
+
+-----------------------------------------------------------------------
+8 dockerfile
+	docker build -t zhang ./   (后面是dockerfile的路劲)
