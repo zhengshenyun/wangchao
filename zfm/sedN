@@ -1,0 +1,40 @@
+#!/usr/bin/python
+
+import re
+
+def select(x):
+	a = []
+	alldata = []
+	b = []
+	sum = 0
+	with open("ff",'r') as f:
+		for i in f.readlines():
+			b.append(i)
+			if re.match(r"^N",i):
+				sum += 1
+				continue
+			if sum >= x+1:
+				alldata.extend(a)
+				a = []
+				sum = 0
+				continue
+			if sum >= 1:
+				if re.match(r"^H",i):
+					#print(i)
+					a.append(i)
+					sum += 1
+					continue
+			sum = 0
+		return (filter(lambda x:x and x.strip(),alldata),b)
+
+
+def chongwrite(x):
+	res = select(x)[0]
+	alld = select(x)[1]
+	with open('ff','w') as f:
+		for i in alld:
+			if i in res:
+				continue
+			f.write(i)
+select(3)
+chongwrite(3)
