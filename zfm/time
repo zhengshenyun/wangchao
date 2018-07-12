@@ -325,6 +325,7 @@ awk '{max=0;for (i=1;i<=NF;i++){{max+=$i} };print max/(i-1)}' gg.txt   #########
 
 ps aux| grep java| grep /usr/local/tomcat/| awk '{print $2}'|xargs kill -9 && echo "杀进程成功" || { echo "杀进程失败----退出";exit 1; } 通过ps来弄然后awk打印关闭进程
 ps aux| grep nginx| grep -v grep && echo "ok" || echo "no"   ###############ps  有输出就是ok 没有输出就是no
+netstat -tunlp| grep nginx && echo "yes" || echo "no"   ##############跟上面一样的判断
 
 --------------------------------------------------------------  shell调用python 基础命令---------------------------------------
 #!/bin/bash
