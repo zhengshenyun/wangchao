@@ -367,3 +367,11 @@ eval(JSONP)
 
 ['customername1', 'customername2']  ################jsonp 格式转换
 ------------------------------------------------------------------------------------
+a= 3
+
+def wangchao():
+	if a ==3:
+		a = 4
+	return a
+
+local variable 'a' referenced before assignment ##########可以这样理解函数虽然没有值 但是程序记下来a是局部变量 但是不知道a的值是多少 所以用到函数的时候系统会纳闷a是局部变量但是a的值我不知道啊 
