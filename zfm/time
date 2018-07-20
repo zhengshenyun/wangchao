@@ -21,7 +21,7 @@ a类同于 重定向 >>  但是a的时候默认是不换行的 自己可以添�
 	####(2)  第二种要都取内容  可以直接s.getvalue()就可以了 
 
 3  ####临时文件
-	### import tempfile;f.name;f.write("nidayeddddd\n");f.write("nidayeddddd\n");f.seek(0);f.read();f.close()
+	### import tempfile;f=tempfile.NamedTemporaryFile();f.name;f.write("nidayeddddd\n");f.write("nidayeddddd\n");f.seek(0);f.read();f.close()
 --------------------------------------------------------------------------------------
 
 
