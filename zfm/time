@@ -9,11 +9,18 @@ time.mktime(time_tuple)
 
 date -s "2017-04-08 `date +%T`"
 
+-----------------------------------------------读写-----------------------------------
 with open('filename', 'wt') as f:  
     f.write('hello, world!')
 
 w类同于 重定向 >
 a类同于 重定向 >>  但是a的时候默认是不换行的 自己可以添加\nhello.world
+
+2  import StringIO;s = StringIO.StringIO();s.write('www.baidu.com\r\n');s.write('news.realsil.com.cn');s.close()   ##################他的读写也是默认不换行
+	####(1)  第一种要读取内容  可以 s.seek(0;s.read() #####把坐标放到0再读全部 度过后如果再读一遍还要记得s.seek(0) 重复上述操作
+	####(2)  第二种要都取内容  可以直接s.getvalue()就可以了 
+
+--------------------------------------------------------------------------------------
 
 
 class MyEx(Exception):  
