@@ -1,0 +1,11 @@
+yum install mailx
+
+cat >>dd<<EOF
+set from=xianjinxiang@163.com'
+set smtp=smtp.163.com
+set smtp-auth-user=xianjinxiang@163.com
+set smtp-auth-password=@#xiang123
+set smtp-auth=login
+EOF
+
+mail -s "hesaucaq" chao.wang@shandjj.com < /etc/passwd
