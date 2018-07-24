@@ -1,6 +1,6 @@
 yum install mailx
 
-cat >>dd<<EOF
+cat >>/etc/mail.rc<<EOF
 set from=xianjinxiang@163.com'
 set smtp=smtp.163.com
 set smtp-auth-user=xianjinxiang@163.com
