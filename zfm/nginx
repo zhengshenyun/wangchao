@@ -165,3 +165,31 @@ $remote_addr: 客户端的ip地址
 2. rewrite last - url重写后，马上发起一个新的请求，再次进入server块，重试location匹配，超过10次匹配不到报500错误，地址栏url不变
 3. rewrite redirect – 返回302临时重定向，地址栏显示重定向后的url，爬虫不会更新url（因为是临时）
 4. rewrite permanent – 返回301永久重定向,
+
+----------------------------------------------一个完整的localtion--------------------------------------------------
+location /activityCenter/ad/ad_query {
+    #proxy_cache_key $host$uri$is_args$args;
+    #proxy_cache app_cache;
+    #proxy_cache_valid  200 304 301 302 5s;
+    #proxy_cache_valid  404 3s;
+    #proxy_cache_valid  500 502 1s;
+    #proxy_cache_valid  any 5s;
+    #proxy_cache_key $host$uri$is_args$args;
+    #proxy_cache_key "$request_uri$request_body";
+    proxy_set_header Host $http_host;
+    proxy_set_header REMOTE_ADDR $remote_addr;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_cache_methods GET  HEAD  POST ;
+    proxy_ignore_headers X-Accel-Expires;
+    proxy_ignore_headers Expires;
+    proxy_ignore_headers Cache-Control;
+    proxy_cache app_cache;
+    proxy_cache_key $host$uri$is_args$args;
+    proxy_cache_valid 200 201 203 304 301 302 10s;
+    proxy_cache_valid 500 502 1s;
+    proxy_cache_valid 499 3s;
+    #expires 10s;
+    #proxy_ignore_headers "Cache-Control" "Expires" "Set-Cookie";
+    #include /etc/nginx/cache/app_cache;
+    proxy_pass http://quickcall-activity;
+     }
