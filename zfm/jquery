@@ -169,3 +169,33 @@ val = $("#id")[0].value;$("#id")[0].value = "new value";
 赋值：
 
 $("#id")[0].value = "new value";或者$("#id").val("new value");val = $("#id").attr("value");
+
+
+
+
+
+
+
+
+
+----------------------------
+function guanbi(that,name){
+	//$("*").find("button").on("click",function(){
+	alert(name)	
+	$(that).hide()
+	//})
+}
+</script>
+</head>
+<body>
+
+<h2>这是标题</h2>
+<p>这是一个段落。</p>
+<p>这是另外一个段落。</p>
+<button  onclick="guanbi(this,'x')">点我</button>
+<button  onclick="guanbi(this,'x1')">点我1</button>
+<button  onclick="guanbi(this,'x2')">点我2</button>
+<button  onclick="guanbi(this,'x3')">点我3</button>
+
+很经典的一个例子
+---------------------------------------
