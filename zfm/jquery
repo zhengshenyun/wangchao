@@ -199,3 +199,5 @@ function guanbi(that,name){
 
 很经典的一个例子
 ---------------------------------------
+$("p.intro")  p元素里面同级  比如 <p class="intro">ddddddd</p>
+$("p .intro")  p元素里面子元素  比如 <p class="intro">ddddddd  <span class="intro"> </span></p>
