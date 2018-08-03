@@ -210,4 +210,12 @@ attr("href") 一般是获取或者设置属性
 css() 这个方法和attr很像css("background-color")返回class属性   $("p").css("background-color","yellow");  设置属性
 
 ------------------向上-------
-parent()  
+parent() 直接父元素     <------>  children() 直接子元素
+parents() 所有祖先元素  <------>  find("*")  所有子孙
+parents("ul") ul祖先元素  <------> find("span") span子孙
+$("span").parentsUntil("div")  从span一直到div祖先元素  
+
+siblings()   所有同胞元素
+next()	     方法返回被选元素的下一个同胞元素
+nextAll()	所有跟随的同胞元素
+nextUntil()    下面的例子返回介于 <h2> 与 <h6> 元素之间的所有同胞元素：
