@@ -208,3 +208,6 @@ $(":button")	选取所有 type="button" 的 <input> 元素 和 <button> 元素  
 html();text();val()都是没有就是获取有就是设置 这三兄弟一直都是这样
 attr("href") 一般是获取或者设置属性
 css() 这个方法和attr很像css("background-color")返回class属性   $("p").css("background-color","yellow");  设置属性
+
+------------------向上-------
+parent()  
