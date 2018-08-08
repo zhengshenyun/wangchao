@@ -1,0 +1,11 @@
+fname = 'testfile.xls'
+agent=request.META.get('HTTP_USER_AGENT') 
+if agent and re.search('MSIE',agent):
+    response =HttpResponse(mimetype="application/vnd.ms-excel") #解决ie不能下载的问题
+    response['Content-Disposition'] ='attachment; filename=%s' % urlquote(fname) #解决文件名乱码/不显示的问题
+else:
+    response =HttpResponse(mimetype="application/ms-excel")#解决ie不能下载的问题
+    response['Content-Disposition'] ='attachment; filename=%s' % smart_str(fname) #解决文件名乱码/不显示的问题
+##########################################保存
+wb.save(response)
+return response
