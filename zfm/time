@@ -79,6 +79,8 @@ for xxx;do
 |
 |--------------------
 
+awk 'BEGIN{start=0;end=0}{if ($0 ~/nidaye/) {start=NR} if ($0 ~/}/ && NR>=start) {end=NR;exit}}END{print start,end;system("sed -i  \"6,9s;.*;#&;g\" dd")}' dd
+
 df -h  | grep /xv |awk '{split($5,a,"%");print 'a[1]'}'  #######   awk切割
 
 substr($0,1,2) ####截取字符串前2个  
