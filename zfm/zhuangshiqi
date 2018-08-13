@@ -99,3 +99,7 @@ class chaowang(wangchao):
 
 bb = chaowang()
 print(bb())
+
+
+---------------------------------
+functools.wraps  print(a_function_requiring_decoration.__name__)的时候就会打印自己的 不会打印别人替换的了
