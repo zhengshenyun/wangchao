@@ -59,3 +59,16 @@ def wangchao(name,a="wang",b = "chao",*args,**knows):print(name);print(a);print(
 
 bbb = {"a": "b11","b": "c11", "d11": "d1"}
 wangchao(1,**bbb)    ###########传入字典**bbb全部赋值给**knows  但是有一点 如果用wangchao(1,a="ccc",**bbb) 就会报错 应为已经定义了a="ccc" 后面又是定义 a="b11" 所以会冲突
+
+-----------------------------------------------------------------
+def test_args_kwargs(arg1, arg2, arg3):
+    print("arg1:", arg1)
+    print("arg2:", arg2)
+    print("arg3:", arg3)
+
+>>> kwargs = {"arg3": 3, "arg2": "two", "arg1": 5}
+>>> test_args_kwargs(**kwargs)
+arg1: 5
+arg2: two
+arg3: 3
+-----------------------------------------------------------------
