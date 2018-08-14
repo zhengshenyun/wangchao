@@ -195,4 +195,12 @@ location /activityCenter/ad/ad_query {
      }
 
 rewrite ^/(.+?)/(.*) /$1w/newnew/$2 xxxxx;  非贪婪模式  比如 http://www.baidu.com/a/a1/a2/a3   $1就是a
-rewrite ^/(.*)/(.*) /$1w/newnew/$2 xxxxx;  贪婪模式  比如 http://www.baidu.com/a/a1/a2/a3   $1就是a/a1/a2   
+rewrite ^/(.*)/(.*) /$1w/newnew/$2 xxxxx;  贪婪模式  比如 http://www.baidu.com/a/a1/a2/a3   $1就是a/a1/a2  
+
+
+----------------------------------------------------------------------------------
+ location /   {
+autoindex on ; //显示目录
+autoindex_exact_size on; //显示大小
+autoindex_localtime on; //显示时间
+}; 
