@@ -30,7 +30,7 @@ fib_res = next(sfib)
 while True:
 	print(fib_res)
 	try:
-		fib_res = sfib.send(random.uniform(0, 0.5))
+		fib_res = sfib.send(random.uniform(0, 0.5))    ####################给sleep_cnt赋值 然后功能相当于next(sfib)  但是如果没有第一次的next(sfib)  while True里面就不能赋值了 应为阻塞住了
 	except StopIteration:
 		break
 --------------------------------------------------------------------------------------------------------------------
