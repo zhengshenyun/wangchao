@@ -1,0 +1,36 @@
+def fib(n):
+	index = 0
+	a = 0
+	b = 1
+	while index < n:
+		yield b      ############下面调用一次就阻塞在这边了 可以这样想 我这边一个while循环给你产出了 必须有人来调用 别人调用了往下走 再调用 再重新回到while循环
+		a, b = b, a + b
+		index += 1
+ 
+print('-'*10 + 'test yield fib' + '-'*10)
+for fib_res in fib(20):     ##################### for循环就相当于调用 next(fib(n))
+	print(fib_res)
+
+--------------------------------------------------------------------------------------------------------------------
+
+def stupid_fib(n):
+	index = 0
+	a = 0
+	b = 1
+	while index < n:
+		sleep_cnt = yield b          ################首先他会阻塞成在里面  下面调用的得到b这个值   再次调用(按照下面这种写法或者是for循环都可以) sfib.send就相当于给sleep_cnt赋值
+		print('let me think {0} secs'.format(sleep_cnt))
+		time.sleep(sleep_cnt)
+		a, b = b, a + b
+		index += 1
+print('-'*10 + 'test yield send' + '-'*10)
+N = 20
+sfib = stupid_fib(N)
+fib_res = next(sfib)
+while True:
+	print(fib_res)
+	try:
+		fib_res = sfib.send(random.uniform(0, 0.5))
+	except StopIteration:
+		break
+--------------------------------------------------------------------------------------------------------------------
