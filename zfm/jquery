@@ -227,7 +227,7 @@ var obj = {
     birth: 1990,
     getAge: function (year) {
         var b = this.birth; // 1990
-        var fn = (y) => y - this.birth; // this.birth仍是1990(这种模式是最初的)  ##如果是 var fn = function (y){return y - this.birth};   那这里面的this就要向上一位(从当前的function算起)  #################如果是function xxx(y)  那这里面的this就是当前这个function
+        var fn = (y) => y - this.birth; // this.birth仍是1990(这种模式是最初的 这个是向上3位)  ##如果是 var fn = function (y){return y - this.birth};   那这里面的this就要向上一2位(从当前的function算起)  #################如果是function xxx(y)  那这里面的this就是当前这个function
         return fn.call({birth:2000}, year);
     }
 };
