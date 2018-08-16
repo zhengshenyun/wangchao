@@ -227,7 +227,7 @@ var obj = {
     birth: 1990,
     getAge: function (year) {
         var b = this.birth; // 1990
-        var fn = (y) => y - this.birth; // this.birth仍是1990(这种模式是最初的 这个是向上3位)  ##如果是 var fn = function (y){return y - this.birth};   那这里面的this就要向上一2位(从当前的function算起)  #################如果是function xxx(y)  那这里面的this就是当前这个function
+        var fn = (y) => y - this.birth; // this.birth仍是1990(这种模式是最初的 这个是向上3位)  ##如果是 var fn = function (y){return y - this.birth};   那这里面的this就要向上一2位(从当前的function算起)  #################如果是function xxx(y)  那这里面的this就是当前这个function (this是指向的对象 函数不是对象)  这里再次强调一点，this的指向在函数创建的时候是决定不了的，在调用的时候才能决定，谁调用的就指向谁，一定要搞清楚这个 
         return fn.call({birth:2000}, year);
     }
 };
