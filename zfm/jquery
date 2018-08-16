@@ -232,3 +232,19 @@ var obj = {
     }
 };
 obj.getAge(2015)
+
+
+
+--------------------------------js  class-------------------------------------
+class Student {
+    constructor(name) {
+        this.name = name;
+    }
+
+    hello() {
+        alert('Hello, ' + this.name + '!');
+    }
+}
+
+var xiaoming = new Student('小明');
+xiaoming.hello();
