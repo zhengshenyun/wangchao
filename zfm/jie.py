@@ -20,10 +20,10 @@ for line in data_file.readlines():
 #        print(final)
 data_file.close()
 
-word_pic = WordCloud(font_path = r'/usr/share/fonts/lyx/msyh.ttc',collocations=False,width=1200,height=800,margin=2).generate(final)
+word_pic = WordCloud(font_path = r'/usr/share/fonts/lyx/msyh.ttc',scale=1.5,collocations=False,width=5000,height=4000).generate(final)
 #word_pic = WordCloud(width = 2000,height = 1000).generate(final)
 plt.imshow(word_pic)
 #去掉坐标轴
 plt.axis('off')
 #保存图片到相应文件夹
-plt.savefig(r'./6.png')
+plt.savefig(r'./6.png',dpi=300)   #dpi越大越清晰 但是消耗资源越多
