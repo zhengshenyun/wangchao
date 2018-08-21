@@ -26,4 +26,4 @@ plt.imshow(word_pic)
 #去掉坐标轴
 plt.axis('off')
 #保存图片到相应文件夹
-plt.savefig(r'./6.png',dpi=300)   #dpi越大越清晰 但是消耗资源越多
+plt.savefig(r'./6.png',dpi=600)   #dpi越大越清晰 但是消耗资源越多
