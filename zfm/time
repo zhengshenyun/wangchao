@@ -67,6 +67,8 @@ df -h | grep vda1 |awk '{split($5,a,"%"); if (a[1]>=90) {printf"\033[1;31m磁盘
 
 awk 'BEGIN{sum=0}{sum+=$1}END{print sum}' 1  ########   像这种的我们可以怎样想  可以想象成一个脚本
 
+awk 'BEGIN{num=0}ARGIND==1{a[NR]=$1;num+=1;next}{print a[NR-num]+$1}' 1.txt 2.txt  ###########awk2个文件每行相加牛逼了 【他是先循环到next后面的}然后吧a的值传到后面 再从数组取出 后面的$1就是2的$1了 不能混淆】
+
 |--------------------
 |sum=0
 |
