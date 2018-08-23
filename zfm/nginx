@@ -204,3 +204,11 @@ autoindex on ; //显示目录
 autoindex_exact_size on; //显示大小
 autoindex_localtime on; //显示时间
 }; 
+
+
+---------------------------------------------
+location = /t {
+				add_header  Content-Type 'text/html; charset=utf-8';	
+				echo "{\"result\":$unix_time}";
+		}
+
