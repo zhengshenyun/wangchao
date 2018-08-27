@@ -260,3 +260,5 @@ typeof   (function(){}) 输出  function
 typeof    undefined    输出  undefined
 typeof   '222'         输出    string
 typeof  true           输出     boolean
+
+NaN出现的情况就是一个元素是undefined 在和number相加就会出现
