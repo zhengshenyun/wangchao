@@ -149,7 +149,7 @@ location ~ /futures-mobile-api/user/info/(register|register/send/sms)$
 $host：www.qq.com
 $server_port：8080
 $request_uri：http://www.qq.com:8080/a/b/c.php?1=2&2=3
-$uri: http://www.qq.com:8080/a/b/c.php
+$uri: /a/b/c.php
 $document_uri：/a/b/c.php
 $document_root：/var/www/html
 $request_filename：/var/www/html/a/b/c.php
