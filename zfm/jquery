@@ -261,4 +261,6 @@ typeof    undefined    输出  undefined
 typeof   '222'         输出    string
 typeof  true           输出     boolean
 
+jQuery.type   判断类型无敌的方法
+
 NaN出现的情况就是一个元素是undefined 在和number相加就会出现
