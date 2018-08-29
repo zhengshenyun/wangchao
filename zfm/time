@@ -421,4 +421,4 @@ ${b/c/$a}    $b里面的c字符串换成$a
 import copy;a=[1,2,3];b = copy.deepcopy(a);a[2] = 4;a=[1,2,4];b = [1,2,3]
 
 ---------------------------------------------
-from compiler.ast import flatten    ####[1,2,3,[4,5],[6,7,8]] ==》[1,2,3,4,5,6,7,8]
+from compiler.ast import flatten    ####[1,2,3,[4,5],[6,7,8]] ==》[1,2,3,4,5,6,7,8] or [i for i in a if not isinstance(i,list)] + sum([i for i in a if isinstance(i,list)],[]) #####哈哈
