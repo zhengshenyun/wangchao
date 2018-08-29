@@ -1,0 +1,23 @@
+#!/usr/bin/python
+
+import MySQLdb,sys
+
+def Mysqlconn(cmd=None,param=None): 
+	try:
+		conn = MySQLdb.connect("127.0.0.1","root","123456","wangchao",charset="utf8")
+	except MySQLdb.OperationalError, message:
+		print "link error"
+		sys.exit(1)
+	cursor=conn.cursor()
+	cursor.execute(cmd,param)
+	conn.commit()
+	data=cursor.fetchall()
+	cursor.close()
+	conn.close()
+	print(data)
+	return data
+
+if __name__ == '__main__':
+	name = "zhangsan"
+	Mysqlconn("select %s from %s where username='%s'" %("userid","user",name))
+
