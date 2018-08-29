@@ -211,4 +211,12 @@ location = /t {
 				add_header  Content-Type 'text/html; charset=utf-8';	
 				echo "{\"result\":$unix_time}";
 		}
-
+----------------------------------  nginx @的用法  如果匹配了/但是是404那就跳转到$uri 还没有的话就匹配@apache规则-
+loaction / {
+try_files $uri @apache
+}
+loaction @apache{
+proxy_pass http://127.0.0.1:88
+include aproxy.conf
+}
+------------------------------------------------
