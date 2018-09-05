@@ -310,9 +310,9 @@ https://www.cnblogs.com/yingchen/p/6763524.html  ######redis-clustem集群  前�
 sys.exit(8)  ####python 程序退出 返回8
 
 ---------------------------  python 按照多个字符切割 -----------------
->>> a
+>>>a
 'my[name is wang:chao]shide'
->>> re.split('[\[\s\]]',a)
+>>>re.split('[\[\s\]]',a)
 ['my', 'name', 'is', 'wang:chao', 'shide']
 >>>
 ----------------------------------
