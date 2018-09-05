@@ -29,3 +29,14 @@ echo ${var#*.}
 ####  左---->右 最后一个.后面的字符串
 echo ${var##*.}
 #txt
+
+--------------------------------shell 字典---------------------
+declare -A dic
+dic=([key1]="value1" [key2]="value2" [key3]="value3")
+echo ${dic["key3"]}
+value3
+echo ${dic["key1"]}
+value1
+echo ${dic["key2"]}
+value2
+
