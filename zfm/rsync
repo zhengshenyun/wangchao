@@ -1,0 +1,23 @@
+uid = apache
+gid = apache
+use chroot = no
+max connections = 200
+timeout = 300
+pid file = /tmp/rsyncd.pid
+lock file = /tmp/rsyncd.lock
+log file = /tmp/rsyncd.log
+[codebackup]
+path = /data/
+[nginxbackup]
+path = /usr/local/nginx
+ignore errors
+read only = false
+list = false
+auth users = apache             ########必须是真实的用户
+secrets file = /etc/rsync.password      #####这个是密码随便填写的
+
+
+rsync -avz apache@10.0.2.2::codebackup /data --password-file=/etc/rsync.password --exclude shandjjroot/upload_dir/ --exclude taojjapi/upload_dir/ --exclude shandjjroot/runtime/ --exclude taojjapi/runtime/  对端的吧data下面的目录都复制过来了data忽略了
+
+
+rsync -avz apache@10.0.2.2::nginxbackup /usr/local/nginx --password-file=/etc/rsync.password  ###对端的nginx目录给拉过来了命名为这边的nginx
