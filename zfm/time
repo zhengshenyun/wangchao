@@ -57,6 +57,7 @@ sed -n l file  #####查看文件  后面可以 sed  's/\o240\|\o302//g' file
 
 select * from cu_customer where create_time>date_sub(curdate(),interval 1 day);
 DATE(a.`create_time`) >= date_sub(CURRENT_DATE,INTERVAL  3 day)   ##############三天前的
+begin_time>CURRENT_DATE() #####时间大于今天的
 
 cd /home/wls81/tomcat && for i in `ls | egrep -v '(dubbo|jenkins)'`;do echo `ps aux| grep $i/conf/logging.properties|grep -v 'grep'`| awk  '{if (length($0)==0){printf"%s没有起来",i;print ""} else if ($1=="wls81") {printf"进程号为  %s,项目为   %s",$2,$12;print ""} else if ($1=="root") {printf"%s进程使用root启动的    进程号为    %s",i,$2;print ""} else {print "111"}}' i=$i;done || echo "第一步错误"
 cat /etc/passwd | awk -F ":" -v a="test" '{if ($1==a) {print $0}}'  或者 cat /etc/passwd | awk -F ":" '{if ($1==a) {print $0}}' a="test"  都是可以的
