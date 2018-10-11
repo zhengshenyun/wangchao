@@ -46,7 +46,7 @@ r = requests.get('http://httpbin.org/get', params=payload)
 r = requests.post('http://httpbin.org/get', data=payload)
 ------------------------------------------------------------------------------------
     try:
-...     requests.get('http://github.com', timeout=0.001)
+...     requests.get('http://github.com', timeout=0.001) #####连接超时的情况
 ... except requests.exceptions.ConnectTimeout as e:
 ...     print("timeout")
 ------------------------------------------------------------------------------------
