@@ -44,6 +44,7 @@ EOF
 payload = {xxx:xxx,xxx:xxx}
 r = requests.get('http://httpbin.org/get', params=payload)
 r = requests.post('http://httpbin.org/get', data=payload)
+requests.get('http://github.com', timeout=0.001)   ####可以设置timeout时间
 
 ping -c 2 -w 5 192.168.1.1 #############ping 一个ip 2次 在5秒内完成
 
