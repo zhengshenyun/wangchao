@@ -5,6 +5,7 @@
 ########还有就是异步返回请求结果  就是return的东东
 可以用到celery这种的
 
+[1]
 
 
 
@@ -23,6 +24,7 @@ celery.config_from_object('celeryconfig')      # Your celery configurations in a
 @celery.task(bind=True)
 def some_long_task(self, x, y):
     # Do some long task
+    # 加上回调函数
     ...
 
 @app.route('/render/<id>', methods=['POST'])
