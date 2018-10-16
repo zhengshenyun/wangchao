@@ -1,0 +1,38 @@
+########首先是异步io   那说的意思是服务端模仿nginx的异步io
+用到的就是asyncio这个模块
+
+
+########还有就是异步返回请求结果  就是return的东东
+可以用到celery这种的
+
+
+
+
+
+
+[2]
+from flask import Flask
+from celery import Celery
+
+broker_url = 'amqp://guest@localhost'          # Broker URL for RabbitMQ task queue
+
+app = Flask(__name__)    
+celery = Celery(app.name, broker=broker_url)
+celery.config_from_object('celeryconfig')      # Your celery configurations in a celeryconfig.py
+
+@celery.task(bind=True)
+def some_long_task(self, x, y):
+    # Do some long task
+    ...
+
+@app.route('/render/<id>', methods=['POST'])
+def render_script(id=None):
+    ...
+    data = json.loads(request.data)
+    text_list = data.get('text_list')
+    final_file = audio_class.render_audio(data=text_list)
+    some_long_task.delay(x, y)                 # 这边开始用的
+    return Response(
+        mimetype='application/json',
+        status=200
+    )
