@@ -354,8 +354,13 @@ netstat -tunlp| grep nginx && echo "yes" || echo "no"   ##############跟上面�
 a='{"a1":"a11","a22":"a22","a3":"a33"}'
 python -c "New=[i for i in $a.values()];print \"\".join(New)"
 ------------------------------------------------------------
+2------方式
+sudo yum install python-devel mysql-devel # Red Hat / CentOS  
+ pip install MySQL-python
+--------------------------------------------------------------
+1------方式
 yum -y install MySQL-python* #######安装MySQLdb模块
-
+下面不行的用上面的
 -----------------------------------------------------------
 #!/usr/bin/python
 import threading
