@@ -22,11 +22,12 @@ now(3,4)
 def log(func):
     def wrapper(*args, **kw):
         print('call %s():' % func.__name__)
-        return func(*args, **kw)
+        return func(*args, **kw)   #####表面上看上去传入一个(2,3)  但是 这边用了一个now(*args)  还是独立开来了
     return wrapper
 
 @log   #########  now = log(now)    这一步要这样想  啥都没有反应  只返回一个 wrapper函数   当执行下面 now()的时候才执行 wrapper()
-def now(): 
+def now(x,y):
+    print(x,y) 
     print('2015-3-25')
 
 
