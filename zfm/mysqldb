@@ -1,4 +1,4 @@
-iimport MySQLdb,sys
+import MySQLdb,sys
 
 def Mysqlconn(cmd=None,param=None): 
 	try:
