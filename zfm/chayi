@@ -1,0 +1,17 @@
+#!/usr/bin/python
+#encoding=utf8
+
+def ChaYi():
+	with open("num1.txt","r") as f1,open("num2.txt","r") as f2:
+		f1_line,f2_line = f1.readlines(), f2.readlines()
+		if not list(set(f1_line) - set(f2_line)):
+			print("num1里面的东西  num2里面都有")
+		else:
+			print("num1里面的东西 (%s) num2里面没有" %(list(set(f1_line) - set(f2_line))))
+	
+		if not list(set(f2_line) - set(f1_line)):
+			print("num2里面的东西  num1里面都有")
+		else:
+			print("num2里面的东西 (%s) num1里面没有" %(list(set(f2_line) - set(f1_line))))
+
+ChaYi()
