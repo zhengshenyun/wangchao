@@ -229,7 +229,7 @@ $http_x_real_ip  和  $http_x_forwarded_for   ###########都是可以的
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header fuckk $http_fuck;           ######################自定义了一个$http_fuck    所以前面curl定义header的时候是   curl --header "fuck:nidadadadadadadayr" -v 47.98.146.101/text    ======heared里面是fuck   那这边获取的时候要http_+ \
 										而后添加了一个fuckk header  所以后面获取的时候 要用到 $http_fuckk
-                #proxy_set_header Remote_addr $remote_addr;
+                proxy_set_header Remote_addr $remote_addr;    ##############不知道为啥用Remote_addr就不行  但是用fuckfuck就行  可能是不能有_这个的原因吧
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_pass http://127.0.0.1:800;
                 #return 200 "$remote_addr------------- $remote_user-------------- $request------------- $status----------- $body_bytes_sent---------- $http_referer---------- $http_user_agent---------- $http_x_forwarded_for";
