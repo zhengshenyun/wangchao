@@ -53,4 +53,4 @@ docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingngi
 
 -----------------------------------------------------------------------
 8 dockerfile
-	docker build -t zhang ./   (后面是dockerfile的路劲)
+	docker build -t zhang ./   (后面是dockerfile的路劲)    ###zhang 是你新打的镜像名字
