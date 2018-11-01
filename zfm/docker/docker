@@ -54,3 +54,7 @@ docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingngi
 -----------------------------------------------------------------------
 8 dockerfile
 	docker build -t zhang ./   (后面是dockerfile的路劲)    ###zhang 是你新打的镜像名字
+
+9 docker挂载
+	docker run -itd -v /data/wangchaodata/:/data/wangchaodata --name newcentos01 centos   ############如果是这种挂载 则宿主机的/data/wangchaodata和docker里面挂在的一模一样  你增我就增 你减我就减
+	docker run -itd -v /data/wangchaodata/ --name newcentos01 centos   ################如果是这种的 则默认挂在在docker的/目录 其实也是/data/wangchaodata  但是里面的数据不一样  这个只是吧宿主机的空间挂载过来
