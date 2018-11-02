@@ -92,7 +92,7 @@ awk 'BEGIN{start=0;end=0}{if ($0 ~/nidaye/) {start=NR} if ($0 ~/}/ && NR>=start)
 
 df -h  | grep /xv |awk '{split($5,a,"%");print 'a[1]'}'  #######   awk切割
 
-substr($0,1,2) ####截取字符串前2个  
+print(substr($0,1,2)) awk的 ####截取字符串前2个  
 
 awk '{gsub("gg","GG",$0);print $0}' 1    ####替换打印  但不是真实的替换
 
