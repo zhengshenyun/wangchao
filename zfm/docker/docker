@@ -57,4 +57,4 @@ docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingngi
 
 9 docker挂载
 	docker run -itd -v /data/wangchaodata/:/data/wangchaodata --name newcentos01 centos   ############如果是这种挂载 则宿主机的/data/wangchaodata和docker里面挂在的一模一样  你增我就增 你减我就减
-	docker run -itd -v /data/wangchaodata/ --name newcentos01 centos   ################如果是这种的 则默认挂在在docker的/目录 其实也是/data/wangchaodata 其实上面的参数就是docker里面挂在的目录 但是在宿主机中挂在的目录要通过 docker inspect来看到
+	docker run -itd -v /data/wangchaodata/ --name newcentos01 centos   ################如果是这种的 则默认挂在在docker的/目录 其实也是/data/wangchaodata 其实上面的参数就是docker里面挂在的目录 但是在宿主机中挂在的目录要通过 docker inspect来看到  如果docker容器关闭了 宿主机文件是不会消失的
