@@ -66,3 +66,10 @@ yum install docker-ce
 9 docker挂载
 	docker run -itd -v /data/wangchaodata/:/data/wangchaodata --name newcentos01 centos   ############如果是这种挂载 则宿主机的/data/wangchaodata和docker里面挂在的一模一样  你增我就增 你减我就减
 	docker run -itd -v /data/wangchaodata/ --name newcentos01 centos   ################如果是这种的 则默认挂在在docker的/目录 其实也是/data/wangchaodata 其实上面的参数就是docker里面挂在的目录 但是在宿主机中挂在的目录要通过 docker inspect来看到  如果docker容器关闭了 宿主机文件是不会消失的
+
+------------------------------------------------
+10  docker创建自己的路由  就是给docker分配容器ip地址
+
+	1 	首先 dockers network ls  看一下目前的网络名称有几种方式
+	2	在 docker network create --subnet=10.0.2.0/8 docker-br0    ##################创建一个网桥名字 docker-br0  是桥接模式  分配ip地址段为10.0.2网段
+	3	docker run -itd --net docker-br0 --ip 10.0.2.3 --name wc-centos cento	################给这个容器分配一个固定ip 10.0.2.3 使用之前的docker-br0这个网桥 之后分配的ip地址就是固定的10.0.2.3了
