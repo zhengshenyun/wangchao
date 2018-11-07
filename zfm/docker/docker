@@ -72,4 +72,5 @@ yum install docker-ce
 
 	1 	首先 dockers network ls  看一下目前的网络名称有几种方式
 	2	在 docker network create --subnet=10.0.2.0/8 docker-br0    ##################创建一个网桥名字 docker-br0  是桥接模式  分配ip地址段为10.0.2网段
-	3	docker run -itd --net docker-br0 --ip 10.0.2.3 --name wc-centos cento	################给这个容器分配一个固定ip 10.0.2.3 使用之前的docker-br0这个网桥 之后分配的ip地址就是固定的10.0.2.3了
+	3	docker run -itd --net docker-br0 --ip 10.0.2.3 --name wc-centos cento	################给这个容器分配一个固定ip 10.0.2.3 使用之前的docker-br0这个网桥 之后分配的ip地址就是固定		       的10.0.2.3了
+	4	用何种方式创建的网桥  他们只能ping通自身网桥网段的机器
