@@ -78,3 +78,6 @@ yum install docker-ce
 		route add -net 172.17.0.0/16 (docker网段) gw 100.73.18.106 (宿主机IP)
 		#在100.73.18.108上面添加
 		route add -net 172.18.0.0/16 (docker网段) gw 100.73.18.108 (宿主机IP)
+
+	6	-m 100m --memory-swap=100m   ##################限制最大的使用内存超过就会kill
+		--cpuset-cpus=7  (注意1.6版本才是--cpuset-cpus，1.6版本以下是--cpuset)############ 绑定线程数
