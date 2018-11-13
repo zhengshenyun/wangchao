@@ -204,6 +204,7 @@ $("p .intro")  p元素里面子元素  比如 <p class="intro">ddddddd  <span cl
 $("[href]")  选取带有 href 属性的元素 可以理解为$("*[href]")
 $("a[href]") 可以理解为 选取所有 target 属性值等于 "_blank" 的 <a> 元素
 $(":button")	选取所有 type="button" 的 <input> 元素 和 <button> 元素   #前面直接:button可以理解为 寻找的是input/button元素中type类型
+$("[attribute='value']")  通过属性来选举元素
 ---------------------------------------
 html();text();val()都是没有就是获取有就是设置 这三兄弟一直都是这样
 attr("href") 一般是获取或者设置属性
