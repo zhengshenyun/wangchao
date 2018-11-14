@@ -18,3 +18,10 @@ df.columns  ######打印首行的标题  后面可以用索引来查询
 ----------------------------------------------------------------
 dframe = pd.read_excel(“file_name.xlsx”)  ###########读取xlsx文件
     1---  可能需要 pip install xlrd
+
+
+#############################################一套完整的去除excle中得某一列######################################################
+>>> import pandas as pd
+>>> df = pd.read_excel("text.xlsx",encoding='utf8')
+>>> olddf = df.drop(columns=[u'帐号'])
+>>> olddf.to_excel("new.xlsx",index=False)  ##########################index=False  就是不要索引了  就是前面的0 1 2 3 4 5等等
