@@ -234,6 +234,14 @@ $http_x_real_ip  和  $http_x_forwarded_for   ###########都是可以的
                 proxy_pass http://127.0.0.1:800;
                 #return 200 "$remote_addr------------- $remote_user-------------- $request------------- $status----------- $body_bytes_sent---------- $http_referer---------- $http_user_agent---------- $http_x_forwarded_for";
         }
+
+location /wangchao {
+                add_header  Content-Type 'text/html; charset=utf-8';
+                set $wangchao $http_fuck;        #####################这种得直接吧前端得参数http_fuck变成$wangchao这个参数   例如  curl -d "http_fuck=nimeide" http://xxxxxxxx/
+                return 200 "$wangchao";
+        }
+
 -------------------------------------
 crt key pem  双向认证
 -------------------------------------
+
