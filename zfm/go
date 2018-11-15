@@ -12,3 +12,20 @@
 
 
 3 go中的结构体 就是python得字典
+
+	1)type Books struct {
+  		 title string
+   		author string
+   		subject string
+   		book_id int
+		}
+
+	2)var Book1 Books   ##################此时Book1就是一个实例化得空壳子
+	  Book1.title = "Go 语言"
+
+	3)func printBook( book Books ) {
+   		fmt.Printf( "Book title : %s\n", book.title);
+   		fmt.Printf( "Book author : %s\n", book.author);
+   		fmt.Printf( "Book subject : %s\n", book.subject);
+   		fmt.Printf( "Book book_id : %d\n", book.book_id);
+		}   ############book 就是Books得一个对象
