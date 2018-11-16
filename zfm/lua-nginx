@@ -1,1 +1,24 @@
 ################### nginx配置 lua 来防御cc攻击 app端可以配置sign签名来限制 #############################
+location ~ .*\.(php|php5)?$
+        {
+                if ($request_uri ~ "one/test") {
+                        access_by_lua_file /opt/nginxrw/lua/limiturl.lua;
+                }
+                fastcgi_pass  127.0.0.1:9000;
+                fastcgi_index index.php;
+                include fastcgi.conf;
+        }
+
+------------------------------------------------------------------------------------
+if ($request_uri ~ "firstsale\/AjaxPanicNow") {     ###############################要注意如果有特殊字符，则要加转义，如要拦截地址：firstsale/AjaxPanicNow
+     rewrite_by_lua_file /opt/nginxrw/lua/limiturl.lua;
+                }
+
+------------------------------------------------------------------------------------
+location /sign/ {
+    #lua_code_cache off;
+    #由lua生成
+    access_by_lua_file      /home/wwwroot/sign/sighcheck.lua;   #################这也是一种验证
+    proxy_set_header         Host    "www.04007.cn";
+    proxy_pass              http://api_backends;
+}
