@@ -1,4 +1,4 @@
-https://blog.csdn.net/qq_39239779/article/details/77993811    安装文档
+https://blog.csdn.net/gamezouni/article/details/78086860
 ################### nginx配置 lua 来防御cc攻击 app端可以配置sign签名来限制 #############################
 location ~ .*\.(php|php5)?$
         {
