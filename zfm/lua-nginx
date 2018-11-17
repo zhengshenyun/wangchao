@@ -27,7 +27,7 @@ location /sign/ {
 
 function test()
 	--local args = ngx.req.raw_header()
-	--ngx.say(args)
+	--ngx.say(args)  ##################这个是打印   不影响后续  但是影响直接使用  curl
 	--ngx.exit(444)
 	for k, v in pairs(ngx.req.get_uri_args()) do
    		 ngx.say(k, ":", v)
