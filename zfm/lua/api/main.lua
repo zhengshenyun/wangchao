@@ -118,9 +118,10 @@ function denyCC(denyByType)
 		return true
 	end
 
-
+	-- 如果有那个token  就吧token写入Nginx 内存里面 
         if req then
             if req > ccCount then
+	-- 设置 token组合也就是denykey 和deny时间 denytime 类似于redis得失效时间
             	limit:safe_set(denyKey, 1, denyTime)
 		limit:delete(token)
 		ngx.log(ngx.ERR, "deny type: ", denyKey)
@@ -129,6 +130,7 @@ function denyCC(denyByType)
                  limit:incr(token,1)
             end
         else
+	-- 如果没有那个token  就吧token写入Nginx 内存里面 并且设置统计周期
             limit:safe_set(token,1,ccSeconds)
         end
     end
