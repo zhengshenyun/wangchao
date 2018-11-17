@@ -1,5 +1,5 @@
 package.path = '/usr/local/nginx/?.lua;' .. package.path
--- 本文就是限制token 和验证sign 来做限制
+-- 本文就是限制token 和验证sign 来做限制  前提nginx配置文件http段里面设置  lua_shared_dict lualimit 100m;
 local args = ngx.req.get_uri_args()
 -- 该命令主要是定义一块名为lualimit的共享内存空间，内存大小为size。通过该命令定义的共享内存对象对于Nginx中所有worker进程都是可见的，当Nginx通过reload命令重启时，共享内存字典项会从新获取它的内容，当时当Nginx退出时，字典项的值将会丢失 
 -- local 后面的lualimit  和ngx.shared.xxxxx 是一样的  这是规则
