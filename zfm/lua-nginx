@@ -19,17 +19,23 @@ if ($request_uri ~ "firstsale\/AjaxPanicNow") {     ############################
 location /sign/ {
     #lua_code_cache off;
     #由lua生成
-    access_by_lua_file      /home/wwwroot/sign/sighcheck.lua;   #################这也是一种验证
+    access_by_lua_file      /home/wwwroot/sign/sighcheck.lua;   #################这也是一种验证  就例如这个脚本里面就是下面的内容
     proxy_set_header         Host    "www.04007.cn";
     proxy_pass              http://api_backends;
 }
 
 
-
-
-
-
-
+function test()
+	--local args = ngx.req.raw_header()
+	--ngx.say(args)
+	--ngx.exit(444)
+	for k, v in pairs(ngx.req.get_uri_args()) do
+   		 ngx.say(k, ":", v)
+		 --return ngx.exit(444)   #############在这边好像就不行  我也不知道
+	end
+	return ngx.exit(444)  ###############在这边写的话 会抛出异常
+end
+test()
 
 
 
