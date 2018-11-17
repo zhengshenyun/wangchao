@@ -1,4 +1,8 @@
 https://blog.csdn.net/gamezouni/article/details/78086860
+
+
+
+[lua  一种类型 tables  而且只能for循环才能打印出]
 ################### nginx配置 lua 来防御cc攻击 app端可以配置sign签名来限制 #############################
 location ~ .*\.(php|php5)?$
         {
@@ -133,7 +137,7 @@ local function init_form_args()
                                 local datafile = ngx.req.get_body_file()
                                 if not datafile then
                                         error_code = 1
-                                        error_msg = "no request body found"
+                                        rror_msg = "no request body found"
                                 else
                                         local fh, err = io.open(datafile, "r")
                                         if not fh then
