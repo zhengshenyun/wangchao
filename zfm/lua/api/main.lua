@@ -28,7 +28,7 @@ function denyCC(denyByType)
 	local action = args["a"] or args["A"]
 	local user_id = args["user_id"]
 	local user_token = args["token"]
-
+	-- ngx.var.uri 显示得是/ddddd/fff/ggg/hhh  不包括?和后面的
 	local defaultToken = ngx.var.uri
 	local token = nil 
 	local ccCount = -1
