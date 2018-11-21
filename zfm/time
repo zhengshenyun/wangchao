@@ -482,3 +482,6 @@ d,*a1=(1,2,3,4);a========>[2, 3, 4]   #########python 3之后的写法
 ------------------------------------------------------------------
 grep -A 1 success ff| grep -B 1 192.168.1.2   ####
 -----------------------------------------------------------------
+
+rsync -avz apache@10.0.2.2::codebackup /data --password-file=/etc/rsync.password --exclude shandjjroot/upload_dir/ --exclude taojjapi/upload_dir/ --exclude shandjjroot/runtime/ --exclude taojjapi/runtime/
+
