@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+import pexpect
+ 
+if __name__ == '__main__':
+    with open("iip","r") as f:
+	ip = [_.strip() for _ in f.readlines()]
+    print(ip)
+    mypassword = 'sdjj123$%^'
+    for i in ip:
+        print("start----------------------")
+        child = pexpect.spawn('scp /etc/ansible/temp/authorized_keys_admin2root root@%s:/root/.ssh/authorized_keys' %i)
+        child.expect ('password:')
+        child.sendline (mypassword)
+        child.expect(pexpect.EOF)
+
