@@ -16,7 +16,7 @@ data_df.index = ['a','b','c','d','e','f','g','h','i','j']
 
 # create and writer pd.DataFrame to excel
 ### 初始化一个writer 
-writer = pd.ExcelWriter('Save_Excel.xlsx')
+writer = pd.ExcelWriter('Save_Excel.xlsx')    ####################初始化一个excel  但后操作  保存
 ### 吧write写入excel
 data_df.to_excel(writer,'page_1',float_format='%.5f') # float_format 控制精度
 writer.save()
