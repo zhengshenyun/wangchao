@@ -489,3 +489,6 @@ rsync -avz apache@10.0.2.2::codebackup /data --password-file=/etc/rsync.password
 requests 出现那个啥/usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn't match a supported version! RequestsDependencyWarning)
 
 解决办法就三部  pip uninstall urllib3;pip uninstall chardet;pip install requests
+
+-----------------------------------------------------------------------------------
+python dd.py | tr "'" '"' |sed 's/u"/"/g'| jq .  ##############这个是为了jq 解析的  jq  里面必须是""双引号  单引号他不识别 还有u""  他也不识别  用sed替换掉他
