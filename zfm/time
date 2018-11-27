@@ -485,3 +485,7 @@ grep -A 1 success ff| grep -B 1 192.168.1.2   ####
 
 rsync -avz apache@10.0.2.2::codebackup /data --password-file=/etc/rsync.password --exclude shandjjroot/upload_dir/ --exclude taojjapi/upload_dir/ --exclude shandjjroot/runtime/ --exclude taojjapi/runtime/
 
+--------------------------------------------------------------------------
+requests 出现那个啥/usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn't match a supported version! RequestsDependencyWarning)
+
+解决办法就三部  pip uninstall urllib3;pip uninstall chardet;pip install requests
