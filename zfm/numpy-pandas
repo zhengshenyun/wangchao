@@ -4,6 +4,10 @@ import pandas as pd
 # prepare for data
 data = np.arange(1,101).reshape((10,10))
 
+##############################################################
+#  如果是一个文档比如ip.txt  那就先要 with open() 行驶了   最后得出的 [[],[],[]] 这种内嵌表格模式 然后转成numpy中的 array模式 再用下面的就好了
+#############################################################
+
 
 ####### 使用dataframe格式
 data_df = pd.DataFrame(data)
