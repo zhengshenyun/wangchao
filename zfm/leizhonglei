@@ -1,0 +1,34 @@
+#!/usr/bin/python
+#encoding=utf8
+
+
+
+class wangchao(object):
+	name = 'wangchao'
+
+	def __init__(self,old):
+		self.old = old
+
+
+	def gansha(self,what,nidaye):
+		self.nidaye = nidaye
+		print("%s  年龄 %s  在 %s" %(self.name,self.old,what))
+		return "byebye"
+
+	class chaowang(object):
+
+		def __init__(self,didian):
+			self.didian = didian 
+
+		def run(self):
+			print(self.didian)
+
+	def where(self):
+		aa = range(10)
+		bb = self.chaowang("香港")
+		for i in aa:
+			print(bb.run())
+
+a = wangchao(30)
+print(a.gansha("fuck","job"))
+print(a.where())
