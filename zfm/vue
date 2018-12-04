@@ -1,0 +1,9 @@
+-------------vue.js---------------
+<script>
+new Vue({
+  el: '#app',   ######### el
+  data: {
+    message: 'Hello Vue.js!'
+  }
+})
+</script>
