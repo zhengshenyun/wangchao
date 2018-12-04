@@ -1,8 +1,8 @@
 -------------vue.js---------------
 <script>
 new Vue({
-  el: '#app',   ######### el
-  data: {
+  el: '#app',   ######### el 对应着元素id
+  data: {	#########  data 对应着元素页面上的{{ message }}
     message: 'Hello Vue.js!'
   }
 })
