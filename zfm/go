@@ -29,3 +29,12 @@
    		fmt.Printf( "Book subject : %s\n", book.subject);
    		fmt.Printf( "Book book_id : %d\n", book.book_id);
 		}   ############book 就是Books得一个对象
+
+4--------------------------------------------------
+func main() {
+	var n int = 5
+	for i := 0;i<=n;i++ {
+		fmt.Printf("%d+%d=%d\n",i,n-i,n)  ########格式化输出的时候 %d是int   %s是字符串  还要用到Printf 不能用Println
+	}
+}
+
