@@ -1,0 +1,29 @@
+#!/usr/bin/python
+#encoding=utf8
+
+import pandas as pd
+
+def load_excel(excel_name):
+	df = pd.read_excel(excel_name,encoding='utf8')
+	return df
+
+
+def change_excel():
+	with open("ip") as f:
+		res = f.readlines()
+	res_df = load_excel("fuck.xlsx")
+	Columns = res_df.columns
+	res_df.columns = ["a","b","c","d","e","f","g","h"]
+	for i in res:
+		ex_name = i.split("|")[-1]
+		ip = i.split("|")[0].strip().split(",")
+		res_df["h"][res_df["c"].isin(ip)] = ex_name
+	res_df.columns = Columns
+	return res_df,Columns
+
+def Save():
+	start_save = change_excel()[0]
+	start_save.to_excel("new.xlsx",index=False)
+
+
+Save()
