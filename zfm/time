@@ -495,3 +495,5 @@ python dd.py | tr "'" '"' |sed 's/u"/"/g'| jq .  ##############这个是为了jq
 
 --------------------------------------------------------------------
 echo SDJJ_YuXRKcSD8GBpc6F | passwd --stdin root   ##########    echo  修改密码
+-------------------------------------------------------------------------------
+select count(server_ip),GROUP_CONCAT(server_ip), CONCAT('|',`group`)  from cmdb_cmdbmanage GROUP BY `group`   ########
