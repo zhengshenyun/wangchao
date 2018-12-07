@@ -75,5 +75,11 @@ func main() {
         fmt.Println(start)
         fmt.Println(end)
 }
+-----------------------------------------------------------------------------
 
+func myfunc(args ...int) {                  ################### 函数接受不定参数  类似于python的 *args
+	for _, arg := range args {
+	fmt.Println(arg)
+	}
+}
 
