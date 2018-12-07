@@ -61,4 +61,12 @@ func main() {
 	modify(array) // 传递给一个函数，并试图在函数体内修改这个数组内容    ##############传参  感觉很奇怪
 	fmt.Println("In main(), array values:", array)
 }
+----------------------------------------------------------------
+func main() {
+        var start [10]int = [10]int{1,2,3,4,5,6,7,8,9}   ###########定义数组必须是用var 来定义   后面逻辑得出的结果个前面的时候随便 比如下面
+        end := start[:5]
+        fmt.Println(start)
+        fmt.Println(end)
+}
+
 
