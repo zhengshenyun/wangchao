@@ -9,6 +9,10 @@ if __name__ == '__main__':
     mypassword = 'sdjj123$%^'
     for i in ip:
         print("start----------------------")
+        child = pexpect.spawn('ssh root@%s "mkdir /root/.ssh"' %i)  #################### 远程登陆 执行命令
+        child.expect ('password:')
+        child.sendline (mypassword)
+        child.expect(pexpect.EOF)
         child = pexpect.spawn('scp /etc/ansible/temp/authorized_keys_admin2root root@%s:/root/.ssh/authorized_keys' %i)
         child.expect ('password:')
         child.sendline (mypassword)
