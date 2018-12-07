@@ -59,12 +59,12 @@ name := "11122222222333333"
 
 
 --------------------------------------------------------------------
-func modify(array [5]int) {
+func modify(array []int) {
 	array[0] = 10 // 试图修改数组的第一个元素
 	fmt.Println("In modify(), array values:", array)
 }
 func main() {
-	array := [5]int{1,2,3,4,5} // 定义并初始化一个数组       
+	array := []int{1,2,3,4,5} // 定义并初始化一个数组       
 	modify(array) // 传递给一个函数，并试图在函数体内修改这个数组内容    ##############传参  感觉很奇怪
 	fmt.Println("In main(), array values:", array)
 }
@@ -77,7 +77,7 @@ func main() {
 }
 -----------------------------------------------------------------------------
 
-func myfunc(args ...int) {                  ################### 函数接受不定参数  类似于python的 *args
+func myfunc(args ...int) {                  ################### 函数接受不定参数  类似于python的 *args    ...int  换成 ...interface{}   就是接受任意类型的参数
 	for _, arg := range args {
 	fmt.Println(arg)
 	}
