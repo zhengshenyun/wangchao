@@ -142,3 +142,4 @@ map 创建map一般有2种方式 一个是 countryCapitalMap := map[string]int{}
     		countryCapitalMap[ "Japan" ] = "东京"
     		countryCapitalMap[ "India " ] = "新德里"
 这个就是往里面添加元素
+删除元素 就是 delete(countryCapitalMap, "France")   France是key
