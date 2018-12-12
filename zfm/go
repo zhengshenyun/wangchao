@@ -11,7 +11,7 @@
 
 
 
-3 go中的结构体 就是python得字典
+3 go中的结构体 就是python得set  集合
 
 	1)type Books struct {
   		 title string
@@ -30,7 +30,36 @@
    		fmt.Printf( "Book book_id : %d\n", book.book_id);
 		}   ############book 就是Books得一个对象
 
+   		1)  结构体的一个例子
+
+		type Books struct {
+		   title string
+		   author string
+		   subject string
+		   book_id int
+		}
+
+
+		func main() {
+
+		    // 创建一个新的结构体
+		    fmt.Println(Books{"Go 语言", "www.runoob.com", "Go 语言教程", 6495407})
+
+		    // 也可以使用 key => value 格式
+		    fmt.Println(Books{title: "Go 语言", author: "www.runoob.com", subject: "Go 语言教程", book_id: 6495407})
+
+		    // 忽略的字段为 0 或 空
+		   fmt.Println(Books{title: "Go 语言", author: "www.runoob.com"})
+		}
+		输出结果为：
+
+		{Go 语言 www.runoob.com Go 语言教程 6495407}
+		{Go 语言 www.runoob.com Go 语言教程 6495407}
+		{Go 语言 www.runoob.com  0}
+
 4--------------------------------------------------
+#########记着  常量的定义 const a= 10  不是 const a:= 10
+
 func main() {
 	var n int = 5
 	for i := 0;i<=n;i++ {
