@@ -144,3 +144,12 @@ map 创建map一般有2种方式 一个是 countryCapitalMap := map[string]int{}
     		countryCapitalMap[ "India " ] = "新德里"
 这个就是往里面添加元素
 删除元素 就是 delete(countryCapitalMap, "France")   France是key
+
+--------------------------------------------------------------------------------------------
+slice     func main() {
+        	dd := []int{1,2,3,4}
+        	dd = append(dd,5)
+        	fmt.Println(dd)
+		}
+
+###########################################slice 也是一样的 dd := []int{}   可以设置N个 
