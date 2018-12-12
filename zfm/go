@@ -133,3 +133,12 @@ func myfunc(args ...int) {                  ################### 函数接受不�
 	}
 }
 
+--------------------------------------------------------------------------------
+
+map 创建map有  2种方式  一个是直接定义 var/:= var countryCapitalMap map[string]string  或者是 countryCapitalMap = make(map[string]string)
+
+往里面添加就是  countryCapitalMap[ "France" ] = "Paris"
+    		countryCapitalMap[ "Italy" ] = "罗马"
+    		countryCapitalMap[ "Japan" ] = "东京"
+    		countryCapitalMap[ "India " ] = "新德里"
+这个就是往里面添加元素
