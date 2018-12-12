@@ -10,11 +10,22 @@ if __name__ == '__main__':
     for i in ip:
         print("start----------------------")
         child = pexpect.spawn('ssh root@%s "mkdir /root/.ssh"' %i)  #################### 远程登陆 执行命令
-        child.expect ('password:')
-        child.sendline (mypassword)
-        child.expect(pexpect.EOF)
-        child = pexpect.spawn('scp /etc/ansible/temp/authorized_keys_admin2root root@%s:/root/.ssh/authorized_keys' %i)
-        child.expect ('password:')
-        child.sendline (mypassword)
-        child.expect(pexpect.EOF)
-
+        ret = child.expect([pexpect.TIMEOUT,'Are you sure you want to continue connecting','[P|p]assword'])
+        print(ret)
+        if ret == 1:
+            child.sendline('yes')
+            child.expect ('password:')
+            child.sendline (mypassword)
+            child.expect(pexpect.EOF)
+            child = pexpect.spawn('scp /etc/ansible/temp/authorized_keys_admin2root root@%s:/root/.ssh/authorized_keys' %i)
+            child.expect ('password:')
+            child.sendline (mypassword)
+            child.expect(pexpect.EOF)
+        else:
+            child.expect ('password:')
+            child.sendline (mypassword)
+            child.expect(pexpect.EOF)
+            child = pexpect.spawn('scp /etc/ansible/temp/authorized_keys_admin2root root@%s:/root/.ssh/authorized_keys' %i)
+            child.expect ('password:')
+            child.sendline (mypassword)
+            child.expect(pexpect.EOF)
