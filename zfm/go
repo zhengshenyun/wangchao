@@ -135,7 +135,7 @@ func myfunc(args ...int) {                  ################### 函数接受不�
 
 --------------------------------------------------------------------------------
 
-map 创建map就用这种方式 countryCapitalMap := make(map[string]string)
+map 创建map一般有2种方式 一个是 countryCapitalMap := map[string]int{}  但是后面一定要加{} 还有{}里面可以添加元素 但是跟下面的key value 类型一定要是相同的    第二个就用这种方式 就是一个空的{} 然后用 countryCapitalMap := make(map[string]string)
 
 往里面添加就是  countryCapitalMap[ "France" ] = "Paris"
     		countryCapitalMap[ "Italy" ] = "罗马"
