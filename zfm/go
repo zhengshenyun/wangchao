@@ -30,7 +30,7 @@
    		fmt.Printf( "Book book_id : %d\n", book.book_id);
 		}   ############book 就是Books得一个对象
 
-   		1)  结构体的一个例子
+   		##############1)  结构体的一个例子
 
 		type Books struct {
 		   title string
@@ -56,6 +56,27 @@
 		{Go 语言 www.runoob.com Go 语言教程 6495407}
 		{Go 语言 www.runoob.com Go 语言教程 6495407}
 		{Go 语言 www.runoob.com  0}
+
+
+		#############2)type Books struct {
+				   title string
+				   author string
+				   subject string
+				   book_id int
+				}
+
+				//结构体内内嵌匿名成员变量定义
+				func main() {
+				   a :=Books{"fuck","fuckyou","fuckass",100}
+				   p := person{"abc",12}
+				   fmt.Println(a,"dagai---",a.book_id,p.int)
+					}
+
+				type person struct {
+					   string
+					   int
+					}
+
 
 4--------------------------------------------------
 #########记着  常量的定义 const a= 10  不是 const a:= 10
