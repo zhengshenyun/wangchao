@@ -129,7 +129,7 @@ func main() {
 -----------------------------------------------------------------------------
 
 func myfunc(args ...int) {                  ################### 函数接受不定参数  类似于python的 *args    ...int  换成 ...interface{}   就是接受任意类型的参数
-	for _, arg := range args {
+	for _, arg := range args {   #######   此时这边变成一个切片  就是slice  如果下面再调用的话 可以写成 xxx(arg...)   友情提示 [python   这边接受的是元祖]
 	fmt.Println(arg)
 	}
 }
