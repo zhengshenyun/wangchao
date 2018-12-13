@@ -179,6 +179,7 @@ slice     func main() {
 
 	func main() {
         	a := test("sss",334)
+		//a = xxxxxxx            ---------------------------  如果在这边赋值 原来的值是不会变的
         	fmt.Println(a)
 	}
 
