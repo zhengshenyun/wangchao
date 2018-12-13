@@ -197,4 +197,27 @@ slice     func main() {
         	fmt.Printf("-----%s------%s---%d",a,aa,bb)
 	}
  
-5---->  
+5----> func test(a []int) (nidaye string){    ########################  切片传递 和 python传递差不多
+		fmt.Print("ok----",a)
+		nidaye = "nidaye"
+		a[0] = 10
+		return
+	}
+
+	func main() {
+		aa := []int{1,2,3}
+		a := test(aa)
+		//fmt.Printf("-----%s------%s---%d",a,aa,bb)
+		fmt.Println(a,aa)
+	}
+
+6----> func test(m map[int]string)  {      ######################   map  传递给函数
+		    delete(m, 1)
+		}
+
+	func main()  {
+	    m := map[int]string{1:"mike", 2:"yoyo", 3: "C++"}
+	    fmt.Println("m = ", m)
+	    test(m) //对函数进行修改，比如删除一个对
+	    fmt.Println("m = ", m)
+	} 
