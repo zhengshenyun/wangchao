@@ -199,7 +199,7 @@ slice     func main() {
         	fmt.Printf("-----%s------%s---%d",a,aa,bb)
 	}
  
-5----> func test(a []int) (nidaye string){    ########################  切片传递 和 python传递差不多
+5----> func test(a []int) (nidaye string){    ########################  切片传递 和 python传递差不多 简直是一模一样  
 		fmt.Print("ok----",a)
 		nidaye = "nidaye"
 		a[0] = 10
