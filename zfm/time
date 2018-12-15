@@ -449,7 +449,7 @@ import copy;a=[1,2,3];b = copy.deepcopy(a);a[2] = 4;a=[1,2,4];b = [1,2,3]
 from compiler.ast import flatten    ####[1,2,3,[4,5],[6,7,8]] ==》[1,2,3,4,5,6,7,8] or [i for i in a if not isinstance(i,list)] + sum([i for i in a if isinstance(i,list)],[]) #####哈哈
 
 -----------------------------------------------
-sort -t '.' -k 4 ip.txt ###按照.分隔符第4栏排序
+sort -n -t '.' -k 4 ip.txt ###按照.分隔符第4栏排序
 cat ip.txt | sort |uniq -c|sort -rnk  1  #####################合并相同次数从大到小
 
 -------------------------------------------------
