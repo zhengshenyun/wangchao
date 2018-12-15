@@ -1,0 +1,24 @@
+#/usr/bin/python
+#encoding=utf8
+
+import numpy as np
+import pandas as pd
+import sys
+
+#####################当前脚本下面有个ip文件   格式是每行每行数据 然后每个字段之间用 | 来分割
+
+def to_excel():
+	with open("ip") as f:
+		res = f.readlines()
+	res = [i.split("|") for i in res]
+	data = np.array(res)
+	data_df = pd.DataFrame(data)
+	return data_df
+
+
+def Save():
+	start_save = to_excel()
+	start_save.to_excel("new.xlsx",index=False)
+
+if __name__ == '__main__':
+	Save()
