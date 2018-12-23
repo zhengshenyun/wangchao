@@ -41,6 +41,7 @@ dframe = pd.read_excel(“file_name.xlsx”)  ###########读取xlsx文件
 
 
 
+11 ----- 表格中如果没有是空的 或者是null的 在pd中都是显示NaN
 
 
 
