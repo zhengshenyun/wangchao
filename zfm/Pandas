@@ -42,8 +42,10 @@ dframe = pd.read_excel(“file_name.xlsx”)  ###########读取xlsx文件
 
 
 11 ----- 表格中如果没有是空的 或者是null的 在pd中都是显示NaN
-
-
+	df.fillna(0)   吧df里面是NaN的都变成0
+ 
+   ----2) df = pd.read_excel("text.xlsx",encoding='utf8',na_filter=False) 或者 pd.read_csv(StringIO(data), converters={'strings' : str})
+	   df['old'][df['old'].isin(['null','NULL'])] = 0  ######吧old列中old=“null”字符串的改为0
 
 ############################################  pandas 增删查改  ######################################################
 
