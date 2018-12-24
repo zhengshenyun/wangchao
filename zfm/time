@@ -506,3 +506,17 @@ select count(server_ip),GROUP_CONCAT(server_ip), CONCAT('|',`group`)  from cmdb_
 shell 获取自身的pid $$  |    python  获取自身的pid   os.getpid()
 --------------------------------------------------------------
 python 从上而下  但是函数里面调用除外  一般都是自上而下执行  变量也是
+
+-------------------------------------------------------------
+with open("ip",'r') as f:   ################一行一行的读更加节省内存
+...     while True:
+...             a = f.readline()
+...             if a:
+...                     print(a)
+...             else:
+...                     break
+
+
+with open(filename, 'r') as flie:  #############这种也是可以的
+    for line in file:
+-------------------------------------------------------------------------
