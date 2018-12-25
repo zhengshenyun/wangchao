@@ -244,3 +244,31 @@ location /wangchao {
 -------------------------------------
 crt key pem  双向认证
 -------------------------------------
+
+nginx跨域问题
+1.nginx配置文件增加响应头
+
+在服务器端的nginx.conf中配置增加配置
+
+1.nginx配置文件增加响应头
+
+在服务器端的nginx.conf中配置增加配置
+
+http {
+  ......
+  add_header Access-Control-Allow-Origin *;
+  add_header Access-Control-Allow-Headers X-Requested-With;
+  add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+  ......
+}
+这样就可以实现GET,POST,OPTIONS的跨域请求的支持
+
+
+2. ###### 第二种办法 
+通过nginx中增加location反向代理到服务器端
+
+location ^~/proxy/html/{
+    rewrite ^/proxy/html/(.*)$ /$1 break;
+    proxy_pass http://www.redis.com.cn/api/;
+}
+ 
