@@ -1,7 +1,18 @@
 ########首先是异步io   那说的意思是服务端模仿nginx的异步io
 用到的就是asyncio这个模块
 
-
+可是可是他也能用作并发实现
+import threading
+import asyncio
+import requests
+loop = asyncio.get_event_loop()
+async def t():                                                    
+    get = lambda:requests.get('http://baidu.com')
+    print("ok"+ str(threading.currentThread()))    #############此处线程对象是一样的 证明没有线程切换
+    temp = await loop.run_in_executor(None, get)
+    await asyncio.sleep(3)
+    print(temp)   
+loop.run_until_complete(asyncio.gather(*[t() for i in range(10)]))
 ########还有就是异步返回请求结果  就是return的东东
 可以用到celery这种的
 
