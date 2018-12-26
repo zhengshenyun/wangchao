@@ -32,7 +32,7 @@ print('TIME: ', now() - start)
 
 
 
-#############flask 异步
+#############flask 异步类似于多进程    不过flask有个猴子补丁 就是monkey   最下面就是例子
 flask application with background threads
 
 from flask import Flask
@@ -66,3 +66,46 @@ def some_long_task2(arg1, arg2):
 
 if __name__ == '__main__':
     app.run()
+
+-----------------------------------------------------------------flask的猴子补丁 类似于异步io-----------------------------------------------------------
+from flask import Flask, request, g
+import os
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+ 
+# gevent
+from gevent import monkey
+from gevent.pywsgi import WSGIServer
+monkey.patch_all()
+# gevent end
+ 
+app = Flask(__name__)
+app.config.update(DEBUG=True)
+ 
+#获取本机电脑名
+myname = socket.getfqdn(socket.gethostname(  ))
+ 
+#获取本机ip
+myaddr = socket.gethostbyname(myname)
+myport = 8912
+ 
+ 
+@app.route('/test1')
+def the_test1():
+    print "test1 print start"
+    time.sleep(10)
+    print "test1 print after sleep"
+    return 'hello asyn'
+ 
+@app.route('/test2')
+def the_test2():
+    print "test2 print!"
+    return 'test2 return'
+ 
+ 
+ 
+ 
+if __name__ == '__main__':
+    http_server = WSGIServer((myaddr, myport), app)
+    http_server.serve_forever()
