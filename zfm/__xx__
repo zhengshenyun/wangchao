@@ -129,4 +129,5 @@ class Student(object):
                     raise ValueError('score must between 0 ~ 100!')
                 self._score = value
 a = Student()
-print(a.score)   
+print(a.score)  #########返回30
+a.score = 90 ############调用@score.setter 
