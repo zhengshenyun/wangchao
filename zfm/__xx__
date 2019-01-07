@@ -116,7 +116,7 @@ __slots__ = ('name', 'age') ###################### 用tuple定义允许绑定的
 
 class Student(object):
 
-            score = 30
+            _score = 30
             @property
             def score(self):  #######################此时用对象来调用的话 比如a = Student();a.score  它调用的是def score这个函数不是静态字段
                 return self._score
@@ -128,3 +128,5 @@ class Student(object):
                 if value < 0 or value > 100:
                     raise ValueError('score must between 0 ~ 100!')
                 self._score = value
+a = Student()
+print(a.score)   
