@@ -93,8 +93,11 @@ print(a.nameeeeeeeeeeeee)  ############    下面这个和上面的一样
 a.elk = "eeee"  ###########   这个走的是 object.__setattr__(self,key,value) 所以出的是 eeee     如果是 a.elk = 'eee'  出的就是 eeellllkkkkk
 print(a.elk)
 
-__getattr__为内置方法，当使用点号获取实例属性时，如果属性不存在就自动调用__getattr__方法
+__getattr__为内置方法，当使用点号获取实例属性时，如果属性不存在就自动调用__getattr__方法   ###################################属性不存在的时候
 __setattr__当设置类实例属性时自动调用，如j.name=5 就会调用__setattr__方法  self.[name]=5
+__getattribute__ 定义当一个属性被访问的时候的行为  
+
+=============================总结上面的三个 反问属性没有的时候 __getattr__   访问属性有的时候__getattribute__ 设置属性的时候__setattr__ ======================================================
 因为这个类是从dict继承来的，是dict的超类
 所以 self[attr]=value 相当于调用dict的下标方法
 与 a={}   ; a[attr]=value意思一样
