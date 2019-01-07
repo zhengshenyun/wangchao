@@ -145,10 +145,12 @@ nginx做网站验证的时候 location 里面只能用 proxy_pass 如果用rewri
 
 location ~ /futures-mobile-api/user/info/(register|register/send/sms)$
 
+
 假设请求为http://www.qq.com:8080/a/b/c.php?1=2&2=3，则
 $host：www.qq.com
 $server_port：8080
-$request_uri：http://www.qq.com:8080/a/b/c.php?1=2&2=3
+$arg_1:2 &&   $arg_2:3
+$request_uri：/a/b/c.php?1=2&2=3
 $uri: /a/b/c.php
 $document_uri：/a/b/c.php
 $document_root：/var/www/html
