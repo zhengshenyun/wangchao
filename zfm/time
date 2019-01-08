@@ -527,3 +527,5 @@ with open(filename, 'r') as flie:  #############这种也是可以的
 with open(filename,'r') as f:
 	a = json.load(f)   ############  a就是一个字典了
 ---------------------------------------------------------------------------------
+
+a = “wangchao”  判断一个字符串是否已什么开头/结尾   a.startswith('h') a.endswith('h')   ------>  return  True/False
