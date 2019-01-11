@@ -277,3 +277,7 @@ func callback(y int, f func(int, int)) {       #################函数接受一�
 
 -----------------------------------------------------------------------------------------------------------------------------
 json.Marshal(stu)    struck转json
+data, err := json.Marshal(infos)
+    if err != nil {
+        fmt.Println(err)
+    }
