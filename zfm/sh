@@ -25,3 +25,13 @@ case $1 in
     *)  echored "哥哥/姐姐------------------选择错误"
 esac
 
+
+###################   下面可以改变变量    #####################
+num=1
+ 
+        while read line;do
+            echo $line|egrep '(172|127)' >>/dev/null  && echo $line| awk '{print a,"----------",$0}' a=$num|tee -a host.txt  || continue
+            let num+=1
+        done </etc/hosts
+ 
+    let num-=1
