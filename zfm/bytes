@@ -15,3 +15,6 @@ b'wangchao'
 111
 >>> 
 >>> 
+
+
+a.decode(encoding='utf-8')  转化为str
