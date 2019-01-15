@@ -530,6 +530,10 @@ with open(filename, 'r') as file:  #############这种也是可以的
 ############如果是读取json文件的话  或者就是类似于json文件  或者里面就全部是人工写的字符串
 with open(filename,'r') as f:
 	a = json.load(f)   ############  a就是一个字典了
+
+{1:"ss",2:"sss"}  这种写在txt里面的不是json数据   json格式标准形式 {"1":"ss","2":"sss"}   反正都是双引号
+
+
 ---------------------------------------------------------------------------------
 
 a = “wangchao”  判断一个字符串是否已什么开头/结尾   a.startswith('h') a.endswith('h')   ------>  return  True/False
