@@ -281,3 +281,18 @@ data, err := json.Marshal(infos)
     if err != nil {
         fmt.Println(err)
     }
+
+------------------------------------------------------------------------------------------------------------------------
+func main() {              ############### go  匿名函数应用
+
+        f := func(a, b int) bool {
+            return a > b
+        }
+
+        ff := func(a, b int) bool {
+            return a > b
+        }(3, 4)
+
+        fmt.Println(f,ff)
+}
+
