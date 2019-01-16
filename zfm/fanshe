@@ -55,3 +55,27 @@ if __name__ == '__main__':
     res1 = sys.argv[1]
     res = getattr(rr,res1)
     res()
+
+
+
+--------------------------------------
+#!/usr/bin/python
+
+def func(*a):
+#	print(a)
+	return a
+
+
+
+def mycall(func_name,*a):
+	import fuck
+	print(a)
+	Func_name = getattr(fuck,func_name)
+	return Func_name(*a[0])
+
+
+if __name__ == '__main__':
+	res = mycall("func",[1,2,3,4,5])
+	print(res)
+
+就当成是一个例子吧
