@@ -85,4 +85,7 @@ func main() {
         fmt.Println(l)       //字节长度
         fmt.Println(string(l[0]))       //字节长度        但是byte可以直接转字符串
 }
+----------------------------------------------------------------------------------------
+var p2 person = p.(person) //类型断言，接口类型断言到具体类型       person 是一个 struct   上面已经定义了 var p Personer //Personer 是一个interface {}类型  
 
+fmt.Println(p2.age)
