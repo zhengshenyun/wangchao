@@ -300,7 +300,7 @@ func main() {              ############### go  匿名函数应用
 func main() {
         var myname string = "taozs" //其实就是字符串类型
 
-        l := []byte(myname)       //字符串转字节数组    字符串只能转字节数组
+        l := []byte(myname)       //字符串转字节数组    字符串只能转字节数组     一般就用这个  如果用myname[0] / myname[1]  只要是一个都是byte类型 多个的话去除的就是字符串
 
         fmt.Println(l)       //字节长度
         fmt.Println(string(l[0]))       //字节长度        但是byte可以直接转字符串
