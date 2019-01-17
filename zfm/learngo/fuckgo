@@ -89,3 +89,52 @@ func main() {
 var p2 person = p.(person) //类型断言，接口类型断言到具体类型       person 是一个 struct   上面已经定义了 var p Personer //Personer 是一个interface {}类型 所以p是interface{}类型
 
 fmt.Println(p2.age)
+
+--------------------------------------------------------------------------------------------------
+type handler func(name string) int    #################  定义type为一个func 
+
+func (h handler) add(name string) int {
+
+return h(name) + 10
+
+}
+-------------------------------------------------------------------------------------------------
+
+###################################################  interface{}  合集  #############################################################
+					第一种interface{}
+type Person  interface{
+	Run()                     ----------------- Run() 为一个struct实现的方法
+	Name() string             ----------------- Name() 为一个struct实现的方法
+}
+
+type person struct {
+	name string
+	age  int
+}
+
+func (person) Run() {
+	fmt.Println("running...")
+}
+
+func (p person) Name() string {
+	return p.name
+}
+
+           ============================================================================================================
+					第二种interface{}
+type adder interface {
+	add(string) int
+}
+
+type handler func(name string) int   -------------- 对比就是上面的struct换成func了
+
+func (h handler) add(name string) int {
+	return h(name) + 10
+}
+
+//函数参数类型接受实现了adder接口的对象（函数或结构体）
+
+func process(a adder) {
+	fmt.Println("process:", a.add("taozs"))
+}
+----------------------------------------------------------------------------------------------------------------------------
