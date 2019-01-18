@@ -11,3 +11,11 @@ a = "xxxx"  是utf8
 
 如果再由unicode转成gbk模式   a.decode("utf8").encode('gbk')  反正记住一个定律  utf8----------unicode-----------gbk    就是这样转的
                                                                                (str对象)     (unicode对象)     (str对象)
+
+>>> a = "王超"
+>>> len(a)
+6
+>>> a = u"王超"
+>>> len(a)
+2
+
