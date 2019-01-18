@@ -72,3 +72,14 @@ arg1: 5
 arg2: two
 arg3: 3
 -----------------------------------------------------------------
+#!/usr/bin/python
+def func_a(arg_a, func, **kwargs):
+    print(arg_a)
+    print(kwargs)
+    print(func(**kwargs))
+
+def func_b(**arg_a):
+    print(arg_a)
+
+if __name__ == '__main__':
+    func_a(arg_a='Hello Python', func=func_b,a='aa',s="ss")
