@@ -134,6 +134,8 @@ UserRoleID           userid           RoleID
 3                     1                 03
 
 --------------------------------------------------------------------------------------------------
+########注意 re.compile里面后面findall(a)  a里面如果是有\n换行符的话 是有问题的 一般直接replace一下吧
+
 a = 'sdasdsadsa www.baidu.com  sadsad'
 b = re.compile(r'.+?(www.+?)\s.+?')  #####()里面是匹配出来的内容 ?是非贪婪模式
 
