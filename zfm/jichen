@@ -1,0 +1,30 @@
+#!/usr/bin/python
+
+class wangchao(object):
+	nameer = "nidaye"
+	def __init__(self,old):
+		self.old = old
+
+	def talk(self,name):
+		print(name)
+		print(self.nameer)
+
+class chaowang(wangchao):
+	name = "xinnidaye"
+	def __init__(self,old):
+		self.old = old
+
+	def walk(self,name):
+		print(name)
+		print(self.nameer)
+
+a = chaowang(14)
+a.talk("chedan")    
+#------------上面答案------
+#chedan
+#nidaye
+#--------------------------
+
+
+b = chaowang(18)
+b.walk("ddddddddddd")    都是一样的  继承后子类拥有父类的所有属性
