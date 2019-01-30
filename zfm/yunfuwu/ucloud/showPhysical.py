@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import sys
+reload(sys)
+sys.setdefaultencoding("utf8")
+
+
+from publicApiphysical import public
+import json
+Region = 'cn-bj2'
+#endpoint = 'cvm.ap-beijing.tencentcloudapi.com'
+
+data={
+      'Region': Region,
+      'Offset' : 0,
+      'Limit': 100,
+
+}
+num = public(**data)
+a = num.get('PHostSet')
+total = []
+
+while True:
+	num = public(**data)
+	a = num.get('PHostSet')
+	if a:
+		total.append(a)
+		data['Offset'] += 100
+	else:
+		break
+#print(len(total))
+for i in total:
+	for ii in i:
+		if ii['PMStatus'] == "Running":
+			print("ucloud云平台云主机机器 %s---------处于运行状态----------------ok" %(ii.get("IPSet")[0].get("IPAddr")))
+		else:
+			print("ucloud云平台云主机机器 %s---------处于关闭状态----------------------------------error" %(ii.get("IPSet")[0].get("IP")))
+		#print  ii.get('InstanceName'), ii.get('PrivateIpAddresses')[0]
+
+print("ucloud云平台云主机总数量为- --------------------------------------------------------------------------------%s 台---------------------------------------------------------------------------------------" %len(sum(total,[])))
