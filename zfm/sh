@@ -29,7 +29,7 @@ esac
 ###################   下面可以改变变量    #####################
 num=1
  
-        while read line;do
+        while read line;do         #####################cat ip |while line 就不能修改变量了    for i in  也是可以的
             echo $line|egrep '(172|127)' >>/dev/null  && echo $line| awk '{print a,"----------",$0}' a=$num|tee -a host.txt  || continue
             let num+=1
         done </etc/hosts
