@@ -18,6 +18,8 @@ class MyThread(threading.Thread):
                 print("%s no" %(self.ip))
                 Mysqlconn("update cmdb_cmdbmanage set status = %s where server_ip = %s",("失联",self.ip))
 
+    def get_result(self):
+        return self.result
 
 if __name__ == '__main__':
         q = Queue.Queue()
