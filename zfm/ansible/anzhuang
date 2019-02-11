@@ -1,0 +1,69 @@
+https://www.cnblogs.com/jefflee168/p/7142615.html
+
+此次测试总共有三台机，分别如下：
+
+ansible服务器：10.0.0.20
+
+client01：10.0.0.21
+
+client02：10.0.0.22
+
+一、安装ansible
+
+　　1、 python版本需要2.6以上，不过通过centos7都会默认安装上python2.7.5，查看方法：python -V
+
+　　2、 添加yum 源
+
+　　　　a、 vim /etc/yum.repos.d/ansible
+
+　　　　b、 添加如下内容：
+
+　　　　　　[epel]
+
+　　　　　　name = all source for ansible
+
+　　　　　　baseurl = https://mirrors.aliyun.com/epel/7/x86_64/
+
+　　　　　　enabled = 1
+
+　　　　　　gpgcheck = 0
+
+ 
+
+　　　　　　[ansible]
+
+　　　　　　name = all source for ansible
+
+　　　　　　baseurl = http://mirrors.aliyun.com/centos/7.3.1611/os/x86_64/
+
+　　　　　　enabled = 1
+
+　　　　　　gpgcheck = 0
+
+　　3、 yum clean all
+
+　　4、 安装ansible：yum install ansible -y
+
+二、配置ansible
+
+　　1、 使用ansible前需实现ansible服务器对另外两台机的ssh无密码访问，操作如下：
+
+　　　　a、 输入命令：ssh-keygen，一直按回车，直至完成操作；
+
+　　　　b、 命令：ssh-copy-id root@10.0.0.21 ，然后输入连接密码即可实现无密码访问，另外一台机的设置方式一样，不再赘述。
+
+　　2、 添加ansible客户机组，命令：vim /etc/ansible/hosts，在最后面添加如下内容：
+
+　　　　[group1]
+
+　　　　10.0.0.21
+
+　　　　10.0.0.22
+
+三、使用ansible
+
+　　1、 在另外两台机上执行ping命令：ansible group1 -m ping
+
+　　2、 复制本机文件到组group1：ansible group1 -m copy -a “src=/etc/hosts dest=/etc/”
+
+　　3、 帮group1安装软件：ansible group1 -m shell -a “yum install wget -y”
