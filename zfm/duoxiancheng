@@ -33,4 +33,27 @@ if __name__ == '__main__':
                 time.sleep(600)
 
 
+
+
+
+# encoding: UTF-8
+import threading
+
+def func():
+    print 'hello timer!'
+
+timer = threading.Timer(2, func)
+timer.start()
+print("nidaye")    #先打印nidaye   在执行上面的func
+
+
+
+
+
+
+
+
+
+
+
 https://blog.csdn.net/kelvinlll/article/details/70755389    新的获取多线程的result
