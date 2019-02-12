@@ -31,3 +31,6 @@ if __name__ == '__main__':
                         t.start()
                 t.join()
                 time.sleep(600)
+
+
+https://blog.csdn.net/kelvinlll/article/details/70755389    新的获取多线程的result
