@@ -87,7 +87,7 @@ class wangchao(object):
                         object.__setattr__(self,key,value)
 
 a = wangchao('ww')
-print(a.namee)  ########################  调用__getattr__方法   找到了 namee = "namee"  所以返回namee   
+print(a.namee)  ########################  不调用__getattr__ 直接找到了 namee = "namee"  所以返回namee   
 print(a.nameee)  ####################    这个也是调用__getattr__ 没有找到 所以返回not found
 print(a.nameeeeeeeeeeeee)  ############    下面这个和上面的一样
 a.elk = "eeee"  ###########   这个走的是 object.__setattr__(self,key,value) 所以出的是 eeee     如果是 a.elk = 'eee'  出的就是 eeellllkkkkk
