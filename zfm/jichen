@@ -9,7 +9,7 @@ class wangchao(object):
 		print(name)
 		print(self.nameer)
 
-class chaowang(wangchao):
+class chaowang(wangchao):   #########此时是可以调用nameer的
 	name = "xinnidaye"
 	def __init__(self,old):
 		self.old = old
