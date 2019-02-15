@@ -1,0 +1,8 @@
+#!/usr/bin/python
+
+ii="s"
+for i in ii:####for循环第一次还没结束 i次数就算出来了 不受下面的影响
+	print(ii+'11111') 
+	ii = "ss" + i
+	print(ii+'222222')
+print(i)
