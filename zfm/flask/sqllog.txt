@@ -1,0 +1,55 @@
+2019-02-18 02:01:21,573 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 select * from cbd_free_order_detail;
+2019-02-18 02:01:21,583 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:01:21] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:02:13,229 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:02:13,234 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:02:13] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:02:53,985 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:02:53] "GET /job HTTP/1.1" 200 -
+2019-02-18 02:02:54,158 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:02:54] "GET /all HTTP/1.1" 200 -
+2019-02-18 02:03:00,130 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from
+2019-02-18 02:03:00,133 - app.py[line:1761] - ERROR: Exception on /rollres [POST]
+Traceback (most recent call last):
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib64/python2.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 38, in the_test3
+    res = Mysql.Mysqlconn(databases,sql)
+  File "/root/huige/huige/Mysql.py", line 37, in Mysqlconn
+    cursor.execute(cmd,param)
+  File "/usr/lib64/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/lib64/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1")
+2019-02-18 02:03:00,135 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:03:00] "POST /rollres HTTP/1.1" 500 -
+2019-02-18 02:12:16,917 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:16] "GET /job HTTP/1.1" 200 -
+2019-02-18 02:12:17,201 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:17] "GET /all HTTP/1.1" 200 -
+2019-02-18 02:12:36,347 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:36,354 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:36] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:42,280 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:42,286 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:42] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:42,716 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:42,721 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:42] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:42,938 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:42,942 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:42] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:43,144 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:43,148 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:43] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:43,373 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:43,377 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:43] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:43,567 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:43,571 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:43] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:43,751 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:43,755 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:43] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:43,953 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:43,958 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:43] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:44,125 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:44,130 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:44] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:44,310 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:44,314 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:44] "POST /rollres HTTP/1.1" 200 -
+2019-02-18 02:12:44,466 - app.py[line:37] - DEBUG: 查询库: 192_168_30_122_3306_activity  SQL语句 explain select * from cbd_free_order_detail;
+2019-02-18 02:12:44,470 - _internal.py[line:88] - INFO: 172.10.141.102 - - [18/Feb/2019 02:12:44] "POST /rollres HTTP/1.1" 200 -

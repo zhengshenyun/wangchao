@@ -1,0 +1,114 @@
+<head> 
+	<link rel="stylesheet" href="/static/js/codemirror-5.12/lib/codemirror.css">
+	<script src="/static/js/codemirror-5.12/lib/codemirror.js"></script>
+</head>
+<link rel="stylesheet" href="/static/js/codemirror-5.12/theme/seti.css">
+<link rel="stylesheet" href="/static/js/codemirror-5.12/addon/hint/show-hint.css">
+<!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+<script src="/static/js/codemirror-5.12/addon/hint/show-hint.js"></script>
+<script src="/static/js/codemirror-5.12/addon/hint/sql-hint.js"></script>
+<script src="/static/js/codemirror-5.12/mode/sql/sql.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<span><h2>简易SQL查询器(sql分号结尾)</h2></span>   <!--<button onmouseup="startselect()" type="button" class="btn btn-sm btn-outline btn-danger">查询 </button> </nobr>-->
+<h3>勾选库名 </h3>
+<div id="fuck">
+</div>
+<br>
+<br/>
+<div id="loadingdiv" align="center">
+                    <img src="/static/js/load.gif" style="width: 110px;height: 110px;">
+</div>
+<textarea id="id3" name="id" rows="20" cols="50" class="form-control"></textarea>
+</br>
+<center><button onclick="startselect()" type="button" style="height:30px;width:60px">查询</button></center>
+</br>
+<table border="1" cellspacing="0" cellpadding="10">
+                <thead>
+                <tr id="nidaye">
+                   <!-- <th class="text-center">排序id</th>-->
+                </tr>
+                </thead>
+                <tbody id="nimei">
+			<!--<tr>
+                        <td class="text-center" style="font-size:15px;text-align:center;line-height:50px;">fuck</td>
+                        </tr>-->
+
+                </tbody>
+</table>
+
+<script>
+var editor = CodeMirror.fromTextArea($("#id3")[0], {
+	theme: 'seti', //主题
+	lineNumbers: true,//是否显示行号
+           mode: "text/x-sql",　//默认脚本编码
+          lineWrapping:true, //是否强制换行
+	  extraKeys: {"Ctrl-Space": "autocomplete"} //自动补全
+})
+editor.getValue()
+editor.setValue("explain select * from")
+
+//监听radio按钮
+
+function changeradio(that) {
+	$(that).parent().siblings().css({"background-color":"white"})
+	$(that).parent().css({"background-color":"green"});
+}
+
+//打开就去请求数据库
+$(function(){
+	    $("#loadingdiv").hide();
+            $.ajax({
+                    url: '/all',
+                    async: false,
+                    type: 'get',
+                    data: {},
+                    success: function (arg) {
+                        if (arg) {
+                            return_databases_info = $.parseJSON(arg)
+                            for (var i = 0;i<return_databases_info.length;i++){
+                                    $("#fuck").append('<label><input class="" name="Fruit" type="radio" onchange="changeradio(this)" value='+return_databases_info[i]+' />'+return_databases_info[i] + '</label>')
+				if ((i+1) % 5 ===0){
+					$("#fuck").append('<br/>')
+				}
+                            }
+                        }
+            }
+            });
+            }
+ )
+
+// 请求后端  返回数据
+function startselect() {
+	$("#nidaye").empty();
+	$("#nimei").empty();
+	var datas = $('input:radio:checked').val();
+	var sql = editor.getValue()
+	$.ajax({
+                    url: '/rollres',
+                    async: false,
+                    type: 'post',
+                    data: {"datas":datas,"sql":sql},
+		    //beforeSend: function(arg) {$("#loadingdiv").show();},
+                    success: function (arg) {
+                        if (arg) {
+                            return_databases_info = $.parseJSON(arg)
+			    console.log(return_databases_info)
+                            for (var i = 0;i<return_databases_info[0].length;i++){
+                                    $("#nidaye").append('<th>'+return_databases_info[0][i] +'</th>')
+                            }
+			    for (var i = 0;i<return_databases_info[1].length;i++){
+				    $("#nimei").append('<tr></tr>')
+				    for (var ii = 0;ii<return_databases_info[1][i].length;ii++){
+                                    	$("#nimei").find("tr:last").append('<td>'+ return_databases_info[1][i][ii]+'</td>')
+				    }
+                            }
+
+                        }
+            		},
+		    error: function (arg){
+                            alert("大哥 你库选了吗 or 你sql语法错误了")
+                            },
+		    //complete: function(){$("#loadingdiv").hide()},
+            });
+            }
+</script>
