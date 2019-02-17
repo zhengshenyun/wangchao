@@ -1,11 +1,10 @@
 #!/usr/bin/python
 #encoding=utf8
-from flask import Flask, request, g
+from flask import Flask, request, g, render_template
 import os,socket,time
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
- 
  
 app = Flask(__name__)
 app.config.update(DEBUG=True)
@@ -17,17 +16,14 @@ myname = socket.getfqdn(socket.gethostname(  ))
 myaddr = socket.gethostbyname(myname)
 myport = 8912
   
-@app.route('/test1')
+
+
+
+
+@app.route('/job')
 def the_test1():
-    print "test1 print start"
-    time.sleep(10)
-    print "test1 print after sleep"
-    return 'hello asyn'
+    return render_template('job.html')
  
-@app.route('/test2')
-def the_test2():
-    print "test2 print!"
-    return 'test2 return'
  
  
   
