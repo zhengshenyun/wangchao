@@ -130,23 +130,23 @@ function startselectres() {
                     type: 'post',
                     data: {"hostname":hostname,"datas":datas,"sql":sql},
                     success: function (arg) {
-			defer.resolve(arg);
+			defer.resolve(arg);   //  转给下面的startselect函数
             		},
 		    error: function (arg){
 				alert("大哥 你库选了吗 库选对了吗 explain写了吗 or 你sql语法错误了")
 				$("#loadingdiv").hide()
                             },
             });
-		return defer;
+		return defer;   //  这个一定是要用的
             }
 
 function startselect() {
 		$("#loadingdiv").show()
 			//showLoading(); // 显示等待图标 
-    		$.when(startselectres()).done(function (arg) {
+    		$.when(startselectres()).done(function (arg) {   //调用上面的ajax请求
         		//closeLoading(); // 隐藏等待图标
 		$("#loadingdiv").hide()
-			if (arg) {
+			if (arg) {                 //这个是上面ajax后面的逻辑处理
                             return_databases_info = $.parseJSON(arg)
                             console.log(return_databases_info)
                             for (var i = 0;i<return_databases_info[0].length;i++){
