@@ -293,3 +293,39 @@ typeof  true           输出     boolean
 jQuery.type   判断类型无敌的方法
 
 NaN出现的情况就是一个元素是undefined 在和number相加就会出现
+------------------------------------------------------------------------------
+Ajax 异步请求 加载图片
+
+
+function getAjaxData() {
+ 
+    var defer = $.Deferred();
+ 
+    $.ajax({
+        url: '',
+        type: 'post',
+        data: '',
+        async: true,
+        dataType: 'json',
+        success: function (data) {
+            defer.resolve(data);
+        }
+    });
+ 
+    return defer;
+}
+ 
+ 
+// 执行
+$('#id').click(function () {
+ 
+    showLoading(); // 显示等待图标
+ 
+    $.when(getAjaxData()).done(function (data) {
+ 
+        closeLoading(); // 隐藏等待图标
+ 
+        console.log(data);
+        // 执行其他代码
+    });
+});
