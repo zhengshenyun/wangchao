@@ -10,6 +10,16 @@
 <script src="/static/js/codemirror-5.12/mode/sql/sql.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <span><h2>简易SQL查询器(sql分号结尾)</h2></span>   <!--<button onmouseup="startselect()" type="button" class="btn btn-sm btn-outline btn-danger">查询 </button> </nobr>-->
+<h3>选择连接的数据库</h3>
+<div>
+<select id="fuckyou" style="height:30px;">
+  <option value ="volvo">---请选择一个库名---</option>
+  <!--<option value ="volvo">Volvo</option>
+  <option value ="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>-->
+</select>
+</div>
 <h3>勾选库名 </h3>
 <div id="fuck">
 </div>
@@ -44,6 +54,7 @@ var editor = CodeMirror.fromTextArea($("#id3")[0], {
           lineWrapping:true, //是否强制换行
 	  extraKeys: {"Ctrl-Space": "autocomplete"} //自动补全
 })
+editor.setSize('auto','600px');
 editor.getValue()
 editor.setValue("explain select * from")
 
@@ -57,11 +68,40 @@ function changeradio(that) {
 //打开就去请求数据库
 $(function(){
 	    $("#loadingdiv").hide();
-            $.ajax({
-                    url: '/all',
+	    $.ajax({
+                    url: '/select',
                     async: false,
                     type: 'get',
                     data: {},
+                    success: function (arg) {
+                        if (arg) {
+                            return_databases_info = $.parseJSON(arg)
+			    var selectbiaoqian = return_databases_info.data[0]
+			    for(var key in selectbiaoqian){    
+				    var kk = key;				    
+				    var vv = selectbiaoqian[key];
+				    $("#fuckyou").append('<option value ='+vv+'>'+kk+'</option>')
+			    } 
+                            //for (var i = 0;i<return_databases_info.length;i++){
+                            //        $("#fuck").append('<label><input class="" name="Fruit" type="radio" onchange="changeradio(this)" value='+return_databases_info[i]+' />'+return_databases_info[i] + '</label>')
+                            //    if ((i+1) % 5 ===0){
+                            //            $("#fuck").append('<br/>')
+                            //    }
+                            //}
+                        }
+            }
+            });
+	    }
+) 
+
+//查询库
+
+function returndatabases(selecthost) {
+            $.ajax({
+                    url: '/all',
+                    async: false,
+                    type: 'post',
+                    data: {"selecthost":selecthost},
                     success: function (arg) {
                         if (arg) {
                             return_databases_info = $.parseJSON(arg)
@@ -74,41 +114,58 @@ $(function(){
                         }
             }
             });
-            }
- )
+}
 
 // 请求后端  返回数据
-function startselect() {
+function startselectres() {
 	$("#nidaye").empty();
 	$("#nimei").empty();
 	var datas = $('input:radio:checked').val();
 	var sql = editor.getValue()
+	var hostname = $("#fuckyou option:selected").val();
+	var defer = $.Deferred();
 	$.ajax({
                     url: '/rollres',
-                    async: false,
+                    async: true,
                     type: 'post',
-                    data: {"datas":datas,"sql":sql},
-		    //beforeSend: function(arg) {$("#loadingdiv").show();},
+                    data: {"hostname":hostname,"datas":datas,"sql":sql},
                     success: function (arg) {
-                        if (arg) {
+			defer.resolve(arg);
+            		},
+		    error: function (arg){
+				alert("大哥 你库选了吗 库选对了吗 explain写了吗 or 你sql语法错误了")
+				$("#loadingdiv").hide()
+                            },
+            });
+		return defer;
+            }
+
+function startselect() {
+		$("#loadingdiv").show()
+			//showLoading(); // 显示等待图标 
+    		$.when(startselectres()).done(function (arg) {
+        		//closeLoading(); // 隐藏等待图标
+		$("#loadingdiv").hide()
+			if (arg) {
                             return_databases_info = $.parseJSON(arg)
-			    console.log(return_databases_info)
+                            console.log(return_databases_info)
                             for (var i = 0;i<return_databases_info[0].length;i++){
                                     $("#nidaye").append('<th>'+return_databases_info[0][i] +'</th>')
                             }
-			    for (var i = 0;i<return_databases_info[1].length;i++){
-				    $("#nimei").append('<tr></tr>')
-				    for (var ii = 0;ii<return_databases_info[1][i].length;ii++){
-                                    	$("#nimei").find("tr:last").append('<td>'+ return_databases_info[1][i][ii]+'</td>')
-				    }
+                            for (var i = 0;i<return_databases_info[1].length;i++){
+                                    $("#nimei").append('<tr></tr>')
+                                    for (var ii = 0;ii<return_databases_info[1][i].length;ii++){
+                                        $("#nimei").find("tr:last").append('<td>'+ return_databases_info[1][i][ii]+'</td>')
+                                    }
                             }
 
                         }
-            		},
-		    error: function (arg){
-                            alert("大哥 你库选了吗 or 你sql语法错误了")
-                            },
-		    //complete: function(){$("#loadingdiv").hide()},
-            });
-            }
+    		});
+}
+//监听select事件
+$("#fuckyou").change(function(){
+	$("#fuck").empty();
+	var selectvalue = $("#fuckyou option:selected").val();
+	returndatabases(selectvalue)		
+})   
 </script>
