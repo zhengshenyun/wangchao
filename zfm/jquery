@@ -330,7 +330,7 @@ $('#id').click(function () {
     });
 });
 ---------------------------------------------
-<div>           #################横板排版
+<div>           #################################################################                       横板排版
 	<h3 style="float:left; margin-right: 20px;">选择连接的数据库: </h3>
 	<div style="float:left; margin-right: 20px; margin-top: 20px;">
 		<select id="fuckyou" style="height:30px;">
