@@ -554,3 +554,6 @@ tree -i 目录
 text = r"""sdasldkla \    ############## print 多行
 dsfdsfds \
 dsafdsgfdgf"""
+------------------------------------------
+a = "wanghcao is a good boy"
+re.match(r'.*chao',a)   可以匹配到  匹配是一什么开头 
