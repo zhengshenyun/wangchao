@@ -16,3 +16,5 @@ curl -I 可以查看当前的文件最后修改的时间
 curl -L 302 #####自动跳转
 
 curl -H 'Host:www.baidu.com' "192.168.1.1" #####这样设置就自定义域名绑定了 可以理解为绑定dns解析了  不走外部dns解析  类似于在hosts里面绑定了
+
+curl -X POST -d "ddd=fff"
