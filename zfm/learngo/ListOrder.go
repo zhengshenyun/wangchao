@@ -45,5 +45,5 @@ func main() {
 }
 	go Read(a)
 	go Write(b)
-	time.Sleep(time.Duration(20)*time.Second)
+	time.Sleep(time.Duration(2)*time.Second)
 }	
