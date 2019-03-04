@@ -19,6 +19,27 @@ myport = 8912
 
 
 
+class MyThread(threading.Thread):
+    def __init__(self,ip):
+        super(MyThread, self).__init__()
+        self.ip=ip
+
+    def run(self):
+        time.sleep(4)      ############# 模拟耗时逻辑 下面输入当作验证
+	print("ooooooooooooooooooooooookkkkkkkkkkkkkkkkkkkkkkkkk")
+
+
+@app.route('/job')
+def the_test1():
+    for i in [0]:
+        t =MyThread(i) ##################  此时用多线程 的确是先跳页面  后面逻辑还是在跑的
+        t.start()
+    #t.join()
+    return render_template('job.html')
+
+
+
+
 
 @app.route('/job')
 def the_test1():
