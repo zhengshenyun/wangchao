@@ -564,3 +564,6 @@ tar -zcvf tomcat.tar.gz --exclude=tomcat/logs/ --exclude=tomcat/libs/ tomcat    
 dml  ###### select update delete insert
 ddl  ###### create alter drop
 dcl  ###### grant deny revoke 等
+--------------------------------------------------------------------
+#####闭包
+a = [lambda x: i * x for i in range(4)]   因为这边lambda x:x*i  是一个函数而且他还存储了i  所以实际上跑完了的话 他的i已经变了
