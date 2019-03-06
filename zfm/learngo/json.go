@@ -50,3 +50,6 @@ func main(){
 		fmt.Println(num1_ok1)
 	}	
 }
+
+--------------------------------------------
+jsoniter.Get    简单的解析json
