@@ -6,6 +6,7 @@ import commands
 def Cmd(cmd):
     resCode,resText1 = commands.getstatusoutput(cmd)
     resText = [i for i in resText1.strip().split("\n")]
+    print(resCode,resText)
     return (resCode,resText)
 
 if __name__ == "__main__":
