@@ -3,5 +3,5 @@ LogFile=/var/log/zabbix/zabbix_agentd.log
 LogFileSize=0
 Server=zabbix.cloudtaojiji.com
 ServerActive=zabbix.cloudtaojiji.com
-Hostname=10.0.4.30
+Hostname=10.0.4.30    #########这个对应着zabbix上面的主机名称
 Include=/etc/zabbix/zabbix_agentd.d/
