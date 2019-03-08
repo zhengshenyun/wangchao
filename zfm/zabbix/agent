@@ -1,0 +1,7 @@
+PidFile=/tmp/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+LogFileSize=0
+Server=zabbix.cloudtaojiji.com
+ServerActive=zabbix.cloudtaojiji.com
+Hostname=10.0.4.30
+Include=/etc/zabbix/zabbix_agentd.d/
