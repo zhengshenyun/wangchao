@@ -34,7 +34,7 @@ def the_test1():
     for i in [0]:
         t =MyThread(i) ##################  此时用多线程 的确是先跳页面  后面逻辑还是在跑的
         t.start()
-    #t.join()
+    t.join()
     return render_template('job.html')
 
 
