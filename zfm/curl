@@ -18,3 +18,5 @@ curl -L 302 #####自动跳转
 curl -H 'Host:www.baidu.com' "192.168.1.1" #####这样设置就自定义域名绑定了 可以理解为绑定dns解析了  不走外部dns解析  类似于在hosts里面绑定了
 
 curl -X POST -d "ddd=fff"
+
+curl -H "Content-Type: application/json" -X POST  --data '{"data":"1"}' http://127.0.0.1/    #########  curl POST  json 数据
