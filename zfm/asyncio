@@ -91,10 +91,10 @@ myaddr = socket.gethostbyname(myname)
 myport = 8912
  
  
-@app.route('/test1')
+@app.route('/test1')       ######## 同时并发10个 curl 172.16.128.247:8912/test1    就使用的一个线程 ---------------------  但是不是立即返回  还是要等待10秒的
 def the_test1():
     print "test1 print start"
-    time.sleep(10)
+    time.sleep(10)                  
     print "test1 print after sleep"
     return 'hello asyn'
  
