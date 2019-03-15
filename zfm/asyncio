@@ -32,7 +32,7 @@ print('TIME: ', now() - start)
 
 
 
-#############flask 异步类似于多进程    不过flask有个猴子补丁 就是monkey   最下面就是例子
+#################################################################   flask 异步类似于多进程   ################################################################
 flask application with background threads
 
 from flask import Flask
