@@ -560,7 +560,7 @@ dsafdsgfdgf"""
 a = "wanghcao is a good boy"
 re.match(r'.*chao',a)   可以匹配到  匹配是一什么开头 
 -------------------------------------------------------
-tar -zcvf tomcat.tar.gz --exclude=tomcat/logs --exclude=tomcat/libs tomcat     ####  tar莫个包 排除一个文件  --exclude 后面的路经 是tomcat的相对路劲
+tar -zcvf tomcat.tar.gz --exclude=tomcat/logs --exclude=tomcat/libs tomcat     ####  tar莫个包 排除一个文件  --exclude 后面的路经 是tomcat的相对路劲  后面--exclude路劲最后不能带/  前面就代表那个目录排除
 ---------------------------------------------------------------------------------
 dml  ###### select update delete insert
 ddl  ###### create alter drop
