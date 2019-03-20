@@ -91,13 +91,28 @@ var p2 person = p.(person) //类型断言，接口类型断言到具体类型   
 fmt.Println(p2.age)
 
 --------------------------------------------------------------------------------------------------
-type handler func(name string) int    #################  定义type为一个func 
+package main
 
-func (h handler) add(name string) int {
+import(
+        "fmt"
+)
 
-return h(name) + 10
+type handler func(name int) int        #############定义一个handler为func
 
+func (s handler) add(name int) int{
+        return name + 2
 }
+
+func ff(name int) int{
+        return name+4
+}
+
+func main() {
+        a := handler(ff)
+        b := a.add(12)
+        fmt.Println(a(12),b)          ############## a(12)直接调用ff函数    b为handler的方法
+}
+
 -------------------------------------------------------------------------------------------------
 
 ###################################################  interface{}  合集  #############################################################
