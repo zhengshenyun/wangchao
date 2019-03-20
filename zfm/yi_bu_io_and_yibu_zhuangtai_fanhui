@@ -11,7 +11,7 @@ async def t():
     get = lambda:requests.get('http://baidu.com')
     print("ok"+ str(threading.currentThread()))    #############此处线程对象是一样的 证明没有线程切换
     temp = await loop.run_in_executor(None, get)      ########### 跟那个gevent一样的  都是要等待10秒的 此处连接../asyncio的最后一个例子
-    await asyncio.sleep(3)
+    await asyncio.sleep(3)    ######此处如果不加await  那就是异步io  都不等待10秒 直接完成
     print(temp)   
 loop.run_until_complete(asyncio.gather(*[t() for i in range(10)]))
 
