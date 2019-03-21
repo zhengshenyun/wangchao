@@ -274,3 +274,14 @@ location ^~/proxy/html/{
     proxy_pass http://www.redis.com.cn/api/;
 }
  proxy_pass  这一层的location /ddd/  这样比较好   这样也是可以匹配 http://xxxxxxx/ddd/ccccc等
+
+----------------------------------------------------------------------------------下面是时间戳-------------------------------------------------------------------------
+location = /t {
+                                add_header  Content-Type 'text/html; charset=utf-8';
+                                set $unix_time  $msec;
+                                if ($unix_time ~ ^(\d\d\d\d\d\d\d\d\d\d)) {
+                                        set $timestamp $1;
+                                }
+                                echo "{\"result\":$1}";
+                }
+
