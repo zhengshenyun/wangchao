@@ -194,3 +194,22 @@ goku := &Saiyan {
 	power: 9000,
 }
 ----------------------------------------------------------
+package main               //   go  定义一个函数  
+
+import(
+	"fmt"
+)
+
+type handler func(name int) int   // 他定义的就是一个整个函数  但是他主管入参喝返回值  如果没有返回值  那最后的int就不需要写
+
+func fuck(start handler) int{          // 接受一个函数类型  
+	a := start(4)
+	fmt.Printf("res is %v\n",a)
+	return a
+}
+
+func main () {
+	b := fuck(func(name int) int {return name})  //   调用fuck的时候中间的逻辑层自己处理 
+	fmt.Println(b)
+}
+
