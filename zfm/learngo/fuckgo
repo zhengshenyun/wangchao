@@ -212,4 +212,26 @@ func main () {
 	b := fuck(func(name int) int {return name})  //   调用fuck的时候中间的逻辑层自己处理 
 	fmt.Println(b)
 }
+-------------------------------------------------------------- //  下面这种好像也可以  哎
+package main
 
+import(
+	"fmt"
+)
+
+type handler func(name int) int
+
+func (s handler) add(name int) int{
+	return name + 2
+}
+
+func ff(name int) int{
+	return name+4
+}
+
+func main() {            
+	a := handler(ff)
+	b := a.add(12)
+	fmt.Println(a(12),b)
+}
+---------------------------------------------------------------------------------
