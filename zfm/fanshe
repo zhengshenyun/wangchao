@@ -36,26 +36,25 @@ www
 www返回值
 [root@test-app2 ~]# 
 
-
 #!/usr/bin/python
-
+#encoding=utf8
 
 def www():
-	a = 6
-	print(a)
+        a = 6
+        print(a)
 
 
 def wwww():
     print("wwww")
 
-import rr   #####  这个是此脚本模块名
 
 if __name__ == '__main__':
-    import sys
+    import os,sys   #####  这个是此脚本模块名
+    aaa = os.path.basename(sys.argv[0]).split(".")[0]
+    b = __import__(aaa)
     res1 = sys.argv[1]
-    res = getattr(rr,res1)
+    res = getattr(b,res1)
     res()
-
 
 
 --------------------------------------
