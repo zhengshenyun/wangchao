@@ -314,4 +314,14 @@ location /dealwith_503{
    } 
    return 200 $ret_body; 
 }
+-------------------------------------------------------------------------
+error_page 404  /404.html  或者 error_page 404 =http://www.xxx.com/404.html
 
+error_page  500 502 503 504  /50x.html;
+
+error_page 500 501 502 503 504 @errpage;
+ 
+location @errpage {
+    access_log logs/access.log maintry;
+    proxy_pass url;
+}
