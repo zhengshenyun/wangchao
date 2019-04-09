@@ -78,6 +78,7 @@ dd
 @abstractmethod 如果在class里面使用了这个 则这个class不能被实例化   而且他的子类如果继承他 必须要重写父类函数里面加了@abstractmethod的函数
 
 #################################下面是python2的用法  python3的写法不一样 用法是一样的
+from abc import abstractmethod, ABCMeta     
 class wangchao(object):
     __metaclass__ = ABCMeta
     @abstractmethod
@@ -87,7 +88,7 @@ class wangchao(object):
 
 
 class chaowang(wangchao):
-    def www(self):
+    def www(self):               ######################## 这个chaowang的类是不能实例化的  应为他继承了上面的wangchao 如果改成def ww(self) 就可以了
         print("www")
 
 
