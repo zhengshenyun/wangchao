@@ -86,3 +86,9 @@ func main(){
 	}	
 }
 
+
+----------------------------------------------------------------------json  解析----------------------------------
+for k,v := range JiexiJson.(map[string]interface{})["data"].(map[string]interface{}) {          // 反正后面肯定是.(map[string]interface{})
+				fmt.Printf("v为%v,k为%v\n",k,v)
+		}	
+
