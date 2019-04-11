@@ -121,7 +121,7 @@ location /break/ {
 }  
   
 location /last/ {  
-     rewrite ^/last/(.*) /test/$1 last;  ######  如果匹配到了 那就跳出去了 调出去后都是按照跳出去的来算 如果没有那就按跳出去的那个算     如果没匹配到那就返回403
+     rewrite ^/last/(.*) /test/$1 last;  ######  如果匹配到了 那就跳出去了 (调出去后都是按照跳出去的来算 跳出去后就按跳出去后匹配的location那个算)     如果没匹配到那就返回403
      return 403;  
 }  
   
