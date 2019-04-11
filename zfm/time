@@ -329,7 +329,7 @@ sys.exit(8)  ####python 程序退出 返回8
 ---------------------------  python 按照多个字符切割 -----------------
 >>>a
 'my[name is wang:chao]shide'
->>>re.split('[\[\s\]]',a)
+>>>re.split('[\[\s\]]',a)  ################################# re.compile(r'(name|wangchao)').findall(a)    compile 匹配 name或者wangchao  ====> ["name","wangchao"]
 ['my', 'name', 'is', 'wang:chao', 'shide']
 >>>
 ----------------------------------
@@ -558,7 +558,7 @@ dsfdsfds \
 dsafdsgfdgf"""
 ------------------------------------------
 a = "wanghcao is a good boy"
-re.match(r'.*chao',a)   可以匹配到  匹配是一什么开头 
+re.match(r'.*chao',a)   可以匹配到  匹配是一什么开头  
 -------------------------------------------------------
 tar -zcvf tomcat.tar.gz --exclude=tomcat/logs --exclude=tomcat/libs tomcat     ####  tar莫个包 排除一个文件  --exclude 后面的路经 是tomcat的相对路劲  后面--exclude路劲最后不能带/  前面就代表那个目录排除
 ---------------------------------------------------------------------------------
