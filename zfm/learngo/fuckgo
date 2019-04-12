@@ -239,3 +239,5 @@ ch1 := make(chan int)                 // 创建一个整型类型的通道
 ch2 := make(chan interface{})         // 创建一个空接口类型的通道, 可以存放任意格式
 ------------------------------------------------------------------------
 go path 是在src的下一层
+--------------------------------------------------
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build gg.go    Linux编译运行windows下面的exe文件
