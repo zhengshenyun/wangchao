@@ -326,3 +326,5 @@ location @errpage {
     access_log logs/access.log maintry;
     proxy_pass url;
 }
+-----------------------------------------------------------------
+nginx  所有的include  都是相对于nginx.conf这个配置文件来写的 不管在那个文件里面引用
