@@ -27,3 +27,6 @@
 3.浏览器输入:http://IP:8500/出现ConsulWeb界面就表示成功了
 
 参考地址:https://www.2cto.com/kf/201810/782246.html
+
+
+4  如果是要数据持久化  consul agent -server -bootstrap-expect 1 -data-dir=/usr/local/consul/data/ -config-dir=/usr/local/consul/consul.d/  就需要集群版 需要用到配置文件
