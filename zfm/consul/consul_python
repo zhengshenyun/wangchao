@@ -4,7 +4,7 @@ import consul
 #connect consul
 c = consul.Consul(host='47.98.146.101',port=80,scheme='http')
 index, data = c.kv.get('php/wangchao/yunwei', index=None)  #php/wangchao/yunwei 在consul里面是一层层目录结构 就是获取这个key
-#print(data['Value'])
+print(data['Value'])
 
         # in another process
 c.kv.put('foo0/ff/d/s/a', 'bar') ########## 设置 key  和 value
