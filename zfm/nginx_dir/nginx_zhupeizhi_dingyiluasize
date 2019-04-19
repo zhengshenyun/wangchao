@@ -1,0 +1,49 @@
+http {
+	include       mime.types;
+	default_type  application/octet-stream;
+	log_format  access '$time_iso8601  $http_x_forwarded_for  $host  $request_time  $upstream_response_time  $request  $status  $upstream_addr';
+	log_format  access2  '$time_iso8601 $remote_addr $host $upstream_response_time $request $status $upstream_addr';
+	log_format  access3  '$time_iso8601 "$proxy_host-$remote_addr" $host $upstream_response_time $request $status $upstream_addr';
+
+	##############################################
+	#以下配置来自lnmp-nginx的配置
+	##############################################
+	server_names_hash_bucket_size 128;
+	client_header_buffer_size 32k;
+	large_client_header_buffers 4 32k;
+	client_max_body_size 100m;
+	sendfile on;
+	tcp_nopush     on;
+	keepalive_timeout 60;
+	tcp_nodelay on;
+	server_tokens  off;
+	fastcgi_buffering off;
+	fastcgi_connect_timeout 600;
+	fastcgi_send_timeout 600;
+	fastcgi_read_timeout 600;
+	fastcgi_buffer_size 64k;
+	fastcgi_buffers 4 64k;
+	fastcgi_busy_buffers_size 128k;
+	fastcgi_temp_file_write_size 256k;
+	#ignore 499 err
+	proxy_ignore_client_abort on;
+	gzip on;
+	gzip_buffers     4 16k;
+	gzip_comp_level 2;
+	gzip_vary on;
+	gzip_disable        "MSIE [1-6]\.";
+	gzip_types       text/plain application/x-javascript text/css application/xml application/json;
+	##############################################
+                access_log   off;
+	server {       
+		listen 80;
+                location /nginx_status {
+                        stub_status on;
+#                        access_log   off;
+                        allow 127.0.0.1;
+                        deny all;
+                }       
+	}
+        lua_shared_dict lualimit 100m;
+	include conf.d/*.conf;
+}
