@@ -29,6 +29,7 @@ class ConsulClient():
  
     def getService(self, name):  # 负债均衡获取服务实例
         url = 'http://' + self.host + ':' + str(self.port) + '/v1/catalog/service/' + name  # 获取 相应服务下的DataCenter
+        #curl "http://127.0.0.1:8500/v1/catalog/service/pythonapi-start"   curl 模拟上面的请求 可以得出结果
         dataCenterResp = requests.get(url)
         if dataCenterResp.status_code != 200:
             raise Exception('can not connect to consul ')
