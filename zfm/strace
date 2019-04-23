@@ -1,0 +1,11 @@
+strace -tt -f  ./some_server ../conf/some_server.conf   命令启动 但是没日志 可以这么用
+
+strace -tt -T -v -f -e trace=file -o /data/log/strace.log -s 1024 -p 23489  通过端口来查看 
+
+strace -tt -T -f -e trace=file -o /data/log/strace.log -s 1024 ./nginx  查看一个服务启动 用到哪些文件
+
+strace -tt -f -e trace=ipc ./a_mon_svr     ../conf/a_mon_svr.conf  启动的时候获取内存报错 
+ipcs  -m | grep 41400
+key        shmid      owner      perms      bytes      nattch     status    
+0x00041400 1015822    root       666        30095516   1
+可以看到，已经0x41400这个key已经存在，并且其大小为30095516字节，和我们调用参数中的30097568不匹配，于是产生了这个错误
