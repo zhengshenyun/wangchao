@@ -3,13 +3,34 @@ def fib(n):
 	a = 0
 	b = 1
 	while index < n:
+		print("zhunbei--------start")
 		yield b      ############下面调用一次就阻塞在这边了 可以这样想 我这边一个while循环给你产出了 必须有人来调用 别人调用了往下走 再调用 再重新回到while循环 (按需走 你来一次我做一次)
+		print("diaoyong---------------------over")
 		a, b = b, a + b
 		index += 1
  
 print('-'*10 + 'test yield fib' + '-'*10)
-for fib_res in fib(20):     ##################### for循环就相当于调用 next(fib(n))
+for fib_res in fib(4):     ##################### for循环就相当于调用 next(fib(n))
+	print("一行循环开始了")
 	print(fib_res)
+
+----------test yield fib----------
+zhunbei--------start
+一行循环开始了
+1
+diaoyong---------------------over
+zhunbei--------start
+一行循环开始了
+1
+diaoyong---------------------over
+zhunbei--------start
+一行循环开始了
+2
+diaoyong---------------------over
+zhunbei--------start
+一行循环开始了
+3
+diaoyong---------------------over
 
 --------------------------------------------------------------------------------------------------------------------
 
