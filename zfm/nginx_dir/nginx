@@ -269,7 +269,7 @@ http {
 2. ###### 第二种办法 
 通过nginx中增加location反向代理到服务器端
 
-location ^~/proxy/html/{
+location ^~/proxy/html/{                ########如果是这样 location ~ /proxy/html/{  就会报错了报错原因见下面 不超过10行
     rewrite ^/proxy/html/(.*)$ /$1 break;
     proxy_pass http://www.redis.com.cn/api/;
 }
