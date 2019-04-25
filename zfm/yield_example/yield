@@ -1,0 +1,57 @@
+def fib(n):
+	index = 0
+	a = 0
+	b = 1
+	while index < n:
+		print("zhunbei--------start")
+		yield b      ############下面调用一次就阻塞在这边了 可以这样想 我这边一个while循环给你产出了 必须有人来调用 别人调用了往下走 再调用 再重新回到while循环 (按需走 你来一次我做一次)
+		print("diaoyong---------------------over")
+		a, b = b, a + b
+		index += 1
+ 
+print('-'*10 + 'test yield fib' + '-'*10)
+for fib_res in fib(4):     ##################### for循环就相当于调用 next(fib(n))    这里的fib_res就相当于上面函数里面的yield 后面的值b
+	print("一行循环开始了")
+	print(fib_res)
+
+----------test yield fib----------
+zhunbei--------start
+一行循环开始了
+1
+diaoyong---------------------over
+zhunbei--------start
+一行循环开始了
+1
+diaoyong---------------------over
+zhunbei--------start
+一行循环开始了
+2
+diaoyong---------------------over
+zhunbei--------start
+一行循环开始了
+3
+diaoyong---------------------over
+
+--------------------------------------------------------------------------------------------------------------------
+
+def stupid_fib(n):
+	index = 0
+	a = 0
+	b = 1
+	while index < n:
+		sleep_cnt = yield b          ################首先他会阻塞成在里面  下面调用的得到b这个值   再次调用不能用for循环 应为fib_res=xxx这句话给变了下次一的属性了 sfib.send就相当于给sleep_cnt赋值
+		print('let me think {0} secs'.format(sleep_cnt))
+		time.sleep(sleep_cnt)
+		a, b = b, a + b
+		index += 1
+print('-'*10 + 'test yield send' + '-'*10)
+N = 20
+sfib = stupid_fib(N)
+fib_res = next(sfib)
+while True:
+	print(fib_res)
+	try:
+		fib_res = sfib.send(random.uniform(0, 0.5))    ####################给sleep_cnt赋值 然后功能相当于next(sfib)  但是如果没有第一次的next(sfib)  while True里面就不能赋值了 应为阻塞住了
+	except StopIteration:
+		break
+--------------------------------------------------------------------------------------------------------------------
