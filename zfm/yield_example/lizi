@@ -1,0 +1,10 @@
+#!/usr/bin/python
+#encoding=utf8
+
+def jisuan(num):       ######## 调用这个函数的时候 yield就是一次得值  然后继续走下去 在得到一个a的值
+	a = num
+	yield a
+	a +=1
+
+for b in jisuan(4):    #########这边就是上面yield后面值得一个列表 
+	print(b) 
