@@ -13,11 +13,13 @@ print('-'*10 + 'test yield fib' + '-'*10)
 for fib_res in fib(4):     ##################### for循环就相当于调用 next(fib(n))    这里的fib_res就相当于上面函数里面的yield 后面的值b
 	print("一行循环开始了")
 	print(fib_res)
-
+	time.sleep(1)
 ----------test yield fib----------
 zhunbei--------start
 一行循环开始了
 1
+会停一秒  》》》》》》》》》》》》》一个结束
+
 diaoyong---------------------over
 zhunbei--------start
 一行循环开始了
