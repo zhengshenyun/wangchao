@@ -20,3 +20,5 @@ curl -H 'Host:www.baidu.com' "192.168.1.1" #####这样设置就自定义域名�
 curl -X POST -d "ddd=fff"
 
 curl -H "Content-Type: application/json" -X POST  --data '{"data":"1"}' http://127.0.0.1/    #########  curl POST  json 数据
+
+curl -b "sessionid=qu62dk1w5v5qi33nh0hsl2mqca9ssezy" -L https://ayyx-deploy.taojiji.work/release/  ############# curl  加上session 
