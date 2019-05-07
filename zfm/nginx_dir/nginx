@@ -31,12 +31,17 @@ geo $whiteiplist  {
  192.168.0.0/16 0;   
  58.68.230.0/24 0;
  }
-   
+ 
+===================================>   上面可以用python理解为 whiteiplist = 1 if ip in ["127.0.0.1","192.168.0.0","58.68.230.0"] else 0     ######## @num1
+
+  
  map $whiteiplist  $limit {
  1 $binary_remote_addr;                     ####这种其实和remote_addr 差不多  只是$binary_remote_addr节省内存
  0 "";
  }
-   
+
+===================================>   上面可以用python理解为 limit = binary_remote_addr if whiteiplist == 1 else ""   ##### whiteiplist变量可以参考 @num1
+
  limit_conn_zone $limit zone=limit:10m;
  
  server {
