@@ -9,6 +9,11 @@ logging.basicConfig(level=logging.WARNING,     定义日志级别
 		    filename='./log.txt',      定义日志 目录
                     filemode='a'	       定义日志是追加
                     format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')     定义日志格式
+
+logging.addLevelName( logging.INFO, "\033[1;32m%s\033[1;0m" % logging.getLevelName(logging.INFO)) ########## 打印绿色
+logging.addLevelName( logging.WARNING, "\033[1;33m%s\033[1;0m" % logging.getLevelName(logging.WARNING))  ####### 打印黄色
+logging.addLevelName( logging.ERROR, "\033[1;31m%s\033[1;0m" % logging.getLevelName(logging.ERROR))   ####### 打印红色
+logging.addLevelName( logging.CRITICAL, "\033[1;41m%s\033[1;0m" % logging.getLevelName(logging.CRITICAL)) ######## 打印加深红色
 # use logging  
 logging.info('this is a loggging info message')  
 logging.debug('this is a loggging debug message')  
