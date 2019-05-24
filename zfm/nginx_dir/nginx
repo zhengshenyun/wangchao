@@ -203,7 +203,7 @@ location /activityCenter/ad/ad_query {
 
 rewrite ^/(.+?)/(.*) /$1w/newnew/$2 xxxxx;  非贪婪模式  比如 http://www.baidu.com/a/a1/a2/a3   $1就是a
 rewrite ^/(.*)/(.*) /$1w/newnew/$2 xxxxx;  贪婪模式  比如 http://www.baidu.com/a/a1/a2/a3   $1就是a/a1/a2  
-
+rewrite ^(.*)_\d+_\d+.(JPG|jpg|JPEG|jpeg|gif|GIF|png|PNG)$ $1.$2 break;   ########  只要有()就是$   像这个(JPG|jpg|JPEG|jpeg|gif|GIF|png|PNG) 就属于$2
 
 ----------------------------------------------------------------------------------
  location /   {
