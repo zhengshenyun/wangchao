@@ -13,7 +13,7 @@ docker pull registry
 docker run -d -ti --restart always --name docker-hub -p 5000:5000 -v /docker-hub/registry:/var/lib/registry registry  #######/docker-hub/registry 必须是存在的目录
 docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingnginx /usr/local/nginx/sbin/start.sh  ########这种写法也ok 但是顺序错了也造成启动不了
 
-3 最红要的逻辑关系 
+3 最重要的逻辑关系 
 	1)如果你是想吧已有的镜像添加进仓库 那直接docker tag old new 就好了 （对应下面的commit  new的镜像名字可以直接写成ip:5000/xxxx）
 	2)如果是新的容器打成镜像 那必须先要commit（commit 上面写了）
 	3)上面的新的镜像名字可以直接写成ip:5000/xxxx  
