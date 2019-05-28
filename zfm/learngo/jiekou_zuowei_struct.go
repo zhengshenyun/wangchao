@@ -26,7 +26,7 @@ func main() {
     ms.Y = 3
     fmt.Printf("%T %v\n", ms, ms)
 
-    ms.X = &Foo{8, 9}
+    ms.X = &Foo{8, 9}      //  只有接口实现了struct的方法  或者是空接口 这个接口才可以接受那个struct的初始化 
     fmt.Printf("%T %v\n", ms, ms)
     fmt.Printf("%T %v\n", ms.X, ms.X)
     fmt.Printf("%T %v\n", ms.X.Read(), ms.X.Read())
