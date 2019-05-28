@@ -17,8 +17,8 @@ func (this *ArithmeticError) Error() string {
 //定义除法运算函数
 func Devide(num1, num2 int) (rs int, err error) {
     if num2 == 0 {
-        return 0, &ArithmeticError{}
-        //return 0, ArithmeticError{}.error
+        //return 0, ArithmeticError{}
+        return 0, ArithmeticError{}.error
     } else {
         return num1 / num2, nil
     }

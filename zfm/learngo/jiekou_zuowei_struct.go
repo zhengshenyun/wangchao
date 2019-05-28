@@ -20,7 +20,7 @@ func (f *Foo) Read() int {
 }
 
 func main() {
-    ms := &MyStruct{}        //######### 接口接受方法  一定要是内存地址  才能后面调用方法(类似于python的方法)
+    ms := &MyStruct{}        //######### 接口接受方法  一定要是内存地址  才能后面调用方法(类似于python的方法)  struct里面有接口类型 则一定要加上& 才能调用struct里面的接口
     fmt.Printf("%T %v\n", ms, ms)
 
     ms.Y = 3
