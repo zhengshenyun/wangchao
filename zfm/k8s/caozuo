@@ -1,0 +1,1 @@
+kubectl get pod --namespace=default 等同于 kubectl get pod
