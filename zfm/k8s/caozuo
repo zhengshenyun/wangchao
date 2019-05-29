@@ -1,1 +1,11 @@
 kubectl get pod --namespace=default 等同于 kubectl get pod
+
+[root@192 ~]# kubectl get namespaces     #########查看所有的namespaces
+NAME          STATUS    AGE
+default       Active    179d
+gitlab        Active    88d
+kube-public   Active    179d
+kube-system   Active    179d
+sirius        Active    78d
+
+kubectl get pod --all-namespaces -o wide ##### 查看所有的namespaces的pod的信息
