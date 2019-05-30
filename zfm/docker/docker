@@ -2,6 +2,10 @@ docker run --name initcentos -itd 10.254.232.125:5000/init/centos7.5 /bin/bash  
 docker exec -it name
 docker commit 95b5243264d0 10.254.232.125:5000/nginx/centos7.5   ####制作镜像的时候顺便把名字换成push时候的名字 这样正好可以放到仓库  commit后面是跑的容器名字 10.254.232.125:5000/nginx/centos7.5 这个名字是仓库里面的名字 直接拉这个就可以把镜像下来
 
+----------------------------  导入导出 ---------------------------
+docker save -o es.tar docker.io/elasticsearch:2.3.4 es_ik:5.4.3   吧镜像导出来 导成一个tar的包
+docker load --input es.tar         吧tar的打包文件导入到docker镜像中
+----------------------------
 
 ---------------------镜像仓库-----------------------------
 1 解决https问题  
