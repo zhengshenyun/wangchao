@@ -9,3 +9,5 @@ kube-system   Active    179d
 sirius        Active    78d
 
 kubectl get pod --all-namespaces -o wide ##### 查看所有的namespaces的pod的信息
+
+kubectl get deploy / kubectl get rc  好像是一样的
