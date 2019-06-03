@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: ocssweb
+ namespace: default
+ labels:
+   project: taojiji
+   app: ocssweb
+spec:
+ replicas: 2
+ minReadySeconds: 30
+ strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 10%
+    type: RollingUpdate
+ selector:
+   matchLabels:
+     name: ocssweb
+     project: taojiji
+     app: ocssweb
+ template:
+   metadata:
+     labels:
+       name: ocssweb
+       project: taojiji
+       app: ocssweb
+   spec:
+     terminationGracePeriodSeconds: 60
+     containers:
+     - name: ocssweb
+       image: 192.168.30.160:5000/ocss/web:4.0.0
+       env:
+       - name: SPRING_PROFILES_ACTIVE
+         value: "dev"
+       imagePullPolicy: Always 
+       volumeMounts:
+         - name: appdata
+           mountPath: /app
+         - name: applogs
+           mountPath: /logs
+       ports:
+       - containerPort: 8035
+         name: http2
+         protocol: TCP
+       resources:
+         requests:
+           cpu: "200m"
+           memory: "0.5Gi"
+         limits:
+           cpu: "1"
+           memory: "2Gi"
+      # livenessProbe:
+      #   tcpSocket:
+      #     port: 8035
+      #   initialDelaySeconds: 30
+      #   timeoutSeconds: 5
+      #   successThreshold: 1
+      #   failureThreshold: 3
+      # readinessProbe:
+      #   tcpSocket:
+      #     port: 8035
+      #   initialDelaySeconds: 30
+      #   timeoutSeconds: 5
+      #   successThreshold: 1
+      #   failureThreshold: 3
+     volumes: 
+       - name: appdata
+         hostPath:
+           path: /data/ocss 
+       - name: applogs
+         hostPath:
+           path: /data/ocss/logs
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocssweb-service
+  namespace: default
+  labels:
+    name: ocssweb-service
+spec:
+  type: NodePort
+  ports:
+  - name: http2
+    port: 8035
+    targetPort: 8035
+    protocol: TCP
+    nodePort: 8035
+  selector:
+    name: ocssweb

@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: go-common
+ namespace: default
+ labels:
+   project: taojiji
+   app: go-common
+spec:
+ replicas: 1
+ minReadySeconds: 30
+ strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 10%
+    type: RollingUpdate
+ selector:
+   matchLabels:
+     name: go-common
+     project: taojiji
+     app: go-common
+ template:
+   metadata:
+     labels:
+       name: go-common
+       project: taojiji
+       app: go-common
+   spec:
+     terminationGracePeriodSeconds: 60
+     containers:
+     - name: go-common
+       image: 192.168.30.160:5000/go/common:0.3.1
+       imagePullPolicy: Always 
+       ports:
+       - containerPort: 10011
+         name: http
+         protocol: TCP
+       resources:
+         requests:
+           cpu: "200m"
+           memory: "0.5Gi"
+         limits:
+           cpu: "1"
+           memory: "2Gi"
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-common-service
+  namespace: default
+  labels:
+    name: go-common-service
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 10011
+    targetPort: 10011
+    protocol: TCP
+    nodePort: 10014
+  selector:
+    name: go-common
