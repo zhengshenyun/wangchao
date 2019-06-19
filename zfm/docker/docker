@@ -21,7 +21,7 @@ docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingngi
 	1)如果你是想吧已有的镜像添加进仓库 那直接docker tag old new 就好了 （对应下面的commit  new的镜像名字可以直接写成ip:5000/xxxx）
 	2)如果是新的容器打成镜像 那必须先要commit（commit 上面写了）
 	3)上面的新的镜像名字可以直接写成ip:5000/xxxx  
-	4)docker push new的名字  他直接就可以认出了ip和端口 多方便
+	4)docker push new的名字  他直接就可以认出了ip和端口 多方便       如果显示是由于https的原因  可以 修改/etc/docker/daemon.json这个文件 {"insecure-registries":["172.16.128.247:5000"]} 修改成这个样子
 	5)curl http://10.254.232.125:5000/v2/_catalog 查看仓库所有的镜像
 	5)docker pull ip:5000/xxxxxx就可以直接拉取了
 
