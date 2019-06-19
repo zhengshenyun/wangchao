@@ -68,7 +68,7 @@ yum -y install docker-ce
 -----------------------------------------------------------------------
 8 dockerfile
 	docker build -t zhang ./   (后面是dockerfile的路劲)    ###zhang 是你新打的镜像名字
-
+	docker run -itd 172.16.128.247:5000/python/flask.0.0.2  启动docker私有仓库里面的镜像  启动的时候 不需要加参数的 最好  应为dockerfile里面已经写好了 就像前面那个启动就好了
 9 docker挂载
 	docker run -itd -v /data/wangchaodata/:/data/wangchaodata --name newcentos01 centos   ############如果是这种挂载 则宿主机的/data/wangchaodata和docker里面挂在的一模一样  你增我就增 你减我就减
 	docker run -itd -v /data/wangchaodata/ --name newcentos01 centos   ################如果是这种的 则默认挂在在docker的/目录 其实也是/data/wangchaodata 其实上面的参数就是docker里面挂在的目录 但是在宿主机中挂在的目录要通过 docker inspect来看到  如果docker容器关闭了 宿主机文件是不会消失的
