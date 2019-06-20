@@ -83,3 +83,7 @@ git checkout master
 git merge develop
 git push origin master
 
+--------------------------------------------   git tag ---------------------------------------------
+1 提交git的时候打tag  git add  .;git commit -m 'xxxx';git push origin master;git tag v1.x.x;git push --tag
+2 回滚的时候 拉git的机器 执行git chenkout v1.x.x 这样就切换到git那个打tag的版本了  如果要实现远端master合并 执行 上面执行后 git chenkout -b xxx;git push origin xxx:master -f;这样就把本地这个分支合并到远端master了 但是本地master还是不行的
+3 本地的master  先执行 git checkout master 再通过 git reset --hard xxxxx 来回滚  这样再 git pull origin master 这样本地的master就和远端的master一样了
