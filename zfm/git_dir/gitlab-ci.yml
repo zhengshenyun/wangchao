@@ -1,0 +1,120 @@
+stages:
+  - build_dev
+  - build_devnew
+  - build_iteration
+  - build_prod
+
+variables:
+ # CI_DEBUG_TRACE: "true"
+# 镜像服务器名
+  REGISTRY_SERVER: image.tfit.com
+# 仓库的路径名
+  REGISTRY_PATH:  $CI_PROJECT_PATH
+# 仓库名，要与代码的根目录相同
+  REGISTRY_NAME: $CI_PROJECT_NAME
+# 应用的板本号
+  REGISTRY_TAG: $CI_BUILD_REF_NAME
+# 在workpace内创建的目录名
+  CACHE_DIR: cache_dir
+
+# 克隆目录
+  BUILD_HOME: $CI_PROJECT_DIR
+  MICRO_SERVICES_JAR: micro-services-0.0.2-SNAPSHOT.jar
+
+# 开发 编译
+build_dev:
+  stage: build_dev
+  only:
+    - /.*-S/
+  before_script:
+    - MICRO_PATH=/build/binary/edu/of/${REGISTRY_NAME}/micro-services/${REGISTRY_TAG};
+    - echo ${MICRO_PATH}
+    - (if [[ -d ${MICRO_PATH} ]];then mv ${MICRO_PATH} ${MICRO_PATH}_$(date +%Y%m%d%S)_backup;fi);
+    - mkdir -p ${MICRO_PATH};
+  script:
+    - git checkout ${REGISTRY_TAG};
+    - git show HEAD > ${MICRO_PATH}/HEAD.md
+    - cd education-service;
+    - mvn clean package install org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -Ptest -U --settings /opt/maven_conf/new_edu.xml 
+    - pwd
+    - cp -f ./micro-services/target/${MICRO_SERVICES_JAR} ${MICRO_PATH}/;
+    - md5sum ${MICRO_PATH}/${MICRO_SERVICES_JAR} > ${MICRO_PATH}/${MICRO_SERVICES_JAR}.md5 ;
+    - ls ${MICRO_PATH};
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "/opt/java/bin/jps " || true;
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "/opt/java/bin/jps | grep ${MICRO_SERVICES_JAR}|awk '{print $1}' | xargs kill -9" || true;
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "mkdir -p /opt/jar/micro-services/release";
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "rm -f /opt/jar/micro-services/current" || true;
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "mv /opt/jar/micro-services/release/${REGISTRY_TAG} /opt/jar/micro-services/release/${REGISTRY_TAG}_${now} " || true;
+    - scp -P 9822 -r ${MICRO_PATH}/ root@10.6.2.62:/opt/jar/micro-services/release;
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "ln -sv /opt/jar/micro-services/release/${REGISTRY_TAG} /opt/jar/micro-services/current";
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "nohup java -jar  /opt/jar/micro-services/current/${MICRO_SERVICES_JAR} > /dev/null 2>&1 &"
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@10.6.2.62 "/opt/java/bin/jps " || true;
+
+
+# 开发 编译
+build_devnew:
+  stage: build_devnew
+  only:
+    - /.*-N/
+  before_script:
+    - MICRO_PATH=/build/binary/edu/new/${REGISTRY_NAME}/micro-services/${REGISTRY_TAG};
+    - echo ${MICRO_PATH}
+    - (if [[ -d ${MICRO_PATH} ]];then mv ${MICRO_PATH} ${MICRO_PATH}_$(date +%Y%m%d%S)_backup;fi);
+    - mkdir -p ${MICRO_PATH};
+  
+  script:
+    - git checkout ${REGISTRY_TAG};
+    - git show HEAD > ${MICRO_PATH}/HEAD.md
+    #- cd /build/builds/ebc70155/0/src/edu/edu-iteration-service;
+    - cd micro-services;
+    - mvn clean package install -Ptest -U --settings /opt/maven_conf/new_edu.xml 
+    - pwd
+    - cp -f ../micro-services/target/${MICRO_SERVICES_JAR} ${MICRO_PATH}/;
+    - md5sum ${MICRO_PATH}/${MICRO_SERVICES_JAR} > ${MICRO_PATH}/${MICRO_SERVICES_JAR}.md5 ;
+    - ls ${MICRO_PATH}; 
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@192.168.1.28 "ps -ef |grep  ${MICRO_SERVICES_JAR} | grep -v grep | awk '{print $2}' | xargs kill -9" || true;
+    - scp -P 9822 -r ${MICRO_PATH}/${MICRO_SERVICES_JAR} root@192.168.1.28:/opt/edunew;
+    - ssh -p 9822 -o StrictHostKeyChecking=no root@192.168.1.28 "nohup java -jar  /opt/edunew/${MICRO_SERVICES_JAR} > /dev/null 2>&1 &"
+    
+
+# UAT 编译
+build_iteration:
+  stage: build_iteration
+  only:
+    - /.*-P/
+  before_script:
+    - MICRO_PATH=/build/binary/edu/bs/${REGISTRY_NAME}/${REGISTRY_TAG};
+    - echo ${MICRO_PATH}
+    - (if [[ -d ${MICRO_PATH} ]];then mv ${MICRO_PATH} ${MICRO_PATH}_$(date +%Y%m%d%S)_backup;fi);
+    - mkdir -p ${MICRO_PATH};
+  script:
+    - git checkout ${REGISTRY_TAG};
+    - git show HEAD > ${MICRO_PATH}/HEAD.md
+    - cd micro-services;
+    - mvn clean package  install -Puat org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar  -U  --settings /opt/maven_conf/new_edu.xml
+    - pwd
+    - cp -f ../micro-services/target/${MICRO_SERVICES_JAR} ${MICRO_PATH}/;
+    - md5sum ${MICRO_PATH}/${MICRO_SERVICES_JAR} > ${MICRO_PATH}/${MICRO_SERVICES_JAR}.md5 ;
+    - ls ${MICRO_PATH}
+    
+
+# PROD 编译
+build_prod:
+  stage: build_prod
+  only:
+    - /.*-R/
+  before_script:
+    - MICRO_PATH=/build/binary/edu/bs/${REGISTRY_NAME}/${REGISTRY_TAG};
+    - echo ${MICRO_PATH}
+    - (if [[ -d ${MICRO_PATH} ]];then mv ${MICRO_PATH} ${MICRO_PATH}_$(date +%Y%m%d%S)_backup;fi);
+    - mkdir -p ${MICRO_PATH};
+  script:
+    - git checkout ${REGISTRY_TAG};
+    - git show HEAD > ${MICRO_PATH}/HEAD.md
+    - cd micro-services;
+    - mvn clean package  install -Pprod  -U  --settings /opt/maven_conf/new_edu.xml
+    - pwd
+    - cp -f ../micro-services/target/${MICRO_SERVICES_JAR} ${MICRO_PATH}/;
+    - md5sum ${MICRO_PATH}/${MICRO_SERVICES_JAR} > ${MICRO_PATH}/${MICRO_SERVICES_JAR}.md5 ;
+    - ls ${MICRO_PATH}
+
