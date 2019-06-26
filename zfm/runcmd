@@ -1,0 +1,85 @@
+#!/usr/bin/python
+#encoding=utf8
+
+#'''this is a run cmd for threading '''
+
+__author__ = "Superking"
+
+import threading
+import time,sys,re
+import click,pexpect
+
+class MyThread(threading.Thread):
+    """ 
+    调用多线程 args:ip,cmd,pwd
+    """
+    def __init__(self,ip, cmd, pwd):
+        super(MyThread, self).__init__()
+        self.ip = ip
+        self.cmd = cmd
+        self.pwd = pwd
+        self.time_out= 10
+
+    ##### 线程运行函数
+    def run(self):
+        if self.pwd:
+            #print("%s %s %s" %(self.ip, self.cmd, self.pwd))
+            child = pexpect.spawn('ssh  root@%s "%s"' %(self.ip,self.cmd),timeout=self.time_out)
+            ###  res 返回一个索引
+            ret = child.expect(['Are you sure you want to continue connecting','[P|p]assword'])
+            ###  对应的索引
+            ### 0 -->"Are you sure you want to continue connecting"   1-->"[P|p]assword"
+            if ret == 0:
+                child.sendline('yes')
+                child.expect('password: ')
+                child.sendline(self.pwd)
+                child.expect(pexpect.EOF)
+                print(child.before)
+            else:
+                child.sendline(self.pwd)
+                child.expect(pexpect.EOF)
+                print(child.before)
+
+
+ 
+@click.command()
+@click.option('--ip', default="xxx", help='Just one ip address. example 192.168.1.1')
+@click.option('--iplist',help='Group ip addresses, example \"192.168.1.1,192.168.1.2\"')
+@click.option('--cmd',help='ssh and cmd for origin machines')
+@click.option('--pwd',help='ssh and cmd for origin machines password')
+def hello(ip, iplist, cmd, pwd):
+    """Simple script that run cmd in origin machines."""
+    print("command is wrong !!! You can click like \"runcmd --help\"") 
+
+
+
+@click.command()
+@click.option('--ip', default="xxx", help='Just one ip address. example 192.168.1.1')
+@click.option('--iplist',help='Group ip addresses, example \"192.168.1.1,192.168.1.2\"')
+@click.option('--cmd',help='ssh and cmd for origin machines')
+@click.option('--pwd',help='ssh and cmd for origin machines password')
+def Run(ip, iplist, cmd, pwd):
+    """Simple script that run cmd in origin machines."""
+    #print("%s %s %s" %(ip,iplist,cmd))
+    try:
+        CMD = cmd or "hostname"
+        Ip_info = ip.split(",")
+        if len(Ip_info) == 1:
+            t =MyThread(Ip_info[0],cmd,pwd)
+            t.start()
+            t.join()
+        else:
+            for i in Ip_info:
+                t =MyThread(i,cmd,pwd)
+                t.start()
+            t.join()
+    except:
+       print("参数错误 runcmd --help") 
+
+
+if __name__ == '__main__':
+    Args = sys.argv
+    if len(Args) == 1 or Args[1] == "--help":hello()
+    else:
+        Run()
+
