@@ -118,3 +118,30 @@ build_prod:
     - md5sum ${MICRO_PATH}/${MICRO_SERVICES_JAR} > ${MICRO_PATH}/${MICRO_SERVICES_JAR}.md5 ;
     - ls ${MICRO_PATH}
 
+# 只有满足 only 条件的 branches 和 tags 才会被运行.
+stages:
+  - build
+  - test
+  - deploy
+
+job 1:
+  stage: build
+  script: make build dependencies
+
+job 2:
+  stage: build
+  script: make build artifacts
+
+job 3:
+  stage: test
+  script: make test
+
+job 4:
+  stage: deploy
+  script: make deploy
+
+1. 运行所有的 build 。 
+1. 如果所有作业都 build 运行成功，那么开始运行所有的 test。 
+1. 如果所有作业都 test 运行成功，那么开始运行所有的 deploy。 
+1. 如果所有作业都 deploy 成功，则标记 job 为 passed 。 
+1. 如果在之前动作中有任何失败，则标记 job 为 failed 并终止 job 执行。
