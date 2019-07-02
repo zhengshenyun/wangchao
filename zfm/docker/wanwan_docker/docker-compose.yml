@@ -1,0 +1,7 @@
+version: '2'
+services:
+  python-flask:
+    image: '172.16.128.247:5000/python/flask.0.0.3'
+#    volumes:
+#      - /tmp/:/usr/local
+#    command: /usr/bin/python /usr/local/app.py
