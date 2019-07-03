@@ -1,0 +1,16 @@
+if (ACTIONS == "ddddd"){
+       stage("开始了"){
+        sh "echo \"##############编译开始############\""
+        sh "echo $ACTIONS"
+        println ACTIONS  ###直接获取前端页面的值  但是全部要大些   或者写成 "${env.actions} 但是这里的actions要个你这前端页面那个传来
+        println a_name
+        println "env.gitRepo:${GITREPO}"  #########  前端页面传来的  直接用全部大写  或者用env.小写 都是可以的
+        println "env.gittag:${GITTAG}" 
+        println "env.packageName:${PACKAGENAME}"
+        println "env.rollback:${ROLLBACK}"
+        println "env.actions:${ACTIONS}"
+        println "env.workspace:${env.WORKSPACE}"  ########## jenkins 构建目录  相当于wangchao-test就是git clone的地址   /opt/jenkins_slave_01/workspace/TEST/edu/wangchao-test
+        println "env.projectpath:${env.PROJECTPATH}"   ##########TEST/edu/wangchao-test   jenkins上面的相对项目地址
+        }
+      }
+
