@@ -14,3 +14,16 @@ if (ACTIONS == "ddddd"){
         }
       }
 
+
+入口那一层
+其实下面也是可以的
+
+
+if (env.node == "huawei") {
+	node() {
+		}
+}
+else {
+	node() {
+		}
+}
