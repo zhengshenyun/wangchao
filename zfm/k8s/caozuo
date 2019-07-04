@@ -16,3 +16,7 @@ kubectl scale --replicas=5 rc mysql  #####如果之前的小于5个副本  可�
 kubectl scale --replicas=3 rc mysql  #####之前是5个 现在小于5个 就是缩容
 
 https://www.jianshu.com/p/ca4de9f10daf
+
+
+kubeadm token list
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed  's/^ .* //'
