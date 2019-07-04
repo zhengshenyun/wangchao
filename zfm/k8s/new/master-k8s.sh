@@ -75,7 +75,7 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
 EOF
-	yum install -y kubelet kubeadm kubectl
+	yum install -y kubelet-1.14.0 kubeadm-1.14.0 kubectl-1.14.0
 	sleep 2
         echo "------------------------------k8s基本软件安装完成------------------------------"
         sleep 1
