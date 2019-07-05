@@ -36,7 +36,3 @@ k8s.gcr.io/kube-proxy               v1.13.3             98db19758ad4        2 we
 k8s.gcr.io/pause                    3.1                 da86e6ba6ca1        14 months ago       742kB
 quay.io/coreos/flannel              v0.11.0-amd64       ff281650a721        2 weeks ago         52.6MB
 
-作者：F7bonacci
-链接：https://www.jianshu.com/p/7eed9912bb6e
-来源：简书
-简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
