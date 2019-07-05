@@ -37,6 +37,11 @@ k8s.gcr.io/pause                    3.1                 da86e6ba6ca1        14 m
 quay.io/coreos/flannel              v0.11.0-amd64       ff281650a721        2 weeks ago         52.6MB
 
 
+--------------------------  删除一个deploy ----------------------------
+kubectl get deploy -n namespace-name   ######先查出来  下面再删除
+kubectl delete deploy deploy-name -n namespace-name
+kubectl delete -f xxxx.yml
+
 
 #################  有关ip地址的配置  看下面的例子 #####################
 
