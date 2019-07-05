@@ -36,3 +36,21 @@ k8s.gcr.io/kube-proxy               v1.13.3             98db19758ad4        2 we
 k8s.gcr.io/pause                    3.1                 da86e6ba6ca1        14 months ago       742kB
 quay.io/coreos/flannel              v0.11.0-amd64       ff281650a721        2 weeks ago         52.6MB
 
+
+
+#################  有关ip地址的配置  看下面的例子 #####################
+
+webapp        flask-web-bb9b58789-4mtzp            1/1     Running   0          2m55s   10.244.3.15   10-6-2-114   <none>           <none>
+webapp        flask-web-bb9b58789-7plp8            1/1     Running   0          2m55s   10.244.3.14   10-6-2-114   <none>           <none>
+webapp        flask-web-bb9b58789-9j52d            1/1     Running   0          2m55s   10.244.2.15   10-6-2-113   <none>           <none>
+webapp        flask-web-bb9b58789-jf7qn            1/1     Running   0          2m55s   10.244.1.14   10-6-2-112   <none>           <none>
+webapp        flask-web-bb9b58789-k45r9            1/1     Running   0          2m55s   10.244.2.14   10-6-2-113   <none>           <none>
+webapp        flask-web-bb9b58789-n5pzh            1/1     Running   0          2m55s   10.244.1.15   10-6-2-112   <none>           <none>
+
+NAME        TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)           AGE    SELECTOR
+flask-web   NodePort   10.97.103.178   <none>        11110:11112/TCP   3m8s   name=flask-web
+
+
+port: 11110 //        服务访问端口 cluster-ip地址           此时可以用 curl 10.97.103.178:11110
+targetPort: 11111 //  容器里面真正的端口                    此时可以用 curl 10.244.3.15/14等等:11111
+nodePort: 11112 //     Node的ip地址                         此时可以用 curl 10.6.2.112:11112
