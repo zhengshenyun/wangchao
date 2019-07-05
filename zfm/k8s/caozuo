@@ -43,6 +43,9 @@ kubectl get deploy -n namespace-name   ######先查出来  下面再删除
 kubectl delete deploy deploy-name -n namespace-name
 kubectl delete -f xxxx.yml
 
+--------------------------  查看ip的一些情况  ------------------------
+kubectl get svc -n webapp -o wide
+kubectl get pod -n webapp -o wide
 
 #################  有关ip地址的配置  看下面的例子 #####################
 
