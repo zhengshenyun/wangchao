@@ -14,6 +14,7 @@ kubectl get deploy / kubectl get rc  好像是一样的  最好用deploy
 
 kubectl scale --replicas=5 rc mysql  #####如果之前的小于5个副本  可以这样弄  这就是扩容 相反的  下面
 kubectl scale --replicas=3 rc mysql  #####之前是5个 现在小于5个 就是缩容
+kubectl scale --replicas=5 deploy flask-web -n webapp   #### 如果是deploy创建的 就需要这样写
 
 https://www.jianshu.com/p/ca4de9f10daf
 
