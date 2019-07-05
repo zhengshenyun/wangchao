@@ -20,3 +20,23 @@ https://www.jianshu.com/p/ca4de9f10daf
 
 kubeadm token list
 openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed  's/^ .* //'
+
+master节点需要pull完成的相关镜像
+k8s.gcr.io/kube-proxy                            v1.13.3             98db19758ad4        2 weeks ago         80.3MB
+k8s.gcr.io/kube-apiserver                        v1.13.3             fe242e556a99        2 weeks ago         181MB
+k8s.gcr.io/kube-controller-manager               v1.13.3             0482f6400933        2 weeks ago         146MB
+k8s.gcr.io/kube-scheduler                        v1.13.3             3a6f709e97a0        2 weeks ago         79.6MB
+k8s.gcr.io/coredns                               1.2.6               f59dcacceff4        3 months ago        40MB
+k8s.gcr.io/etcd                                  3.2.24              3cab8e1b9802        5 months ago        220MB
+k8s.gcr.io/pause                                 3.1                 da86e6ba6ca1        14 months ago       742kB
+quay.io/coreos/flannel                           v0.11.0-amd64       ff281650a721        2 weeks ago         52.6MB
+
+node节点需要pull完成的相关镜像
+k8s.gcr.io/kube-proxy               v1.13.3             98db19758ad4        2 weeks ago         80.3MB
+k8s.gcr.io/pause                    3.1                 da86e6ba6ca1        14 months ago       742kB
+quay.io/coreos/flannel              v0.11.0-amd64       ff281650a721        2 weeks ago         52.6MB
+
+作者：F7bonacci
+链接：https://www.jianshu.com/p/7eed9912bb6e
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
