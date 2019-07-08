@@ -63,3 +63,11 @@ flask-web   NodePort   10.97.103.178   <none>        11110:11112/TCP   3m8s   na
 port: 11110 //        服务访问端口 cluster-ip地址           此时可以用 curl 10.97.103.178:11110
 targetPort: 11111 //  容器里面真正的端口                    此时可以用 curl 10.244.3.15/14等等:11111
 nodePort: 11112 //     Node的ip地址                         此时可以用 curl 10.6.2.112:11112
+
+
+--------------------------------------------  集群搭建好后可以 登录ui界面 -----------------------------------------
+kubectl create serviceaccount wangchao -n kube-system
+kubectl create clusterrolebinding dashboard-admin --clusterrole=admin --serviceaccount=kube-system:wangchao
+kubectl get secret -n kube-system    一般是最后一个
+kubectl describe secret  wangchao-token-8qcjn -n kube-system
+然后就可以登录了
