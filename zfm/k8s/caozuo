@@ -91,4 +91,4 @@ kubectl describe secret  wangchao-token-8qcjn -n kube-system
 	flask-web    ClusterIP   10.98.252.186    <none>        80/TCP    87m
 	kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP   4d20h
 	myapp        ClusterIP   10.110.139.173   <none>        80/TCP    82m
-
+7 python-web.yml/deploy-demon.yaml 和 ingress-flask.yaml/ingress-myapp.yaml  这四个文件  22分组都是一个namespaces就可以了   就相当于 我的flask项目是namespaces webapp  ingress-项目.yaml也是同样的namespaces就可以了 
