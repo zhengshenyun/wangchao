@@ -71,3 +71,24 @@ kubectl create clusterrolebinding dashboard-admin --clusterrole=admin --servicea
 kubectl get secret -n kube-system    一般是最后一个
 kubectl describe secret  wangchao-token-8qcjn -n kube-system
 然后就可以登录了
+
+-----------------------------------------------------------  安装ingress  和 2个项目  ------------------------------------------------------------
+1 nginx-ingress-controller 的镜像再百度云盘有   k8s的其他镜像再我的u盘中有
+2 相关配置文件再这个git上面有 打包好了  
+3 启动脚本就是 kubectl create -f mandatory.yaml;kubectl create -f service-nodeport.yaml;kubectl create -f ingress-flask.yaml/ingress-myapp.yaml;kubectl create -f python-web.yml/deploy-demon.yaml
+4 启动后查看ingress的端口   所有的端口都是通过1583端口进去的
+        [root@10-6-2-111 ingress]# kubectl get service -n ingress-nginx
+	NAME            TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)                     AGE
+        ingress-nginx   NodePort   10.96.182.18   <none>        80:1583/TCP,443:21617/TCP   84m
+5 查看刚才2个ingress服务的域名和端口
+        [root@10-6-2-111 ingress]# kubectl get ingress -n default
+        NAME            HOSTS              ADDRESS   PORTS   AGE
+        ingress-flask   flask.magedu.com             80      14m
+        ingress-myapp   myapp.magedu.com             80      14m
+6 还有外网端口ok了 内网通过cluster-ip调用
+        [root@10-6-2-111 ingress]# kubectl get service
+	NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+	flask-web    ClusterIP   10.98.252.186    <none>        80/TCP    87m
+	kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP   4d20h
+	myapp        ClusterIP   10.110.139.173   <none>        80/TCP    82m
+
