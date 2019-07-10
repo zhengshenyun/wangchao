@@ -93,3 +93,12 @@ kubectl describe secret  wangchao-token-8qcjn -n kube-system
 	myapp        ClusterIP   10.110.139.173   <none>        80/TCP    82m
 7 python-web.yml/deploy-demon.yaml 和 ingress-flask.yaml/ingress-myapp.yaml  这四个文件  22分组都是一个namespaces就可以了   就相当于 我的flask项目是namespaces webapp  ingress-项目.yaml也是同样的namespaces就可以了
 8 项目的service中port是80就好了 tagerport和上面的容器端口一样就好了 
+
+
+
+------------------------------------------------  普罗米修斯监控  ------------------------------------------
+镜像百度云盘有
+kubectl create -f node-exporter.yaml
+kubectl create -f rbac-setup.yaml
+kubectl create -f configmap.yaml
+kubectl create -f promethues.yaml
