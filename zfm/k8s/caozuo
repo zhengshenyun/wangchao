@@ -18,7 +18,8 @@ kubectl scale --replicas=5 deploy flask-web -n webapp   #### 如果是deploy创�
 
 https://www.jianshu.com/p/ca4de9f10daf
 
-
+#忘记token怎么加入k8s集群
+https://www.cnblogs.com/lehuoxiong/p/9908357.html
 kubeadm token list
 openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed  's/^ .* //'
 
