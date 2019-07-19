@@ -1,0 +1,46 @@
+env: 'uat'
+project:
+    #此配置文件 只为了对应jenkins项目的第二层目录结构
+    edu-service:
+        giturl: 'https://git.tfit.com/src/edu/edu-iteration-service.git'
+        mvncmd: 'mvn clean package  install -Puat -U  --settings /opt/maven/conf/new_edu.xml'
+        gitroot: 'micro-services'
+        # host: 'master#172.20.81.184 | slave#172.20.81.183'
+        host: 'master#172.20.81.184'
+        use_docker: 'false'
+        runtime: 'tomcat'
+        port:
+        packaging: 'jar'
+        start_cmd: 'xxxxxxxxxxx'
+        stop_cmd: 'xxxxxxxxxxxx'
+        jdkversion: 'JAVA_HOME'
+        external_domain: 'uat.xxx.com'
+        urls_mapping: 'xxx/support=>xxx/yy/support, xxx/api=>yyy/api'
+        internal_domain: 'zone.xxx.cluster.com'
+    education-edu-app:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    education-government:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    education-misc-api:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    education-operate-web:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    education-pro-app:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    education-provider:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    quick-imports:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    saas-job:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
+    saas-warning-job:
+        host: '172.20.81.184'
+        container: 'tomcat-8080'
