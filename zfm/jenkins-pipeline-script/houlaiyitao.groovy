@@ -54,8 +54,14 @@ node('jenkins_slave_01') {
          sh "ssh  root@172.20.20.30 \"docker tag  ${docker_nikename}-${docker_name} 172.20.20.30:5000/${docker_nikename}-${docker_name}\"" //打成镜像文件
          sh "echo  push container to registry"
          sh "ssh  root@172.20.20.30 \"docker push 172.20.20.30:5000/${docker_nikename}-${docker_name}\"" //打成镜像文件
+         if (xxx == xxx) {
+		return     // return的话  下面的hello word就不执行了   直接到下一步的stage
+		}else {
+			xxxxxx
+		}
+	sh 'echo hello word'
       }
-
+      
       stage("huawei_test_slave_02-部署") {
          sh "echo  start origin"
       }
