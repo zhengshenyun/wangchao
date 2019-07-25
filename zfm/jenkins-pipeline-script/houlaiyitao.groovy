@@ -68,6 +68,7 @@ node('jenkins_slave_01') {
       }
 
       stage("huawei_test_slave_02-部署") {
+	 input message: 'please input you message', ok:'yes go on',parameters: [string(defaultValue: 'wc', description: 'this a select name', name: 'name', trim: false)]  ##### input 标签可以输出一个弹窗 还可以控制权限 submitter   这个参数就是控制权限 不在这个里面的提交就会失败
          sh "echo  start origin"
       }
 
