@@ -73,6 +73,17 @@ kubectl get secret -n kube-system    一般是最后一个
 kubectl describe secret  wangchao-token-8qcjn -n kube-system
 然后就可以登录了
 
+--------------------------------------------   k8s的更新和回滚  ---------------------------------------------------
+kubectl set image deployment flask-web flask-web=10.6.2.111:5000/flask/new-flsk-web    ############   kubectl set image deployment + deploymentname 容器名字=镜像版本
+[root@10-6-2-111 prd]# kubectl get deployment -n webapp
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+flask-web1   3/3     3            3           17d
+kubectl set image deployment flask-web1 flask-web1=10.6.2.111:5000/flask/new-flsk-web -n webapp ##########  不是default的namespace 可以这样用
+
+
+kubectl rollout undo deployment flask-web              				       ############   回滚到上一版本
+
+
 -----------------------------------------------------------  安装ingress  和 2个项目  ------------------------------------------------------------
 1 nginx-ingress-controller 的镜像再百度云盘有   k8s的其他镜像再我的u盘中有
 2 相关配置文件再这个git上面有 打包好了  
