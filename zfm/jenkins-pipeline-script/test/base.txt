@@ -39,3 +39,4 @@ node('jenkins_slave_01') {
                         currentBuild.description = "Choice action is ####${user_user}###"
         }
 
+build job:"HW-UAT/edu/saas-job/saas-job.war"  ##############  在stage里面添加这样 还可以继续编译下一个job
