@@ -73,6 +73,7 @@ kubectl get secret -n kube-system    一般是最后一个
 kubectl describe secret  wangchao-token-8qcjn -n kube-system
 然后就可以登录了
 
+
 --------------------------------------------   k8s的更新和回滚  ---------------------------------------------------
 kubectl set image deployment flask-web flask-web=10.6.2.111:5000/flask/new-flsk-web    ############   kubectl set image deployment + deploymentname 容器名字=镜像版本
 [root@10-6-2-111 prd]# kubectl get deployment -n webapp
@@ -107,6 +108,23 @@ kubectl rollout undo deployment flask-web              				       ############  
 8 项目的service中port是80就好了 tagerport和上面的容器端口一样就好了 
 
 
+NAMESPACE       NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                     AGE
+default         flask-web                 ClusterIP   10.98.252.186    <none>        80/TCP                      23d
+default         kubernetes                ClusterIP   10.96.0.1        <none>        443/TCP                     28d
+default         myapp                     ClusterIP   10.110.139.173   <none>        80/TCP                      23d
+default         mysql-wayne               ClusterIP   10.103.173.252   <none>        3306/TCP                    28h
+default         rabbitmq-wayne            ClusterIP   10.102.98.17     <none>        5672/TCP                    28h
+default         wayne-backend             NodePort    10.101.159.21    <none>        8080:12001/TCP              27h
+default         wayne-frontend            NodePort    10.104.130.145   <none>        80:12000/TCP                27h
+ingress-nginx   ingress-nginx             NodePort    10.96.182.18     <none>        80:1583/TCP,443:21617/TCP   23d
+kube-system     kube-dns                  ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP      28d
+kube-system     kubernetes-dashboard      NodePort    10.106.2.245     <none>        8443:8443/TCP               26d
+kube-system     node-exporter             NodePort    10.99.135.0      <none>        9100:21672/TCP              22d
+kube-system     prometheus                NodePort    10.103.247.168   <none>        9090:20003/TCP              22d
+wangchaoapp     wangchao-test-webappapp   NodePort    10.104.48.96     <none>        80:7148/TCP                 84m
+webapp          flask-web1                ClusterIP   10.104.91.129    <none>        80/TCP                      23d
+
+##########  最重要的就是  ingress是 NodePort 后面的端口是入口
 
 ------------------------------------------------  普罗米修斯监控  ------------------------------------------
 镜像百度云盘有
