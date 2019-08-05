@@ -125,6 +125,8 @@ wangchaoapp     wangchao-test-webappapp   NodePort    10.104.48.96     <none>   
 webapp          flask-web1                ClusterIP   10.104.91.129    <none>        80/TCP                      23d
 
 ##########  最重要的就是  ingress是 NodePort 后面的端口是入口
+clusterip  就是一个虚拟的ip  他的端口就是port设置的端口(不是tagerport 和nodeport)
+
 
 ------------------------------------------------  普罗米修斯监控  ------------------------------------------
 镜像百度云盘有
