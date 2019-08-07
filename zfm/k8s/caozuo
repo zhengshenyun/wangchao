@@ -126,7 +126,7 @@ webapp          flask-web1                ClusterIP   10.104.91.129    <none>   
 
 
 特别注意的是 mandatory.yaml 和 service-nodeport.yaml 起来后就不需要更改了   以后增加的是类似于 python-web.yaml 和 ingress-flask.yaml   还有后面2个一定要是在一个namespaces 不在同一个是不行的
-
+java 应用级别 service类型最好用clusterip模式 
 有个成功的目录文件 newingress
 
 ------------------------------------------------  普罗米修斯监控  ------------------------------------------
