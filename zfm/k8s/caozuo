@@ -120,13 +120,14 @@ ingress-nginx   ingress-nginx             NodePort    10.96.182.18     <none>   
 kube-system     kube-dns                  ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP      28d
 kube-system     kubernetes-dashboard      NodePort    10.106.2.245     <none>        8443:8443/TCP               26d
 kube-system     node-exporter             NodePort    10.99.135.0      <none>        9100:21672/TCP              22d
-kube-system     prometheus                NodePort    10.103.247.168   <none>        9090:20003/TCP              22d
+kube-system     prometheus                NodePort    10.103.247.168   <none>        9090:20003/TCP              22d     ------->     nodeport:clusterport    [targerport 是不会出现在这上面的]
 wangchaoapp     wangchao-test-webappapp   NodePort    10.104.48.96     <none>        80:7148/TCP                 84m
-webapp          flask-web1                ClusterIP   10.104.91.129    <none>        80/TCP                      23d
+webapp          flask-web1                ClusterIP   10.104.91.129    <none>        80/TCP                      23d     ------->     clusterport  
 
-##########  最重要的就是  ingress是 NodePort 后面的端口是入口
-clusterip  就是一个虚拟的ip  他的端口就是port设置的端口(不是tagerport 和nodeport)
 
+特别注意的是 mandatory.yaml 和 service-nodeport.yaml 起来后就不需要更改了   以后增加的是类似于 python-web.yaml 和 ingress-flask.yaml   还有后面2个一定要是在一个namespaces 不在同一个是不行的
+
+有个成功的目录文件 newingress
 
 ------------------------------------------------  普罗米修斯监控  ------------------------------------------
 镜像百度云盘有
