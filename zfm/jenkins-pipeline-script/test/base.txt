@@ -40,3 +40,4 @@ node('jenkins_slave_01') {
         }
 
 build job:"HW-UAT/edu/saas-job/saas-job.war"  ##############  在stage里面添加这样 还可以继续编译下一个job
+mail to: team@example.com, subject: 'The Pipeline failed :    #########  发邮件 
