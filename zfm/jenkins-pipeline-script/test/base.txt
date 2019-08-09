@@ -41,3 +41,23 @@ node('jenkins_slave_01') {
 
 build job:"HW-UAT/edu/saas-job/saas-job.war"  ##############  在stage里面添加这样 还可以继续编译下一个job
 mail to: team@example.com, subject: 'The Pipeline failed :    #########  发邮件 
+
+----------------------------------------------------------   用 ‘’’ xxxx '''  可以就想写脚本一样运行
+stage('build jar') { 
+        sh '''
+	source /etc/profile
+        a=(exchange-cache exchange-common exchange-dao stats-dao operate-service)
+         for i in ${a[@]}
+            do
+                echo "-----------------开始构建$i---------------------"
+                cd /jenkins/code/game/xhv2-$i
+                if [ `git branch|grep "* master"|wc -l` -ne 1 ]
+                    then
+                        git checkout master
+                fi
+                git pull
+               /usr/local/maven-3.5.4/bin/mvn clean install -Dmaven.test.skip=true
+                
+        done
+        
+        '''
