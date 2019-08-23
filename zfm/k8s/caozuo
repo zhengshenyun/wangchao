@@ -108,6 +108,22 @@ kubectl rollout undo deployment flask-web              				       ############  
 8 项目的service中port是80就好了 tagerport和上面的容器端口一样就好了 
 
 
+NAMESPACE       NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                   AGE
+default         kubernetes                ClusterIP   10.96.0.1        <none>        443/TCP                   49d
+default         mysql-wayne               ClusterIP   10.103.173.252   <none>        3306/TCP                  22d
+default         rabbitmq-wayne            ClusterIP   10.102.98.17     <none>        5672/TCP                  22d
+default         wayne-backend             NodePort    10.101.159.21    <none>        8080:12001/TCP            22d
+default         wayne-frontend            NodePort    10.104.130.145   <none>        80:12000/TCP              22d
+ingress-nginx   ingress-nginx             NodePort    10.106.136.93    <none>        80:80/TCP,443:14244/TCP   16d
+kube-system     kube-dns                  ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP    49d
+kube-system     kubernetes-dashboard      NodePort    10.106.2.245     <none>        8443:8443/TCP             48d
+kube-system     node-exporter             NodePort    10.99.135.0      <none>        9100:21672/TCP            44d
+kube-system     prometheus                NodePort    10.103.247.168   <none>        9090:20003/TCP            44d
+wangchaoapp     wangchao-test-webappapp   ClusterIP   10.105.174.167   <none>        11/TCP                    15d     ingress 要用clusterip 
+webapp          flask-web                 ClusterIP   10.105.111.64    <none>        800/TCP                   15d
+
+
+
 NAMESPACE       NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                     AGE
 default         flask-web                 ClusterIP   10.98.252.186    <none>        80/TCP                      23d
 default         kubernetes                ClusterIP   10.96.0.1        <none>        443/TCP                     28d
