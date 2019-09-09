@@ -271,6 +271,7 @@ nc -v -w 10 -z localhost 7070 && echo $?    ############ nc扫描端口 -w <超�
 redis-cli -a "REDISredis888666" -h r-uf6c5bbb82356e64.redis.rds.aliyuncs.com keys "activity:user_fairware_receive*" |xargs redis-cli -a "REDISredis888666" -h r-uf6c5bbb82356e64.redis.rds.aliyuncs.com del ######批量清除正则匹配到的key
 
 ansible ppb-web02,ppb-web03 -m shell -a "a=\$(ps aux| grep /pairCenter/| grep -v grep| awk '{print \$2}');sudo -u wls81 jstack  \$a| grep -i stat"
+ansible nginx -m copy -a 'src=/root/wangchao/nginx/conf/vhosts/ dest=/etc/nginx/conf/vhosts'   吧/root/wangchao/nginx/conf/vhosts/ 下面所有文件拷贝到etc/nginx/conf/vhosts 下面
 ansible slave -m script -a "/tmp/test.sh1"    把本地的脚本传过去在远端执行
 
 svn 管理工具 if.svnadmin
