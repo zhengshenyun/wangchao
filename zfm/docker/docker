@@ -89,4 +89,4 @@ yum -y install docker-ce
 		--cpuset-cpus=7  (注意1.6版本才是--cpuset-cpus，1.6版本以下是--cpuset)############ 绑定线程数
 
 ----同一个目录不同的dockerfile-------
-docker build -t saas-job.war-2019-09-11-11-46-59 -f Dockerfile.saas .      #####-f参数   后面指定 .
+docker build -t saas-job.war-2019-09-11-11-46-59 -f Dockerfile.saas /superking/war      #####-f参数   后面指定 .
