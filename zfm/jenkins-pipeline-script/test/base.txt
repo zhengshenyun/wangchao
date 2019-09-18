@@ -65,6 +65,10 @@ stage('build jar') {
 
 archive 'target/*.jar'   ##########  pipeline语法 定义包的下载路劲  可以在web ui  直接下载这个包
 
+------------------------------------------------------------------------------------------------------------------------
+input message: 'please input you message', ok:'yes go on',parameters: [string(defaultValue: 'wc', description: 'this a select name', name: 'name', trim: false)]     #### input标签
+input message: 'User input required', ok: 'Release!',parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]   #### select标签
+
 
 -------------------------------------  在groovy中如果想写成shell脚本时的模式  可以用 完全支持的 -----------------------------------
         sh '''
