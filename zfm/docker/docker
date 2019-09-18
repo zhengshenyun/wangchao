@@ -48,7 +48,11 @@ docker run --name startnginxv1 -p 333:80 -v /data/www:/data/dddd -itd yunxingngi
 	registry:2
 
 
-	5.1) docker run --dns=xx.xx.xx.xx  不加这个参数docker容器会使用宿主机的dns解析  加了这个参数就是使用这个加的dns了
+	5.1) docker run --dns=xx.xx.xx.xx  不加这个参数docker容器会使用宿主机的dns解析  加了这个参数就是使用这个加的dns了 
+	5.2) 或者修改/etc/docker/daemon.json 这个文件
+		 {
+			"dns":[xx.xx.xx.xx]
+		}
 -----------------------------------------------------------------------
 6 使用docker-compose简化docker run 运行参数
 	-v的参数可以用到很多地方 比如说共享dns的那个配置文件  方便查看日志
