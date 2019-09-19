@@ -138,7 +138,7 @@ ingress-nginx   ingress-nginx             NodePort    10.96.182.18     <none>   
 kube-system     kube-dns                  ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP      28d
 kube-system     kubernetes-dashboard      NodePort    10.106.2.245     <none>        8443:8443/TCP               26d
 kube-system     node-exporter             NodePort    10.99.135.0      <none>        9100:21672/TCP              22d
-kube-system     prometheus                NodePort    10.103.247.168   <none>        9090:20003/TCP              22d     ------->     nodeport:clusterport    [targerport 是不会出现在这上面的]
+kube-system     prometheus                NodePort    10.103.247.168   <none>        9090:20003/TCP              22d     ------->     clusterport:nodeport    [targerport 是不会出现在这上面的]
 wangchaoapp     wangchao-test-webappapp   NodePort    10.104.48.96     <none>        80:7148/TCP                 84m
 webapp          flask-web1                ClusterIP   10.104.91.129    <none>        80/TCP                      23d     ------->     clusterport  
 
