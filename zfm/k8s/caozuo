@@ -1,5 +1,8 @@
 https://www.qikqiak.com/k8s-book/docs/21.%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5.html   ##################  k8s非常好的一个文档
 
+kubectl exec -it nginx-ingress-controller-5984d98d75-gwnlh bash -n ingress-nginx    #########  master上面 执行这个 进入nginx容器内
+-----------------------------------------------------------------------------------------------------------------------------
+
 kubectl get pod --namespace=default 等同于 kubectl get pod
 
 [root@192 ~]# kubectl get namespaces     #########查看所有的namespaces
