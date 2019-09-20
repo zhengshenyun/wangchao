@@ -94,3 +94,5 @@ yum -y install docker-ce
 
 ----同一个目录不同的dockerfile-------
 docker build -t saas-job.war-2019-09-11-11-46-59 -f Dockerfile.saas /superking/war      #####-f参数   后面指定 .
+
+docker exec -it --env COLUMNS=`tput cols` --env LINES=`tput lines` 6ccec704f68c ps aux   #########  docker 执行命令显示不全
