@@ -106,7 +106,7 @@ function anzhuangimg {
 	docker tag ${username}/${image} k8s.gcr.io/${NEW_IMAGE}
 	docker rmi ${username}/${image}
 	done
-	systemctl enable kubelet.service
+	systemctl enable kubelet.service            #################################  开机自启动   这步千万不能忘  
 	######  下面2行  2个ip  一定要看清  不同的机器不一样
 	kubeadm init   --kubernetes-version=v1.14.0   --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=10.254.253.20  --token-ttl 0  --ignore-preflight-errors=Swap
 	kubeadm join 10.254.253.20:6443 --token n0kt4i.i60jw3d7veicguux --discovery-token-ca-cert-hash sha256:ef6c423dd699d3a0cd0620ba466573d9764f59d038377fc02e23cd71cd67034f
