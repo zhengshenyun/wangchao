@@ -13,7 +13,7 @@ function chushihua {
 	sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
 	 
 	# 关闭交换分区
-	swapoff -a
+	swapoff -a    #############这个要做个永久关闭  最好不要这样临时关闭
 	#yes | cp /etc/fstab /etc/fstab_bak
 	#cat /etc/fstab_bak |grep -v swap > /etc/fstab
 	 
