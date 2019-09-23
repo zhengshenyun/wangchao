@@ -96,3 +96,8 @@ yum -y install docker-ce
 docker build -t saas-job.war-2019-09-11-11-46-59 -f Dockerfile.saas /superking/war      #####-f参数   后面指定 .
 
 docker exec -it --env COLUMNS=`tput cols` --env LINES=`tput lines` 6ccec704f68c ps aux   #########  docker 执行命令显示不全
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+curl -X GET http://172.20.20.30:5000/v2/_catalog            ################################ 删除registry镜像名称
+docker exec <容器名> rm -rf /var/lib/registry/docker/registry/v2/repositories/<镜像名>
+docker exec registry bin/registry garbage-collect /etc/docker/registry/config.yml
