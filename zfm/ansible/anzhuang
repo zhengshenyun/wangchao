@@ -67,3 +67,9 @@ client02：10.0.0.22
 　　2、 复制本机文件到组group1：ansible group1 -m copy -a “src=/etc/hosts dest=/etc/”
 
 　　3、 帮group1安装软件：ansible group1 -m shell -a “yum install wget -y”
+
+
+--------------------------------------------------------------  如果没打通  可以这样  -------------------------------------------------------------
+172.18.10.243 ansible_ssh_user=root ansible_ssh_pass=Ssic@2018
+172.18.10.148 ansible_ssh_user=root ansible_ssh_pass=Ssic@2018
+
