@@ -1,31 +1,34 @@
 #!/usr/bin/python
-
+#encoding=utf8
 import pexpect
  
 if __name__ == '__main__':
     with open("iip","r") as f:
 	ip = [_.strip() for _ in f.readlines()]
     print(ip)
-    mypassword = 'sdjj123$%^'
+    mypassword = 'wangchao123'
     for i in ip:
-        print("start----------------------")
-        child = pexpect.spawn('ssh root@%s "mkdir /root/.ssh"' %i)  #################### 远程登陆 执行命令
-        ret = child.expect([pexpect.TIMEOUT,'Are you sure you want to continue connecting','[P|p]assword'])
-        print(ret)
-        if ret == 1:
-            child.sendline('yes')
-            child.expect ('password:')
-            child.sendline (mypassword)
-            child.expect(pexpect.EOF)
-            child = pexpect.spawn('scp /etc/ansible/temp/authorized_keys_admin2root root@%s:/root/.ssh/authorized_keys' %i)
-            child.expect ('password:')
-            child.sendline (mypassword)
-            child.expect(pexpect.EOF)
-        else:
-            child.expect ('password:')
-            child.sendline (mypassword)
-            child.expect(pexpect.EOF)
-            child = pexpect.spawn('scp /etc/ansible/temp/authorized_keys_admin2root root@%s:/root/.ssh/authorized_keys' %i)
-            child.expect ('password:')
-            child.sendline (mypassword)
-            child.expect(pexpect.EOF)
+        print("start----------%s-----------" %i)
+        try:
+            child = pexpect.spawn('ssh root@%s "mkdir /root/.ssh"' %i)  #################### 远程登陆 执行命令 就用这个  有的机器没有这个目录  就算有了也没关系
+            ret = child.expect([pexpect.TIMEOUT,'Are you sure you want to continue connecting','[P|p]assword'])
+            print(ret)
+            if ret == 1:
+                child.sendline('yes')
+                child.expect ('password:')
+                child.sendline (mypassword)
+                child.expect(pexpect.EOF)
+                child = pexpect.spawn('scp /root/.ssh/id_rsa.pub root@%s:/root/.ssh/authorized_keys' %i)
+                child.expect ('password:')
+                child.sendline (mypassword)
+                child.expect(pexpect.EOF)
+            else:
+                child.sendline (mypassword)
+                child.expect(pexpect.EOF)
+                child = pexpect.spawn('scp /root/.ssh/id_rsa.pub root@%s:/root/.ssh/authorized_keys' %i)
+                child.expect ('password:')
+                child.sendline (mypassword)
+                child.expect(pexpect.EOF)
+        except Exception as e:
+            print(e)
+
