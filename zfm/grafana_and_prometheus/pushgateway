@@ -1,0 +1,14 @@
+#!/bin/bash
+instance_name=`hostname -f | cut -d'.' -f1`  #获取本机名，用于后面的的标签
+
+label="count_netstat_wait_connections"  #定义key名
+
+count_netstat_wait_connections=`netstat -an | grep -i wait | wc -l`  #获取数据的命令
+
+echo "$label: $count_netstat_wait_connections"
+
+echo "$label  $count_netstat_wait_connections" | curl --data-binary @- http://10.6.2.116:9091/metrics/job/pushgateway_job/instance/superking
+
+
+#count_netstat_wait_connections 这个就是后面出图用的 count_netstat_wait_connections{job=~"pushgateway_job"} 或者是count_netstat_wait_connections{instance=~“superking”}
+
