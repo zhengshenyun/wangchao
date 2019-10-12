@@ -80,3 +80,10 @@ scrape_configs:
       labels:
         instance: node-10.6.2.115
 
+  - job_name: pushgateway
+    static_configs:
+    - targets: ['10.6.2.116:9091']
+      labels:
+        instance: pushgateway  ########  这边这个定义没什么意义了 pushgateway 都是靠curl后面那些个参数自己设定的
+    honor_labels: true
+
