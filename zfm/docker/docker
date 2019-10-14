@@ -104,3 +104,37 @@ docker exec registry bin/registry garbage-collect /etc/docker/registry/config.ym
 ---------------------------------------------------------------------------------------------------------------------------------------------
 docker rm 5e17589b1d8b                      #####################  如果容器的 bridge 出现问题就这样
 docker network disconnect --force bridge provider.war
+
+---------------------------------------------------------------------   其他的一些小技巧  ----------------------------------------------------------------------
+
+{
+    "storage-driver": "overlay2",
+     "storage-opts": [
+        "overlay2.override_kernel_check=true"
+    ],
+    "registry-mirrors": [
+        "http://f2d6cb40.m.daocloud.io",
+        "http://ef017c13.m.daocloud.io",
+        "http://74ecfe5d.m.daocloud.io",
+        "http://e1c83636.m.daocloud.io"
+    ],
+    "insecure-registries": [
+        "image.tfit.com",
+        "10.6.2.34:5000",
+        "172.20.20.30:5000"
+    ],
+    "live-restore": true,
+    "graph": "/opt/docker",  ########### docker 默认的目录 docker 可以跑在挂载的地方或者容量大的目录下面
+    "hosts": [
+        "unix:///var/run/docker.sock",
+        "tcp://0.0.0.0:2375"
+    ],
+    "selinux-enabled": false,
+    "userland-proxy": false,
+    "log-driver": "json-file",
+    "log-opts": {
+        "max-size": "300m",
+        "max-file": "3"
+    }
+}
+
