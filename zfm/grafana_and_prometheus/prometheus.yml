@@ -87,3 +87,9 @@ scrape_configs:
         instance: pushgateway  ########  这边这个定义没什么意义了 pushgateway 都是靠curl后面那些个参数自己设定的
     honor_labels: true
 
+  - job_name: discover_server
+    file_sd_configs:
+      - files:
+        - /usr/local/prometheus/discover/discover_server.json  ## 自动发现存储
+        refresh_interval: 10s 
+
