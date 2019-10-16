@@ -1,2 +1,28 @@
 ###源码安装 https://www.jianshu.com/p/a682cb1e6cc6
 https://grafana.com/grafana/dashboards
+
+---------------------------------------------------
+
+relabel_configs:      #############这个参数很有用   可以对label标签做重写  区分是那个机器
+      - source_labels: [__meta_consul_tags]
+        regex: ',(.+),(.+),(.+),'
+        replacement: ${1}
+        target_label: servicetype
+      - source_labels: [__meta_consul_tags]
+        regex: ',(.+),(.+),(.+),'
+        replacement: ${3}
+        target_label: env
+      - source_labels: [__meta_consul_service]
+        regex: 'consul'
+        action: drop
+      - source_labels: [__address__]
+        regex: (.+):(.+)
+        replacement: ${1}
+        target_label: __temp_param_target
+      - source_labels: [__temp_param_target]
+        target_label: instance
+      - source_labels: [__meta_consul_service]
+        target_label: service
+      - source_labels: [__meta_consul_node]
+        target_label: hostname
+
