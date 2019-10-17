@@ -15,10 +15,11 @@ relabel_configs:      #############这个参数很有用   可以对label标签�
       - source_labels: [__meta_consul_service]
         regex: 'consul'
         action: drop
-      - source_labels: [__address__]
-        regex: (.+):(.+)
-        replacement: ${1}
-        target_label: __temp_param_target
+      - source_labels: [__address__]   #####  取原始的labels
+        regex: (.+):(.+)   #####  正则取区间
+        replacement: ${1}   #########  开始替换
+        #target_label: __temp_param_target    
+        target_label: instance ########  给instance替换掉
       - source_labels: [__temp_param_target]
         target_label: instance
       - source_labels: [__meta_consul_service]
