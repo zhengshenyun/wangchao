@@ -586,3 +586,6 @@ WANGCHAO="127.0.0.1" sh ss.sh    命令行传递变量  在ss.sh里面如果有 
 iptables -I INPUT -s 172.16.20.18 -p tcp --dport 10002 -j ACCEPT
 
 sshpass -p Ssic@2018 ssh root@172.20.81.184 'test -d /opt/1 && mkdir /opt/1'  ########  这种判断挺好的
+
+---------------------------------------------------------------------------------------------------------
+java -XX:+PrintFlagsFinal -version | grep HeapSize   ################  查看 xmx xms  的大小
