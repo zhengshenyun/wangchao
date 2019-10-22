@@ -144,3 +144,5 @@ for (int i = 0; i < 5; i++) {
         runPs = sh(returnStdout: true, script: cmdFillFindPs)
         println runPs
 
+ )))))))2  或者用下面的
+	 sh "sshpass -p 'Ssic@2018'  ssh 172.20.61.173  \"docker ps | grep provider.war|awk '{print \\\$1}'\""
