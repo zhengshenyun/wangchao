@@ -510,7 +510,7 @@ requests 出现那个啥/usr/lib/python2.7/site-packages/requests/__init__.py:80
 -----------------------------------------------------------------------------------
 python dd.py | tr "'" '"' |sed 's/u"/"/g'| jq .  ##############这个是为了jq 解析的  jq  里面必须是""双引号  单引号他不识别 还有u""  他也不识别  用sed替换掉他
 cat ip | jq '.ip'  ############jq 查看返回数据key为ip的value
-
+cat ip | jq '.[]|.wangchao|.chaowang'    ########  类似于这样  [{"wangchao":{"chaowang":"FUCK"}}]      前面最后得到FUCK
 
 --------------------------------------------------------------------
 echo SDJJ_YuXRKcSD8GBpc6F | passwd --stdin root   ##########    echo  修改密码
