@@ -133,3 +133,14 @@ for (int i = 0; i < 5; i++) {
     }
   }
 }
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+ cmdSshConnect = "sshpass -p 'Ssic@2018' ssh 172.20.61.173"                             ##############################   有awk的 要这么写才能可以
+        cmdFindPs = 'docker ps| grep provider.war| awk \'{print $1}\''
+        cmdFillFindPs = cmdSshConnect + ' ' + cmdFindPs
+
+        //echo 'Command find = ' + cmdFillFindPs
+        runPs = sh(returnStdout: true, script: cmdFillFindPs)
+        println runPs
+
