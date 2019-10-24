@@ -73,3 +73,26 @@ client02：10.0.0.22
 172.18.10.243 ansible_ssh_user=root ansible_ssh_pass=Ssic@2018
 172.18.10.148 ansible_ssh_user=root ansible_ssh_pass=Ssic@2018
 
+
+--------------------------------------------------------------   ansible-playbook  -----------------------------------------------------------------
+
+                                          运行的命令为 ansible-playbook install_zabbix_agent.yml
+ansible/
+├── ansible.cfg
+├── hosts
+├── install_zabbix_agent.yml         他里面的 role: install_zabbix_agent   对应下面的 |
+└── roles                              						      |
+    └── install_zabbix_agent                                                      对应这个目录    他又去找task里面的任务了
+        ├── files
+        │   └── node_exporter-0.18.1.linux-amd64.tar.gz
+        ├── handlers
+        ├── meta
+        ├── tasks
+        │   └── main.yml
+        ├── templayes
+        │   ├── zabbix_agentd
+        │   └── zabbix_agentd.conf
+        └── vars
+            └── main.yml
+
+

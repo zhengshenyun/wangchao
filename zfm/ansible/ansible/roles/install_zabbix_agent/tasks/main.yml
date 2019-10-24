@@ -1,3 +1,7 @@
 ---
   - name: echo  zabbix
     shell: echo "------------------------ hello world ---------------------------"
+    shell: echo "{{zabbix_port}}"
+    register: check
+  - name: show
+    debug: var=check.stdout verbosity=0
