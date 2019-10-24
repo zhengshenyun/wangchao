@@ -1,0 +1,37 @@
+location / {
+    rewrite ^/test1 /test2;
+    rewrite ^/test2 /test3 last;  # 此处发起新一轮location匹配 uri为/test3
+    rewrite ^/test3 /test4;
+    proxy_pass http://www.baidu.com;
+}
+
+location = /test2 {
+    return 200 "/test2";
+}  
+
+location = /test3 {
+    return 200 "/test3";
+}
+location = /test4 {
+    return 200 "/test4";
+}
+# 发送如下请求
+# curl 127.0.0.1:8080/test1
+# /test3 
+
+当如果将上面的 location / 改成如下代码
+location / {
+    rewrite ^/test1 /test2;
+    # 此处 不会 发起新一轮location匹配；当是会终止执行后续rewrite模块指令 重写后的uri为 /
+    rewrite ^/test2 /more/index.html break;  
+    rewrite /more/index\.html /test4; # 这条指令会被忽略
+
+    # 因为 proxy_pass 不是rewrite模块的指令 所以它不会被 break终止
+    proxy_pass https://www.baidu.com;
+}
+# 发送如下请求
+# 浏览器输入 127.0.0.1:8080/test1 
+# 代理到 百度产品大全页面 https://www.baidu.com/more/index.html;
+友情提醒下
+
+此处提一下 在上面的代码中即使将 proxy_pass 放在 带有 break 的 rewrite上面它也是会执行的，这就要扯到nginx的执行流程了。大家有兴趣可以了解下。
