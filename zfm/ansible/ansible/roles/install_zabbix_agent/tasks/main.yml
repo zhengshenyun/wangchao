@@ -1,0 +1,3 @@
+---
+  - name: echo  zabbix
+    shell: echo "------------------------ hello world ---------------------------"
