@@ -1,4 +1,5 @@
 ---
 - hosts: k8s
+  gather_facts: no    ###########  这个参数很重要  可以节约大量的时间  不缓存facts数据
   roles:
   - install_zabbix_agent
