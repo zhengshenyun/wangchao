@@ -89,7 +89,7 @@ ansible/
         ├── meta
         ├── tasks
         │   └── main.yml
-        ├── templayes
+        ├── templates
         │   ├── zabbix_agentd
         │   └── zabbix_agentd.conf
         └── vars
