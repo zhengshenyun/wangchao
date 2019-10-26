@@ -88,6 +88,7 @@ kubectl set image deployment flask-web1 flask-web1=10.6.2.111:5000/flask/new-fls
 
 
 kubectl rollout undo deployment flask-web              				       ############   回滚到上一版本
+kubectl rollout status deployment flask-web              				       ############   查看当前更新状态
 
 
 -----------------------------------------------------------  安装ingress  和 2个项目  ------------------------------------------------------------
