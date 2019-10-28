@@ -1,6 +1,10 @@
 https://www.qikqiak.com/k8s-book/docs/21.%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5.html   ##################  k8s非常好的一个文档
 
 kubectl exec -it nginx-ingress-controller-5984d98d75-gwnlh bash -n ingress-nginx    #########  master上面 执行这个 进入nginx容器内
+
+#####  给node节点打上label标签
+kubectl label node k8s-node1 disktype=ssd
+deployment里面 添加 nodeSelector:disktype: ssd   他就会选择对应的node节点
 -----------------------------------------------------------------------------------------------------------------------------
 
 kubectl get pod --namespace=default 等同于 kubectl get pod
@@ -179,3 +183,5 @@ webapp            flask-web1-69dfb5799d-z9flb                 1/1     Running   
 
 ***********   其中 如果直接用cluster_ip是可以直接调用的   同一个namespaces  调用比如 ex1 调用 ex2  直接可以用到 http://flask-web:800/ ( servicename ) ||||   但是不在同一个namespaces  比如ex1 调用 ex3  可以用到 http://flask-web-web.webapp-wangchao:800/ ( servicename + namespace )
 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
