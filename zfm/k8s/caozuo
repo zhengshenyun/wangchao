@@ -104,7 +104,7 @@ kubectl rollout status deployment flask-web              				       ############
         NAME            HOSTS              ADDRESS   PORTS   AGE
         ingress-flask   flask.magedu.com             80      14m
         ingress-myapp   myapp.magedu.com             80      14m
-6 还有外网端口ok了 内网通过cluster-ip调用
+6 还有外网端口ok了 内网通过cluster-ip调用     2个不同的pod相互内网调用   可以用到cluster_ip   我测试过  ping不通  可以进入到容器里面 用requests模块来进行测试
         [root@10-6-2-111 ingress]# kubectl get service
 	NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
 	flask-web    ClusterIP   10.98.252.186    <none>        80/TCP    87m
