@@ -157,3 +157,25 @@ kubectl create -f node-exporter.yaml
 kubectl create -f rbac-setup.yaml
 kubectl create -f configmap.yaml
 kubectl create -f promethues.yaml
+
+------------------------------------------------------------------------------------------------------  内网cluster_ip相互调用  --------------------------------------------------------------------------------------------------
+*************   这是他们的service
+webapp-wangchao   flask-web-web          ClusterIP   10.103.9.138     <none>        800/TCP                   5m49s   name=flask-web-web
+webapp            flask-web              ClusterIP   10.111.232.227   <none>        800/TCP                   136m    name=flask-web
+webapp            flask-web1             ClusterIP   10.106.163.142   <none>        800/TCP                   125m    name=flask-web1
+
+************    这是他们的pod
+webapp-wangchao   flask-web-web-54c6db94cf-csqc2              1/1     Running   0          4m10s   10.244.2.87   10-6-2-113   <none>           <none>  ex3
+webapp-wangchao   flask-web-web-54c6db94cf-qpmsn              1/1     Running   0          4m10s   10.244.2.86   10-6-2-113   <none>           <none>
+webapp            flask-web-785c6cfc8-6gdhd                   1/1     Running   0          28m     10.244.1.77   10-6-2-112   <none>           <none>
+webapp            flask-web-785c6cfc8-7r94z                   1/1     Running   0          28m     10.244.1.76   10-6-2-112   <none>           <none>
+webapp            flask-web-785c6cfc8-fp26p                   1/1     Running   0          28m     10.244.3.78   10-6-2-114   <none>           <none>
+webapp            flask-web-785c6cfc8-ht7zk                   1/1     Running   0          28m     10.244.3.79   10-6-2-114   <none>           <none>
+webapp            flask-web-785c6cfc8-l9qwj                   1/1     Running   0          28m     10.244.2.84   10-6-2-113   <none>           <none>
+webapp            flask-web-785c6cfc8-wz6ls                   1/1     Running   0          28m     10.244.2.85   10-6-2-113   <none>           <none>  ex2
+webapp            flask-web1-69dfb5799d-82qgv                 1/1     Running   0          124m    10.244.1.73   10-6-2-112   <none>           <none>
+webapp            flask-web1-69dfb5799d-kzndz                 1/1     Running   0          124m    10.244.2.79   10-6-2-113   <none>           <none>  
+webapp            flask-web1-69dfb5799d-z9flb                 1/1     Running   0          124m    10.244.3.76   10-6-2-114   <none>           <none>  ex1
+
+***********   其中 如果直接用cluster_ip是可以直接调用的   同一个namespaces  调用比如 ex1 调用 ex2  直接可以用到 http://flask-web:800/ ( servicename ) ||||   但是不在同一个namespaces  比如ex1 调用 ex3  可以用到 http://flask-web-web.webapp-wangchao:800/ ( servicename + namespace )
+
