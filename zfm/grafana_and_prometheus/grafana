@@ -27,3 +27,23 @@ relabel_configs:      #############这个参数很有用   可以对label标签�
       - source_labels: [__meta_consul_node]
         target_label: hostname
 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+scrape_configs:
+  - job_name: qas_discover
+    metrics_path: /metrics
+    scheme: http
+    consul_sd_configs:
+      - server: 172.16.8.80:8500     ################  这种是动态的  这个url是consul的地址   直接用到下面的curl一下就好了 就自动注册进去了  也不需要重启prometheus
+        scheme: http
+        services:
+          - node_exporter
+          - cadvisor
+          - prometheus-node
+        tag_separator: ''
+
+curl -X PUT -d '{"id": "zabbix","name": "prometheus-node","address": "172.16.8.59","port":9100,"tags": ["node-exporter"],"checks": [{"http": "http://172.16.8.59:9100/","interval": "5s"}]}' http://172.16.8.80:8500/v1/agent/service/register
+curl -X PUT -d '{"id": "habor","name": "prometheus-node","address": "172.16.8.55","port":9100,"tags": ["node-exporter"],"checks": [{"http": "http://172.16.8.55:9100/","interval": "5s"}]}' http://172.16.8.80:8500/v1/agent/service/register
+curl -X PUT -d '{"id": "node","name": "harbor","address": "172.16.8.55","port":8080,"tags": [""],"checks": [{"http": "http://172.16.8.55:8080/","interval": "5s"}]}' http://172.16.8.80:8500/v1/agent/service/register
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
