@@ -1,0 +1,75 @@
+#apiVersion: apps/v1
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: flask-web1
+ namespace: webapp
+ labels:
+   project: taojiji
+   app: flask-web1
+spec:
+ replicas: 3
+ minReadySeconds: 30
+ strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 10%
+    type: RollingUpdate
+ selector:
+   matchLabels:
+     name: flask-web1
+     project: taojiji
+     app: flask-web1
+ template:
+   metadata:
+     labels:
+       name: flask-web1
+       project: taojiji
+       app: flask-web1
+   spec:
+     terminationGracePeriodSeconds: 60
+     containers:
+     - name: flask-web1
+       image: 10.6.2.111:5000/flask/flsk-web-webappapp
+       env:
+       - name: SPRING_PROFILES_ACTIVE
+         value: "dev"
+       imagePullPolicy: Always 
+       volumeMounts:
+        # - name: appdata
+        #   mountPath: /app
+         - name: applogs
+           mountPath: /var/log
+       ports:
+       - containerPort: 11111
+         name: http2
+         protocol: TCP
+       resources:
+         requests:
+           cpu: "0.1"
+           memory: "0.5Gi"
+         limits:
+           cpu: "0.1"
+           memory: "0.5Gi" 
+     volumes: 
+       - name: applogs
+         hostPath:
+           path: /var/log
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-web1
+  namespace: webapp
+spec:
+  #type: NodePort
+  ports:
+  - name: http2
+    port: 800
+    targetPort: 11111
+    #nodePort: 800
+    #protocol: TCP
+    #nodePort: 12112
+  selector:
+    name: flask-web1

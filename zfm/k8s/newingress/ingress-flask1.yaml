@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-flask1
+  namespace: webapp
+#  annotations:
+#    kubernets.io/ingress.class: "nginx"
+  labels:
+    app: flask-web1
+spec:
+  rules:
+  - host: flask.fuck.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: flask-web1
+          servicePort: 800
