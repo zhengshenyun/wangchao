@@ -185,3 +185,35 @@ webapp            flask-web1-69dfb5799d-z9flb                 1/1     Running   
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+kubelet 是一个管理系统，它管理本个node上的容器的生命周期。它主要功能就是定时从某个地方获取节点上pod/container的期望状态，并调用对应的容器平台接口，来达成这个状态。它可以设置 http 监控，命令行监控等方式。
+
+kube-proxy 是管理 service 的访问入口，包括集群内 pod 到 service 的访问，以及集群外访问service。
+
+APIServer
+
+APIServer组件负责响应用户的管理请求、进行指挥协调工作
+
+scheduler
+
+scheduler组件是将待调度的pod按照一定的调度算法绑定到合适的工作节点上
+
+controller manager
+
+是一组控制器的合集，负责控制控制管理对应的资源，如副本（replication）和工作节点（node）等。
+
+etcd
+
+etcd 负责保存 Kubernetes Cluster 的配置信息和各种资源的状态信息。当数据发生变化时，etcd 会快速地通知 Kubernetes 相关组件。
+
+ kubelet
+
+管理维护pod运行的agent
+
+kube-proxy
+
+将service的流量转发到对应endpoint
+
+flannel网络
+
+维持各个节点上pod之间的通信。
