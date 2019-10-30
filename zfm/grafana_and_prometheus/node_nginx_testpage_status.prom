@@ -1,0 +1,3 @@
+#  这种也可以自定义key 启动方式为 ./node_exporter --collector.textfile.directory=/opt/node_exporter/key   key是一个目录  下面就是这个文件   这样自带的模板也是可以监控到的   2)  就是pushgateway  也是可以的
+
+node_nginx_testpage_status 1
