@@ -143,3 +143,31 @@ docker network disconnect --force bridge provider.war
 docker login xxxx:8888
 docker push 10.6.2.111:8888/flask/flask-num01
 在命令行上面 push的时候 必须先要在harbor上面---项目---新建项目-----创建flask目录层级  然后才能推上去 
+
+---------------------------------------------------------------------------------------   docker日志收集   --------------------------------------------------------------------------------------------------
+
+1  可以挂载的形式 这样也方便
+
+
+2  第二种可以用阿里云的 log-pilot
+    docker run --name mypilot --rm -it \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /:/host \
+	--privileged  \
+    registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:latest
+ 
+    docker run --name mytomcat -it --rm  -p 10080:8080 \
+    -v /usr/local/tomcat/logs \
+    --label aliyun.logs.catalina=stdout \
+    --label aliyun.logs.access=/usr/local/tomcat/logs/localhost_access_log.*.txt \
+    tomcat
+
+    docker run --rm -it \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /:/host \
+    --privileged \
+    -e FLUENTD_OUTPUT=elasticsearch \
+    -e ELASTICSEARCH_HOST=172.17.0.3 \
+    -e ELASTICSEARCH_PORT=9200 \
+    registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:latest
+
