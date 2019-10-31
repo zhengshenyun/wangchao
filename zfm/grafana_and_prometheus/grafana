@@ -52,3 +52,4 @@ curl -X PUT -d '{"id": "node","name": "harbor","address": "172.16.8.55","port":8
 
 ----------------------------------------------------------------------------   grafana 配置的一些问题  ------------------------------------------------------------------------------------------
 
+container_cpu_user_seconds_total{id="/system.slice/rpcbind.service"}   ###  这个 id其实       rate(container_cpu_user_seconds_total{id!=""}[5m]) * 10  下面的 Legend  取像id这样的值就好了  可以当成是labels
