@@ -1,0 +1,7 @@
+import pyapollo
+client = pyapollo.ApolloClient(app_id="fuckwang", cluster='default', config_server_url='http://10.6.2.113:8181')
+client.start(use_eventlet = False,eventlet_monkey_patch = False,catch_signals = True)
+#client.start(use_eventlet=True,eventlet_monkey_patch=True)
+to = client.get_value("webname", "fuckeyou")
+print(to)
+#client.stop()
