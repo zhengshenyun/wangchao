@@ -5,3 +5,37 @@ listen-address=10.254.232.125,127.0.0.1	监听的本地地址(本地就是dns服
 addn-hosts=/etc/hosts  排除本地host的解析 意思就是本地hosts解析依然有效
 cache-size=1024
 conf-dir=/etc/dnsmasq.d,.rpmnew,.rpmsave,.rpmorig
+
+
+
+----------------------------------------------------------   下面为dnsmasq的docker安装方法  加上ui界面   ----------------------------------------------------
+
+1、在Docker宿主上创建 /opt/dnsmasq.conf 配置文件
+
+touch /opt/dnsmasq.conf
+2、docker run启动容器
+
+复制代码
+docker run \
+    --name dnsmasq \
+    -d \
+    -p 53:53/udp \
+    -p 5380:8080 \
+    -v /opt/dnsmasq.conf:/etc/dnsmasq.conf \
+    --log-opt "max-size=100m" \
+    -e "HTTP_USER=admin" \
+    -e "HTTP_PASS=wangchao123" \
+    --restart always \
+    jpillora/dnsmasq
+
+复制代码
+HTTP_USER：web页面登录的管理员帐号
+
+HTTP_PASS：web页面登录的管理员密码
+
+3、通过 ip:5380 地址访问web页面，使用帐户密码登录后在线编辑 dnsmasq.conf 文件
+
+我的dnsmasq.conf配置文件内容如下：
+
+server=172.16.20.150
+address=/test.gfstack.geo/192.168.36.158
