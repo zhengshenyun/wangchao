@@ -51,3 +51,18 @@ if [[ "$a"x == "wangchaox"  ]];then
 else
     echo "您输入的不是wangchao"
 fi
+
+#####################################################     一句话 三连判断    ######################################################
+
+ps aux| grep java| grep /usr/local/tomcat/| awk '{print $2}'|xargs kill -9 && echo "杀进程成功" || { echo "杀进程失败----退出";exit 1; } 通过ps来弄然后awk打印关闭进程
+
+ps aux| grep nginx| grep -v grep && echo "ok" || echo "no"   ###############ps  有输出就是ok 没有输出就是no
+
+netstat -tunlp| grep nginx && echo "yes" || echo "no"   ##############跟上面一样的判断
+
+
+#####################################################   判断有没有输出  可以用test  或者 if  ###################################################
+
+   1)   test  "`ps aux| grep hhh`" && echo "yes" || echo "no"     ==   test -n "`ps aux| grep hhh`" && echo "yes" || echo "no"    # 如果ps有输出 就输出yes  如果没有就输出no
+
+   2)   if [[ -n `ps aux| grep hhh` ]];then echo "yes";else echo "no";fi  #  这样用if做判断也是可以的
