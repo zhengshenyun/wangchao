@@ -3,3 +3,5 @@ CATALINA_OPTS="$CATALINA_OPTS -Djava.rmi.server.hostname=172.16.0.194 -Dcom.sun.
 然后在jdk那个目录下面添加那个啥access 和password就好了
 
  -Dglobal.config.path="配置文件位置"
+
+jmap -F -heap pid    ##############   查看当前Java应用的堆栈大小
