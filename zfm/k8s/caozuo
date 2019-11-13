@@ -228,16 +228,17 @@ flannel网络
 -----------------------------------------------------------------
 
 k8s 配置deploy 
-hostPath:
-nfs:
+emptyDir:         ###  k8s自己分配的  不知道在哪  pod删除就没了 一个pod里面容器共享
+hostPath:         
+nfs:            
 persistentVolumeClaim:
 
 
           volumeMounts:     #挂载volumes中定义的磁盘
           - name: log-cache
-            mount: /tmp/log
+            mountpath: /tmp/log
           - name: sdb       #普通用法，该卷跟随容器销毁，挂载一个目录
-            mountPath: /data/media    
+            mountPath: /data/media      --------------------------------------------------------容器里面挂载的地方   宿主机空间往容器哪里挂
           - name: nfs-client-root    #直接挂载硬盘方法，如挂载下面的nfs目录到/mnt/nfs
             mountPath: /mnt/nfs
           - name: example-volume-config  #高级用法第1种，将ConfigMap的log-script,backup-script分别挂载到/etc/config目录下的一个相对路径path/to/...下，如果存在同名文件，直接覆盖。
