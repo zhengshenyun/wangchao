@@ -30,7 +30,7 @@ spec:
             configMapKeyRef:
               name: cm-appvars     ###########  对应上面 configmap 这个 name
               key: apploglevel     ###########  获取到 apploglevel 这个key的值
-        - name: chaowang           ##############  下面一样的
+        - name: chaowang           ##############  下面和上面是一样的
           valueFrom:
             configMapKeyRef:
               name: env-config
