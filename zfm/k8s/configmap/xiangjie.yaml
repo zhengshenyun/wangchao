@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+name: cm-appvars
+data:
+apploglevel: info
+appdatadir: /var/data
+
+
+---------------------------------
+
+
+
+如果其他的应用想要使用这个configmap的时候  可以加在这个configmap的配置文件
+
+
+比如下面的一个deployment  一般应用到环境变量当中 或者屎硬盘挂载当中
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dapi-test-pod
+spec:
+  containers:
+    - name: test-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      env:
+        - name: chengxuhuoqu           ###########  pod里面启动的时候 程序获取的name    xxx.get("chengxuhuoqu")
+          valueFrom:
+            configMapKeyRef:
+              name: cm-appvars     ###########  对应上面 configmap 这个 name
+              key: apploglevel     ###########  获取到 apploglevel 这个key的值
+        - name: chaowang           ##############  下面一样的
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: log_level
+  restartPolicy: Never
