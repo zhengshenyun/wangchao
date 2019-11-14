@@ -5,6 +5,8 @@ kubectl exec -it nginx-ingress-controller-5984d98d75-gwnlh bash -n ingress-nginx
 #####  给node节点打上label标签
 kubectl label node k8s-node1 disktype=ssd
 deployment里面 添加 nodeSelector:disktype: ssd   他就会选择对应的node节点
+
+ DaemonSet  ###########  如果为 DaemonSet 对象  不是deploy  这样她会在每个node节点上启动一个pod
 -----------------------------------------------------------------------------------------------------------------------------
 
 kubectl get pod --namespace=default 等同于 kubectl get pod
