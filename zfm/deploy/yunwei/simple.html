@@ -175,9 +175,85 @@
 			              </div>  
 			            </div><!-- /.modal-content -->  
 			          </div><!-- /.modal-dialog -->  
-			        </div><!-- /.modal --> 
+			</div><!-- /.modal --> 
                     <!-- 模态对话框结束  -->
 
+
+		    <!-- 修改 模态对话框开始  -->
+			<div class="modal fade" id="xiugaicfmModel">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content message_align">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        <h4 class="modal-title btn-warning">提示信息</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        <p>确定修改 ID 为 <span id="xiugaiurl" style="color:#f0ad4e"></span>&nbsp;的数据, &nbsp;该条数据将被更新,是否真的要继续？</p>
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="firstname" class="col-sm-2 control-label">ID</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="tablenum1" 
+									   placeholder="请输入名字">
+							</div>
+						</div>
+
+						<div class="form-group">
+                                                        <label for="firstname" class="col-sm-2 control-label">Item name</label>
+                                                        <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="tablenum2" 
+                                                                           placeholder="请输入Item name">
+                                                        </div>
+                                                </div>
+					
+						<div class="form-group">
+                                                        <label for="firstname" class="col-sm-2 control-label">Item price</label>
+                                                        <div class="col-sm-10">
+                                                                <input type="text" class="form-control" id="tablenum3" 
+                                                                           placeholder="请输入Item price">
+                                                        </div>
+                                                </div>
+
+					</form>
+				      </div>
+                                      <div class="modal-footer">
+                                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                         <a  id="xiugaiSubmit" class="btn btn-success" data-dismiss="modal">确定</a>
+                                      </div>
+                                    </div><!-- /.modal-content -->
+                                  </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->   			
+		    <!-- 修改 模态对话框结束  -->
+
+		    <!-- 详情 模态对话框开始  -->
+			<div class="modal fade" id="xiangqingcfmModel" data-backdrop="static">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content message_align">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        <h4 class="modal-title btn-info">提示信息</h4>
+                                      </div>
+                                      <div class="modal-body" style="height:500px; overflow:scroll;">
+                                        <p>ID 为 <span id="xiangqingurl" style="color:#39b3d7"></span>&nbsp;的详情数据</p>
+					<table id="modletable" class="table table-bordered  table-hover">
+						<thead>
+                                		    <tr>
+                                		              <th>名称</th>
+                                		              <th>值</th>
+                                		    </tr>
+                                		</thead>
+						<tbody id="moduletbody">
+						    <!-- <tr><td>1</td><td>1</td></tr> -->
+						</tbody>	
+					</table>
+                                      </div>
+                                      <div class="modal-footer">
+                                         <a  id="xiangqingSubmit" class="btn btn-success" data-dismiss="modal">知道了</a>
+                                      </div>
+                                    </div><!-- /.modal-content -->
+                                  </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+		    <!-- 详情 模态对话框结束  -->
 			<div class="panel-body" style="background-color:white">		
                         <table id="table" class="table table-bordered  table-hover">
 				  <thead>
@@ -308,6 +384,25 @@
 			],
 		});
            
+		//  详情按钮点开 -------------------------
+		jQuery('#table tbody').on( 'click', 'a#xiangqingProject', function () {
+                    var data = tables_comments.row( jQuery(this).parents('tr') ).data();
+                    //console.log(data)
+                    var id   = data.id;
+                    jQuery('#xiangqingurl').text( id )
+		    jQuery.each(data, function(key, val) {      
+			jQuery("#moduletbody").append("<tr><td>"+key+"</td><td>"+val+"</td></tr>")
+			});    
+                    //jQuery('#url').val( id );
+                    jQuery("#xiangqingcfmModel").modal("show");
+                });
+	
+
+		// 详情按钮关闭 -------------------------
+		jQuery("#xiangqingcfmModel").on( 'click', '#xiangqingSubmit', function () {
+			jQuery("#moduletbody").empty()
+			console.log("----------------")
+		});
 
                 //  删除按钮 -------------------------
 		jQuery('#table tbody').on( 'click', 'a#delProject', function () {
@@ -319,7 +414,19 @@
                     jQuery("#delcfmModel").modal("show");
                 });
 
-	        //实现全选功能 
+		// 修改按钮 -------------------------
+		jQuery('#table tbody').on( 'click', 'a#editProject', function () {
+                    var data = tables_comments.row( jQuery(this).parents('tr') ).data();
+                    //console.log(data)
+                    var tablenum1   = data.id; tablenum2 = data.name; tablenum3 = data.price
+                    jQuery('#xiugaiurl').text( tablenum1 )
+		    jQuery('#tablenum1').val(tablenum1)
+		    jQuery('#tablenum2').val(tablenum2)
+		    jQuery('#tablenum3').val(tablenum3)
+                    jQuery("#xiugaicfmModel").modal("show");
+                });
+
+	        // 实现全选功能 
 		    jQuery("#chk").click(function(){
 		        jQuery('[name=prochk]:checkbox').prop('checked',this.checked);//checked为true时为默认显示的状态
 		    });
