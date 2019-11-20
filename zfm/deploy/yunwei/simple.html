@@ -226,7 +226,7 @@
 		    <!-- 修改 模态对话框结束  -->
 
 		    <!-- 详情 模态对话框开始  -->
-			<div class="modal fade" id="xiangqingcfmModel" data-backdrop="static">
+			<div class="modal fade" id="xiangqingcfmModel">
                                   <div class="modal-dialog">
                                     <div class="modal-content message_align">
                                       <div class="modal-header">
@@ -399,10 +399,14 @@
 	
 
 		// 详情按钮关闭 -------------------------
-		jQuery("#xiangqingcfmModel").on( 'click', '#xiangqingSubmit', function () {
-			jQuery("#moduletbody").empty()
-			console.log("----------------")
-		});
+	// 不惜点击确定按钮才能消失	jQuery("#xiangqingcfmModel").on( 'click', '#xiangqingSubmit', function () {
+	//		jQuery("#moduletbody").empty()
+	//		console.log("----------------")
+	//	});
+		jQuery(function () { jQuery('#xiangqingcfmModel').on('hide.bs.modal', function () {
+			 jQuery("#moduletbody").empty()
+			 });
+			 });
 
                 //  删除按钮 -------------------------
 		jQuery('#table tbody').on( 'click', 'a#delProject', function () {
