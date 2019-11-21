@@ -11,7 +11,7 @@ data:
     scrape_configs:
 
     - job_name: 'kubernetes-apiservers'
-      kubernetes_sd_configs:
+      kubernetes_sd_configs:         #####  基于k8s的服务发现机制 
       - role: endpoints
       scheme: https
       tls_config:
