@@ -30,6 +30,7 @@
     <!-- Theme style -->
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href='tree/bootstrap-treeview.min.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="newjs/DataTables-1.10.20/css/dataTables.bootstrap.min.css">
 
 
 
@@ -179,37 +180,29 @@
 					<h2>项目业务线</h2>
 					<div id="treeview5" class="treeview">
 						<ul class="list-group">
-							<li class="list-group-item node-treeview5" data-nodeid="0" style="color:undefined;background-color:undefined;">
-								<span class="icon expand-icon glyphicon glyphicon-chevron-down"></span><span class="icon node-icon glyphicon glyphicon-bookmark">
-								</span>Parent 1
-							</li>
-							<li class="list-group-item node-treeview5" data-nodeid="1" style="color:undefined;background-color:undefined;">
-								<span class="indent"></span><span class="icon expand-icon glyphicon glyphicon-chevron-right"></span><span class="icon node-icon glyphicon glyphicon-bookmark">
-								</span>Child 1
-							</li>
-							<li class="list-group-item node-treeview5" data-nodeid="4" style="color:undefined;background-color:undefined;">
-								<span class="indent"></span><span class="icon glyphicon"></span><span class="icon node-icon glyphicon glyphicon-bookmark">
-								</span>Child 2
-							</li>
-							<li class="list-group-item node-treeview5" data-nodeid="5" style="color:undefined;background-color:undefined;">
-								<span class="icon glyphicon"></span><span class="icon node-icon glyphicon glyphicon-bookmark">
-								</span>Parent 2
-							</li>
-							<li class="list-group-item node-treeview5" data-nodeid="6" style="color:undefined;background-color:undefined;">
-								<span class="icon glyphicon"></span><span class="icon node-icon glyphicon glyphicon-bookmark">
-								</span>Parent 3
-							</li>
-							<li class="list-group-item node-treeview5" data-nodeid="7" style="color:undefined;background-color:undefined;">
-								<span class="icon glyphicon"></span><span class="icon node-icon glyphicon glyphicon-bookmark">
-								</span>Parent 4
-							</li>
-							<li class="list-group-item node-treeview5" data-nodeid="8" style="color:undefined;background-color:undefined;">
-								<span class="icon glyphicon"></span><span class="icon node-icon glyphicon glyphicon-bookmark">
-								</span>Parent 5
-							</li>
+
 						</ul>
 					</div>
+				</div>	
+				<!--   右侧表格开始的地方  -->
+				<div style="display:inline-block;width:83%;">
+					<table id="table" class="table table-bordered table-hover">
+						  <thead>
+						    <tr>
+							      <th><input id="chk" type="checkbox"/></th>
+							      <th>ID</th>
+							      <th>Item name</th>
+							      <th>Item price</th>
+							      <th>列1</th>
+							      <th>列2</th>
+							      <th>列3</th>
+							      <th>列4</th>
+							      <th>操作</th>
+						    </tr>
+						  </thead>
+				        </table>
 				</div>
+				<!--   右侧表格结束的地方  -->
 			</div>
               <!-- row end -->
                 </section><!-- /.content -->
@@ -248,70 +241,147 @@
 
         <!-- Director dashboard demo (This is only for demo purposes) -->
         <script src="js/Director/dashboard.js" type="text/javascript"></script>
-        <script src="tree/bootstrap-treeview.min.js" type="text/javascript"></script>
+        <script src="tree/bootstrap-treeview.min.js" type="text/javascript"></script> 
+	<script src="newjs/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="newjs/DataTables-1.10.20/js/dataTables.bootstrap.min.js"></script>
+
 
         <!-- Director for demo purposes -->
         <script type="text/javascript">
 			var defaultData = [
 		          {
-		            text: 'Parent 1',
+		            text: '项目1总',
 		            href: '#parent1',
 		            tags: ['4'],
 		            nodes: [
 		              {
-		                text: 'Child 1',
+		                text: '项目1分',
 		                href: '#child1',
 		                tags: ['2'],
 		                nodes: [
 		                  {
-		                    text: 'Grandchild 1',
+		                    text: '前端业务架构',
 		                    href: '#grandchild1',
 		                    tags: ['0']
 		                  },
 		                  {
-		                    text: 'Grandchild 2',
+		                    text: '后端业务架构',
 		                    href: '#grandchild2',
 		                    tags: ['0']
 		                  }
 		                ]
 		              },
 		              {
-		                text: 'Child 2',
+		                text: '项目2分',
 		                href: '#child2',
 		                tags: ['0']
 		              }
 		            ]
 		          },
 		          {
-		            text: 'Parent 2',
+		            text: '项目2总',
 		            href: '#parent2',
 		            tags: ['0']
 		          },
 		          {
-		            text: 'Parent 3',
+		            text: '项目3总',
 		            href: '#parent3',
 		             tags: ['0']
 		          },
 		          {
-		            text: 'Parent 4',
+		            text: '项目4总',
 		            href: '#parent4',
 		            tags: ['0']
 		          },
 		          {
-		            text: 'Parent 5',
+		            text: '项目5总',
 		            href: '#parent5'  ,
 		            tags: ['0']
 		          }
 		        ];
 			
 		
-			$('#treeview5').treeview({
+			jQuery('#treeview5').treeview({
 		          color: "#428bca",
 		          expandIcon: 'glyphicon glyphicon-chevron-right',
 		          collapseIcon: 'glyphicon glyphicon-chevron-down',
 		          nodeIcon: 'glyphicon glyphicon-bookmark',
 		          data: defaultData
 		        });
+
+			//   表格填充开始
+			var tables_comments =  $('#table').DataTable({
+				    "bSort": false,
+		                    language: {  //将英文转换为中文
+		                       "sProcessing": "处理中...",  
+		                       "sLengthMenu": "显示 _MENU_ 项结果",  
+		                       "sZeroRecords": "没有匹配结果",  
+		                       "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",  
+		                       "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",  
+		                       "sInfoFiltered": "(由 _MAX_ 项结果过滤)",  
+		                       "sInfoPostFix": "",  
+		                       "sSearch": "搜索:",  
+		                       "sUrl": "",  
+		                       "sEmptyTable": "表中数据为空",  
+		                       "sLoadingRecords": "载入中...",  
+		                       "sInfoThousands": ",",  
+		                       "oPaginate": {  
+		                           "sFirst": "首页",  
+		                           "sPrevious": "上页",  
+		                           "sNext": "下页",  
+		                           "sLast": "末页"  
+		                          }, 
+		                        },
+				    //serverSide: true,  //控制是前端分页还是后端分页
+				    ajax: {
+				        url: '/json/data.json'
+				        //dataSrc: ''
+				    },
+				    columns: [
+					{ "data": null , defaultContent: '' },
+		        		{ "data": "id" },
+		        		{ "data": "name"},
+		        		{ "data": "price"},
+		        		{ "data": "column1" },
+		        		{ 'data': "column2" },
+		        		{ "data": "column3" },
+		        		{ "data": "column4" },
+		        		{ "data": null , defaultContent: ''}
+				    ],
+				    columnDefs: [
+					  {
+		                                       targets:0,
+		                                       render: function(data, type, row){
+		                                        return '<input name="prochk" type="checkbox"/>'
+		                                }
+		                          },
+					  {
+					        targets: -1,
+					        //visible: false,
+					        //sortable: false,
+					        render: function(data, type, row){
+					            return '<a id="xiangqingProject" title="详情">' + 
+		                                    '<i class="glyphicon glyphicon-eye-open"></i>' + "&nbsp"+ "&nbsp" + "&nbsp" + "&nbsp"+ "&nbsp" + "&nbsp" + 
+		                                    '</a>'+ 
+		                                    '<a id="editProject" data-toggle="modal" data-id="' + row.p_id +'" title="修改">' + 
+		                                    '<i class="glyphicon glyphicon-pencil"></i> ' + "&nbsp"+ "&nbsp" + "&nbsp" + "&nbsp"+ "&nbsp" + "&nbsp" +
+		                                    '</a>'+
+		                                    '<a id="delProject" data-toggle="modal" data-id="' + row.p_id +'" title="删除">' +
+		                                    '<i class="glyphicon glyphicon-trash text-danger"></i> ' + "&nbsp"+ "&nbsp" + "&nbsp" +"&nbsp"+ "&nbsp" + "&nbsp"
+		                                    '</a>';
+					        }
+					    },
+					    {
+		                                 "orderable": false, "targets": [0,-1],  //设置第一列和最后一列不可排序
+		                            }
+					],
+				});
+
+				// 实现全选功能 
+			    jQuery("#chk").click(function(){
+			        jQuery('[name=prochk]:checkbox').prop('checked',this.checked);//checked为true时为默认显示的状态
+			    });
+	
 	</script>
 </body>
 </html>
