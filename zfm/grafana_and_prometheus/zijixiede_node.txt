@@ -1,0 +1,5 @@
+其实客户端自己写也是可以的啊 比如 django flask  他就是prometheus 自己去请求客户端的接口啊  对啊  详情见 prometheus.yaml这个配置文件 只要回传数据格式
+
+xxxxxxx 2
+xxxxxxx 3
+xxxxxxx 5
