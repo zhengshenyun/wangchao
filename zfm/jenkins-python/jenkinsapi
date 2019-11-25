@@ -13,10 +13,9 @@ print('Hello %s from Jenkins %s' % (user['fullName'], version))
 1 --------------------------------  获取jenkins的所有视图
  		all_jobs_li = server.get_all_jobs()
 		for item in all_jobs_li:
-    			print('name: %s' % item['name'], 'URL: ', item['url'])
+    			print('name: %s' % item['name'], 'URL: ', item['fullname'])
 
-上面得到的是 (u'name: wangchao-test-test', 'URL: ', u'http://10.6.2.34:8080/job/TEST/job/edu/job/wangchao-test-test/')
-下面的为调用准确url  其实就是 /job/TEST/job/edu/job/wangchao-test-test/ ===================>  变成 TEST/edu/wangchao-test-test
+上面得到的是 (u'name: wangchao-test-test', 'URL: ', u'TEST/edu/wangchao-test-test')
 
 server.build_job('TEST/edu/wangchao-test-test',{'actions':'ddddd'})   ############  后面的为jenkins上面的标识 
 
