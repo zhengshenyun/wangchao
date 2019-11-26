@@ -15,3 +15,57 @@ ln -s /etc/logstash/ config  #########吧/etc/logstash/ 链接到 /usr/share/log
 config/jvm.options   ##############解决ela不能以root运行的情况
 
 tomcat.conf　里面 index时间 要加时间  这样以后删除数据的时候方便  一定要记住  比如 tomcat-access-log-%{+YYYY.MM.dd}   ######还有tomcat.conf支持 /usr/local/*/*.log这种写法的
+
+
+
+--------------------------------------------------------------------   最新的 es和kibana  7.1.1  或者以后的  自带 登陆页面  ----------------------------------------------------------------
+免费版的ES的默认配置中没有权限控制，需要手动开启
+
+启动ES中的安全设置
+打开ES的配置文件
+
+vi elasticsearch/config/elasticsearch.yml
+添加配置
+
+xpack.security.enabled: true
+xpack.security.authc.accept_default_password: false
+添加单节点发现模式
+
+discovery.type: single-node
+设置密码
+输入
+
+elasticsearch/bin/elasticsearch-setup-passwords interactive
+按照提示输入密码
+
+给用户配置权限
+例如先创建一个对"events"开头的index拥有所有权限的角色events_admin，并可以在Kibana中作图和做报表，然后将用户名加入该角色即可
+
+curl -XPOST -u elastic 'localhost:9200/_security/role/events_admin' -H "Content-Type: application/json" -d '{
+  "indices" : [
+    {
+      "names" : [ "events*" ],
+      "privileges" : [ "all" ]
+    },
+    {
+      "names" : [ ".kibana*" ],
+      "privileges" : [ "manage", "read", "index" ]
+    }
+  ]
+}'
+
+curl -XPOST -u elastic 'localhost:9200/_security/user/your_name' -H "Content-Type: application/json" -d '{
+  "password" : "userpassword",
+  "full_name" : "Full Name",
+  "email" : "fullname@anony.mous",
+  "roles" : [ "events_admin" ]
+}'
+配置Kibana
+打开Kibana配置文件
+
+vi kibana/config/kibana.yml
+添加下列配置，配置密码，以及一个任意的长度在32以上的字符串
+
+elasticsearch.username: "elastic"
+elasticsearch.password: "kibanapassword"        #########################  注意这个密码是上面一开始要你输入elastic这个用户时候的那个密码
+xpack.security.encryptionKey: "something_at_least_32_characters"
