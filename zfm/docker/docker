@@ -141,9 +141,28 @@ docker network disconnect --force bridge provider.war
 ----------------------------------------------------------------------------------   harbor 单点和集群安装  ------------------------------------------------------------------------------------
 https://www.jianshu.com/p/7374f7481d18
 
+这边 push 的时候 会用到harbor里面的hostname  所以 harbor hostname要能ping通 或者能解析
+
 docker login xxxx:8888
 docker push 10.6.2.111:8888/flask/flask-num01
 在命令行上面 push的时候 必须先要在harbor上面---项目---新建项目-----创建flask目录层级  然后才能推上去 
+
+
+k8s 更新deploy的时候  从harbor拉取的时候 首先最好把之前的应用apply -f 一下 因为后面说到要该配置文件
+
+kubectl create secret docker-registry harbor --namespace=webapp-wangchao --docker-server=http://10.6.2.113:800 --docker-username=admin --docker-password=Harbor12345        ###########  创建secret 来让 pull images的时候 不需要login
+				      (自定义name)       (namesapce最后跟应用一样)
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-reg
+spec:
+  containers:
+  - name: private-reg-container
+    image: your-private-image
+  imagePullSecrets:   ###################    harbor 验证
+  - name: harbor     ###################    secret 名字   跟上面一样
 
 ---------------------------------------------------------------------------------------   docker日志收集   --------------------------------------------------------------------------------------------------
 
