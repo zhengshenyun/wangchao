@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #encoding=utf8
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
-import json,vpc_server
+import json
 from vpc_server import start_createvpc
 import urlparse
 
@@ -12,11 +12,14 @@ class DemoHttpServer(BaseHTTPRequestHandler):
         if parsed_path.path != '/create_vpc':
             self.send_error(404, "Page not Found!")
             return
-	res = start_createvpc(parsed_path.query)	
+	try:
+		res = str(start_createvpc(parsed_path.query))
+	except:
+		res = {"code":500,"data":"args is Error"}
         self.send_response(200, message='OK')
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
-        self.wfile.write(res)
+        self.wfile.write(json.dumps(res))
         
         
 if __name__ == '__main__':
