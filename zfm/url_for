@@ -1,0 +1,50 @@
+@app.route('/')
+
+def hello_world():
+	return url_for('url_f')
+
+
+@app.route('/url')
+
+def url_f():
+        return '这是url的返回值'
+
+curl 127.0.0.1:5000
+/url
+
+
+
+
+
+@app.route('/')
+
+def hello_world():
+        return url_for('url_f',page=1)
+
+
+@app.route('/url/<page>')
+
+def url_f(page):
+        return '这是url的返回值'
+
+curl 127.0.0.1:5000
+/url/1
+
+
+
+@app.route('/')
+
+def hello_world():
+        return url_for('url_f',page=1,count=2)
+
+
+@app.route('/url/<page>')
+
+def url_f(page):
+        return '这是url的返回值'
+
+curl 127.0.0.1:5000
+/usr/1?count=2
+
+
+
