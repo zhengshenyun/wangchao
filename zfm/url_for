@@ -43,7 +43,7 @@ def hello_world():
 def url_f(page):
         return '这是url的返回值'
 
-curl 127.0.0.1:5000
+curl 127.0.0.1:5000                         ###############  请求这个匹配到hello_wold 函数 return url_for('url_f',page=1,count=2)    url_f,page(这个也是路劲),count(这个是参数) 找到下面对应的 /url/1?count=2
 /usr/1?count=2
 
 
