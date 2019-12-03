@@ -36,3 +36,7 @@ spec:
               name: env-config
               key: log_level
   restartPolicy: Never
+
+
+-------------------------------------------------------------------------------------------
+https://my.oschina.net/wangyunlong/blog/3054633   ##########  这边文章讲的蛮好的 更详细  还有例子
