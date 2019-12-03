@@ -25,10 +25,10 @@ spec:
       image: k8s.gcr.io/busybox
       command: [ "/bin/sh", "-c", "env" ]
       env:
-        - name: chengxuhuoqu           ###########  pod里面启动的时候 程序获取的name    xxx.get("chengxuhuoqu")
+        - name: chengxuhuoqu           ###########  pod里面启动的时候 程序获取的name    xxx.get("chengxuhuoqu")  ----- os.environ.get("chengxuhuoqu")    这个可以直接获取 没有用到configmap  下面的通过configmap获取
           valueFrom:
             configMapKeyRef:
-              name: cm-appvars     ###########  对应上面 configmap 这个 name
+              name: cm-appvars     ###########  对应上面 configmap 这个 name               -------  这个就需要通过configmap来获取了  下面也是
               key: apploglevel     ###########  获取到 apploglevel 这个key的值
         - name: chaowang           ##############  下面和上面是一样的
           valueFrom:
