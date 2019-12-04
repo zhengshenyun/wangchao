@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-name: cm-appvars
+  name: cm-appvars
 data:
-apploglevel: info
-appdatadir: /var/data
+  apploglevel: info
+  appdatadir: /var/data
 
 
 ---------------------------------
@@ -15,6 +15,10 @@ appdatadir: /var/data
 
 
 比如下面的一个deployment  一般应用到环境变量当中 或者是硬盘挂载当中
+
+01)
+        直接获取configmap
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -25,17 +29,65 @@ spec:
       image: k8s.gcr.io/busybox
       command: [ "/bin/sh", "-c", "env" ]
       env:
-        - name: chengxuhuoqu           ###########  pod里面启动的时候 程序获取的name    xxx.get("chengxuhuoqu")  ----- os.environ.get("chengxuhuoqu")    这个可以直接获取 没有用到configmap  下面的通过configmap获取
+        - name: chengxuhuoqu           ###########  pod里面启动的时候 程序获取的name    xxx.get("chengxuhuoqu")  ----- os.environ.get("chengxuhuoqu")  备注  这边name 是定义一个key  这个key可以自由定义  下面valuefrom  是value
           valueFrom:
             configMapKeyRef:
               name: cm-appvars     ###########  对应上面 configmap 这个 name               -------  这个就需要通过configmap来获取了  下面也是
               key: apploglevel     ###########  获取到 apploglevel 这个key的值
-        - name: chaowang           ##############  下面和上面是一样的
+        - name: chaowang           ##############  下面和上面是一样的  这个是另一个configmap了
           valueFrom:
-            configMapKeyRef:
+            configMapKeyRef:   ---------------------------------------------->   有了他 下面的name才有对应  01
               name: env-config
               key: log_level
   restartPolicy: Never
+
+
+02)
+        挂载的时候用到
+spec:                            #详细参数设置
+  replicas: 3                    #副本数量
+  selector:                      #标签选择器
+    matchLabels:
+      app: wyl-nginx             #正对标签为wyl-nginx的pod进行副本的创建
+  strategy:
+    rollingUpdate:               #由于replicas为3,则整个升级,pod个数在2-4个之间
+      maxSurge: 1                #滚动升级时会先启动1个pod
+      maxUnavailable: 1          #滚动升级时允许的最大Unavailable的pod个数
+  template:                      #模板
+    metadata:
+      labels:
+        app: wyl-nginx           #模板pod名称必填
+    spec:                        #定义容器模板信息，该模板可以包含多个容器
+      containers:
+        - name:  nginx
+          image: nginx:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+          - name: nginx-nfs
+            mountPath: /usr/share/nginx/html
+          - name: nginx-pvc
+            mountPath: /var/log/nginx
+            subPath: nginx.conf
+          - name: nginx-etc       #挂载数据节点名称
+            mountPath: /etc/nginx/nginx.conf #挂载此目录
+            subPath: nginx.conf
+      volumes:                    #设置挂载
+      - name: nginx-nfs           #挂载的数据节点名称
+        nfs:                      #挂载的服务类型
+          server: 192.168.0.14    #服务Ip
+          path: /NFS/wwwroot      #挂载数据目录
+      - name: nginx-pvc           #挂载数据节点名称
+        persistentVolumeClaim:    #服务类型
+          claimName: nfs-data-pvc #数据源名称
+      - name: nginx-etc           #挂载数据节点名称
+        configMap:             ---------------------------------------------->   有了他 下面的name才有对应  02
+         name: nginxconfig        #指定创建configMap的名称
+         items:
+          - key: nginx.conf       #key为文件名称
+            path: nginx.conf      #文件路径内容
 
 
 -------------------------------------------------------------------------------------------
