@@ -1,0 +1,1 @@
+for i in `cat ip.list`;do ./auto_ssh.sh root wangchao123 $i;done
