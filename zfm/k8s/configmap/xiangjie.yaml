@@ -1,3 +1,10 @@
+configmap 重新刷新
+
+kubectl  replace -f testconfigmap.yml              #   这个时候要等一会才能生效
+
+deployment  要重新 apply -f  一下才能生效  就是改 deployment的配置文件  再apply -f 一下
+-----------------------------------------------------------
+
 apiVersion: v1
 kind: ConfigMap
 metadata:

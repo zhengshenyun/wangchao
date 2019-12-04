@@ -1,0 +1,80 @@
+#apiVersion: apps/v1
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: flask-web-web
+ namespace: webapp-wangchao
+ labels:
+   project: taojiji
+   app: flask-web-web
+spec:
+ replicas: 2
+ minReadySeconds: 30
+ strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 10%
+    type: RollingUpdate
+ selector:
+   matchLabels:
+     name: flask-web-web
+     project: taojiji
+     app: flask-web-web
+ template:
+   metadata:
+     labels:
+       name: flask-web-web
+       project: taojiji
+       app: flask-web-web
+   spec:
+     terminationGracePeriodSeconds: 60
+     containers:
+     - name: flask-web-web
+       image: 10.6.2.113:800/flask/flsk-web-webappapp
+       env:
+        - name: fucktf
+          valueFrom:
+            configMapKeyRef:
+              name: wangchaomap
+              key: apploglevel
+       imagePullPolicy: Always 
+       volumeMounts:
+        # - name: appdata
+        #   mountPath: /app
+         - name: applogs
+           mountPath: /var/log
+       ports:
+       - containerPort: 11111
+         name: http2
+         protocol: TCP
+       resources:
+         requests:
+           cpu: "0.1"
+           memory: "0.5Gi"
+         limits:
+           cpu: "0.1"
+           memory: "0.6Gi"
+     imagePullSecrets:
+     - name: harbor  
+     volumes: 
+       - name: applogs
+         hostPath:
+           path: /var/log
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-web-web
+  namespace: webapp-wangchao
+spec:
+  #type: NodePort
+  ports:
+  - name: http2
+    port: 800
+    targetPort: 11111
+    #nodePort: 800
+    #protocol: TCP
+    #nodePort: 12112
+  selector:
+    name: flask-web-web

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wangchaomap
+  namespace: webapp-wangchao 
+data:
+  apploglevel: infowangchao
+  appdatadir: /var/data
