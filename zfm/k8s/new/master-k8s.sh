@@ -113,7 +113,7 @@ function anzhuangimg {
 	mkdir -p $HOME/.kube
 	cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 	chown $(id -u):$(id -g) $HOME/.kube/config
-	###### 下面那个yaml文件是有的  现在暂且用这样
+	###### 下面那个yaml文件是有的  现在暂且用这样        配置flannel网络（仅主节点执行）
 	kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml
 }
 chushihua
