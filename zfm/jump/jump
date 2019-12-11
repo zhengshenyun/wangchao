@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cd `dirname $0`
+
+if [[ $1 = "--help" ]];then
+	echo "Ssic@2018"
+
+else
+
+
+	txt="./jiqi.txt"
+
+	cat $txt | awk '{print NR,"--------------",$0}'
+
+
+	read -p "请输入序列号: " num
+
+	ip=`cat $txt | awk '{print NR,"--------------",$0}'| awk '{if (NR==num) {print $4}}' num="$num"`
+
+	echo "您选择的是 $num  ip地址 $ip   正在连接 loading......."
+
+	sshpass -p "Ssic@2018" ssh  $ip || sshpass -p '123asd()_L:"' ssh  -p 60022 $ip
+fi
