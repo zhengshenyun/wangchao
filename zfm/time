@@ -97,6 +97,7 @@ df -h  | grep /xv |awk '{split($5,a,"%");print 'a[1]'}'  #######   awk切割
 
 awk -F '[: ]' '{print $1,$2,$3,$4,$5}' ip| awk -F '\' '{print $1,$2,$3,$4,$5}'   #####################awk 多个标识切割  并且有\
 awk -F '[: ]' '{for(i=1;i<=NF;i++) {printf("%s "),$i}}' ip | awk -F '\' '{for(i=1;i<=NF;i++) {printf("%s "),$i}}' ############上面的升级版
+echo "wangchao[is a good boy]chaowang" | awk -F '[][]' '{print $1,$2,$3}'   ##################   如果字符串里面有[] 则可以把他们顺序调换过来
 
 print(substr($0,1,2)) awk的 ####截取字符串前2个  
 
