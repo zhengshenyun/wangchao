@@ -21,3 +21,6 @@ if __name__ == '__main__':
 	name = "zhangsan"
 	Mysqlconn("select %s from %s where username='%s'" %("userid","user",name))
 
+
+
+###########          records  这个库很牛逼啊  mysql的加强版本  
