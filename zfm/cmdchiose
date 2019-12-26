@@ -1,22 +1,25 @@
-while [ $exitstatus = 0 ]
+#!/bin/bash
+exitstatus=0
+
+while [[ $exitstatus = 0 ]]
 do
-	CHOICE=$(whiptail --title "OpenVPN-Setup" --menu "Setup options:" 16 78 3 \
+	CHOICE=$(whiptail --title "请选择一个( tab键可以选择取消 )" --menu "Setup options:" 16 78 3 \
 	"01" "Setup OpenVPN on your system" \
 	"02" "Generate a client profile with MakeOVPN" \
 	"03" "Remove OpenVPN and revert your system to a pre-installation state" 3>&2 2>&1 1>&3)
 
 	case "${CHOICE}" in
 		01)
-			sudo chmod +x install.sh
-			sudo ./install.sh
-			askreboot
+			echo "01"
+			exit
 		;;
 		02)
-			./MakeOVPN.sh
-		;;
+			echo "02"
+			exit
+		;;	
 		03)
-			sudo ./remove.sh
-			askreboot
+			echo "03"
+			exit
 		;;
 		*)
 			exitstatus=1
