@@ -97,6 +97,15 @@ docker build -t saas-job.war-2019-09-11-11-46-59 -f Dockerfile.saas /superking/w
 
 docker exec -it --env COLUMNS=`tput cols` --env LINES=`tput lines` 6ccec704f68c ps aux   #########  docker 执行命令显示不全
 
+
+---------------------------------------
+docker top ae6a7f8d20ae             #############   这条命令也是不错的
+
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                8862                8845                0                   Dec26               pts/0               00:00:01            /bin/bash /usr/local/sbin/run.sh
+root                8912                8862                0                   Dec26               pts/0               00:01:36            /opt/jdk/bin/java -Djava.util.logging.config.file=/opt/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dignore.endorsed.dirs= -classpath /opt/tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/opt/tomcat -Dcatalina.home=/opt/tomcat -Djava.io.tmpdir=/opt/tomcat/temp org.apache.catalina.startup.Bootstrap start
+root                20403               8862                0                   09:35               pts/0               00:00:00            sleep 10
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 curl -X GET http://172.20.20.30:5000/v2/_catalog            ################################ 删除registry镜像名称    有个脚本在zfm目录下面叫clear_register.sh  可以看下
 docker exec <容器名> rm -rf /var/lib/registry/docker/registry/v2/repositories/<镜像名>
