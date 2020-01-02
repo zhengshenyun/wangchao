@@ -74,3 +74,22 @@ print (string)
 
 ['hello world', 2, 3]
 ['hello world', 2, 3]     string没有发生变化
+
+
+#!/usr/bin/python                          #############################  尤其可以看见是引用传值 但是变化的就是之前的开辟的空间  没有重新开辟空间  #####################
+a = [1,2,3]            
+print(id(a))           
+
+def wangchao(aa):
+        aa.append(4)
+        print(id(aa))
+
+wangchao(a)
+print(a)
+print(id(a))
+
+140106533336272
+140106533336272
+[1, 2, 3, 4]
+140106533336272
+
