@@ -96,3 +96,6 @@ ansible/
             └── main.yml
 
 
+ansible -i  目标主机列表 类似于/etc/ansible/hosts文件里面的主机列表 
+ansible-playbook -i  目标主机列表 类似于/etc/ansible/hosts文件里面的主机列表 
+
