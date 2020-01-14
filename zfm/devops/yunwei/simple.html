@@ -47,6 +47,10 @@
 		.table>thead:first-child>tr:first-child>th{
         		text-align:center;
 		}
+		.selected {
+     			 background: #2fc7b4;
+     			 color: #000000;
+    		}
           </style>
       </head>
       <body class="skin-black">
@@ -235,7 +239,7 @@
                                       </div>
                                       <div class="modal-body" style="height:500px; overflow:scroll;">
                                         <p>ID 为 <span id="xiangqingurl" style="color:#39b3d7"></span>&nbsp;的详情数据</p>
-					<table id="modletable" class="table table-bordered  table-hover">
+					<table id="modletable" class="table  table-bordered table-hover">
 						<thead>
                                 		    <tr>
                                 		              <th>名称</th>
@@ -257,7 +261,7 @@
 
 			<!--  右边数据栏展示大屏开始  -->
 			<div class="panel-body" style="background-color:white">		
-                        <table id="table" class="table table-bordered  table-hover">
+                        <table id="table" class="table table-bordered"> <!--  table-hover">-->
 				  <thead>
 				    <tr>
 					      <th><input id="chk" type="checkbox"/></th>
@@ -272,7 +276,7 @@
 				    </tr>
 				  </thead>
 		        </table>
-			<button type="button" class="btn btn-success">添加</button>
+			<button id="add" type="button" class="btn btn-success">添加</button>
 			<button id="delbut" type="button" class="btn btn-danger">批量删除</button>
 			</div>
               <!-- row end -->
@@ -436,6 +440,26 @@
 		    jQuery("#chk").click(function(){
 		        jQuery('[name=prochk]:checkbox').prop('checked',this.checked);//checked为true时为默认显示的状态
 		    });
+
+		// 实现全选checkbox标签选中/未选中颜色变化
+		    jQuery("#chk").change(function () {
+      			  if (jQuery(this).is(":checked")) {
+      			    jQuery('tbody tr').addClass("selected");
+      			  }else{
+      			    jQuery('tbody tr').removeClass("selected");
+      			  }
+			  })
+		// 实现非全选checkbox标签选中/未选中颜色变化
+		    jQuery('tbody').change(function () {
+			  console.log("oko")
+			  jQuery('input[name="prochk"]').each(function(){
+                          	if (jQuery(this).is(":checked")) {
+                          	  jQuery(this).parents('tr').addClass("selected");
+                          	}else{
+                          	  jQuery(this).parents('tr').removeClass("selected");
+                          	}
+			  })
+                          })
 		// 批量删除
 		jQuery("#delbut").click(function(){
 		        var a = [];
