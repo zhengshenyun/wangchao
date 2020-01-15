@@ -39,3 +39,6 @@ HTTP_PASS：web页面登录的管理员密码
 
 server=172.16.20.150
 address=/test.gfstack.geo/192.168.36.158
+
+-------------------------------------------------               dnsmasp  再转发配置 可见详情  下面url          ----------------------------------------------------------
+http://einverne.github.io/post/2014/05/dnsmasq-dns-forward.html
