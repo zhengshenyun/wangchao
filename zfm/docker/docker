@@ -109,7 +109,7 @@ root                20403               8862                0                   
 -----------------------------------------------------------------------------------------------------------------------------------------
 curl -X GET http://172.20.20.30:5000/v2/_catalog            ################################ 删除registry镜像名称    有个脚本在zfm目录下面叫clear_register.sh  可以看下
 docker exec <容器名> rm -rf /var/lib/registry/docker/registry/v2/repositories/<镜像名>
-docker exec registry bin/registry garbage-collect /etc/docker/registry/config.yml
+docker exec registry的名字 bin/registry garbage-collect /etc/docker/registry/config.yml
 ---------------------------------------------------------------------------------------------------------------------------------------------
 docker rm 5e17589b1d8b                      #####################  如果容器的 bridge 出现问题就这样
 docker network disconnect --force bridge provider.war
