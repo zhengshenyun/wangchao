@@ -7,3 +7,6 @@ Topic:主题，相当于是数据的一个分类，不同topic存放不同的数
 replication：副本，数据保存多少份（保证数据不丢）
 partition：分区，是一个物理分区，一个分区就是一个文件，一个topic可以有一到多个分区，每一个分区都有自己的副本。
 Consumer Group：消费者组，一个topic可以有多个消费者同时消费，多个消费者如果在一个消费者组中，那么他们不能重复消费数据
+
+
+比较好的一篇文章 https://blog.csdn.net/weixin_43866709/article/details/88989349
