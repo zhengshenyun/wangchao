@@ -200,3 +200,6 @@ spec:
     -e ELASTICSEARCH_PORT=9200 \
     registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot:latest
 
+-------------------------------------------------------- 改变docker 存储目录 -------------------------------------------------
+vim /usr/lib/systemd/system/docker.service
+ExecStart=/usr/bin/dockerd --graph /data/docker -H fd:// --containerd=/run/containerd/containerd.sock
