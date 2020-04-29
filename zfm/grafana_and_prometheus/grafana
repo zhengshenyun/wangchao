@@ -6,6 +6,12 @@ https://yunlzheng.gitbook.io/prometheus-book/part-ii-prometheus-jin-jie/exporter
 https://www.jianshu.com/p/7e7e0d06709b    grafana select标签选择
 ---------------------------------------------------
 
+Variable	Definition	
+$job	label_values(up,job)
+$node	label_values(up{job="$job"},instance)
+
+
+
 relabel_configs:      #############这个参数很有用   可以对label标签做重写  区分是那个机器     比如不同的job  但是获取大宋的东西一样  应为他们是一个集群  在集群的任何一台机器都是可以获取到的 所以就造成了冲突
       - source_labels: [__meta_consul_tags]
         regex: ',(.+),(.+),(.+),'
