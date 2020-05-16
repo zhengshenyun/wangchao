@@ -13,3 +13,10 @@ fdisk -l
 df -h
 ;ls
 mount /dev/mapper/vg_data-lv_data /data   ####挂载
+
+
+
+
+
+##################
+du -h --max-depth=1   看所有的大小 包括隐藏文件
