@@ -1,0 +1,3 @@
+curl -Iv -w ‘%{time_total} -H 'Host:video.ahaschool.com.cn' http://47.246.29.16/9217a2147994441ba6b6352bcdd5c6d9/9fa5ec48923c491da912fb98c7b16369-1bf7d0e61b9696582919b042e0c079e2-ld.m3u8
+以上47.246.29.16 是cdn的真实地址
+Via: cache34.l2hk2[664,304-0,H], cache35.l2hk2[665,0], cache35.l2hk2[665,0], cache2.kr3[723,200-0,H], cache6.kr3[733,0]  显示这个有H 证明是走缓存 如果是M 则是不走缓存 直接回源去拿了
