@@ -1,0 +1,47 @@
+filebeat:
+  prospectors:
+   -
+      paths:
+        - /data/log/payserver/service-error.log
+      input_type: log
+      tail_files: true
+      document_type: java-pay-service-error
+      multiline.pattern: '^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}'
+      multiline.negate: true
+      multiline.match: after
+   -
+      paths:
+        - /data/log/payserver/service.log
+      input_type: log
+      tail_files: true
+      document_type: java-pay-service-info
+      multiline.pattern: '^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}'
+      multiline.negate: true
+      multiline.match: after
+   -
+      paths:
+        - /var/log/secure
+      input_type: log
+      tail_files: true
+      document_type: linux-secure
+   -
+      paths:
+        - /var/log/messages
+      input_type: log
+      tail_files: true
+      document_type: linux-message
+
+output.kafka:
+  hosts: ["10.10.59.141:9092","10.10.102.166:9092","10.10.180.250:9092"]
+  topic: 'log_sys'
+  partition.round_robin:
+    reachable_only: false
+    group_events: 1000
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+
+logging:
+
+  files:
+    rotateeverybytes: 10485760 # = 10MB

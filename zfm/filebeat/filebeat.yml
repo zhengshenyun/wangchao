@@ -1,0 +1,46 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /data/log/aha-snapshot/aha-snapshot-out-0.log
+        - /data/log/aha-snapshot/aha-snapshot-out-1.log
+        - /data/log/aha-snapshot/aha-snapshot-out-2.log
+        - /data/log/aha-snapshot/aha-snapshot-out-3.log
+      input_type: log
+      tail_files: true
+      document_type: nodejs-snapshot-info
+    -
+      paths:
+        - /data/log/aha-snapshot/aha-snapshot-error-0.log 
+        - /data/log/aha-snapshot/aha-snapshot-error-1.log 
+        - /data/log/aha-snapshot/aha-snapshot-error-2.log 
+        - /data/log/aha-snapshot/aha-snapshot-error-3.log 
+      input_type: log
+      tail_files: true
+      document_type: nodejs-snapshot-error
+    - 
+      paths:
+        - /data/log/aha-support-server/service.log
+      input_type: log
+      tail_files: true
+      document_type: go-support-info
+    -
+      paths:
+        - /data/log/aha-support-server/service-error.log
+      input_type: log
+      tail_files: true
+      document_type: go-support-error
+
+output.kafka:
+  hosts: ["10.10.59.141:9092","10.10.102.166:9092","10.10.180.250:9092"]
+  topic: 'log_sys'
+  partition.round_robin:
+    reachable_only: false
+  required_acks: 1
+  compression: gzip
+  max_message_bytes: 1000000
+
+logging:
+
+  files:
+    rotateeverybytes: 10485760 # = 10MB
