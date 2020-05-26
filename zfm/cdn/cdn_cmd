@@ -1,3 +1,9 @@
 curl -Iv -w ‘%{time_total} -H 'Host:video.ahaschool.com.cn' http://47.246.29.16/9217a2147994441ba6b6352bcdd5c6d9/9fa5ec48923c491da912fb98c7b16369-1bf7d0e61b9696582919b042e0c079e2-ld.m3u8
 以上47.246.29.16 是cdn的真实地址
 x-cache hit 就是成功  miss就是没有命中
+
+
+Age: 2496    当前服务端资源生效时间（多长时间没换过了）
+X-Cache: HIT TCP_MEM_HIT dirn:11:70918770 mlen:0
+X-Swift-SaveTime: Tue, 26 May 2020 07:37:13 GMT
+X-Swift-CacheTime: 93312000  （缓存时间）
