@@ -12,3 +12,4 @@ echo "$label  $count_netstat_wait_connections" | curl --data-binary @- http://10
 
 #count_netstat_wait_connections 这个就是后面出图用的 count_netstat_wait_connections{job=~"pushgateway_job"} 或者是count_netstat_wait_connections{instance=~“superking”}
 docker run -d -p 9091:9091 prom/pushgateway "--persistence.file=pg_file –-persistence.interval=30s"  后面30s 是因为有延迟 promethues每次都那最新的数据 但是没有数据 就用上次的 多长时间就是这个参数设置的
+需要持久就--persistence.file=pg_file    不需要就不加 加后面的
