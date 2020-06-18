@@ -58,8 +58,8 @@ def Start_bak(ues_snapshot,backup_list=None):
 		"max_restore_bytes_per_sec": "40mb"
 			}
 		}
-		res = requests.put(put_url, json=params)
-		print(res.content)
+		res = requests.put(put_url, json=params)         ###########  这一步好像会重复创建仓库 造成后面一个镜像会覆盖前面一个镜像
+		#print(res.content)
 		##########  开始备份索引
 		put_index_name = put_url + "/"+ i + "?wait_for_completion"
 		params = {
