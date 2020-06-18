@@ -1,6 +1,0 @@
-curl -X POST -g 'http://127.0.0.1:9090/api/v1/admin/tsdb/delete_series?match[]=aha_monitor{instance="download_guide"}'     下面一条不变 上面这条aha-----guide 这块是自己写的
-curl -X POST http://10.10.43.251:9090/api/v1/admin/tsdb/clean_tombstones
-
-
-但是这些接口的前提就是开始API模式
-./prometheus --web.enable-admin-api >> ./prometheus.log 2>&1 &
