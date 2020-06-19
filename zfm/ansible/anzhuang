@@ -80,7 +80,8 @@ client02：10.0.0.22
 ansible/
 ├── ansible.cfg
 ├── hosts
-├── install_zabbix_agent.yml         他里面的 role: install_zabbix_agent   对应下面的 |
+├── group_vars                       里面all 文件是全局变量任何task里面都可以用   其他的文件命名需要跟hosts里面的主机[xxx]一样 才能对应的主机组用
+├── install_zabbix_agent.yml         ansible-playbook后面执行的yml文件 他里面的 role: install_zabbix_agent   对应下面的 |
 └── roles                              						      |
     └── install_zabbix_agent                                                      对应这个目录    他又去找task里面的任务了
         ├── files
