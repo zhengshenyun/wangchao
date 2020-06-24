@@ -82,3 +82,8 @@ if __name__ == '__main__':
 	Args_backup_list, Args_delete_list = Args
 	Start_bak("ues_snapshot",Args_backup_list)
 	Delete_index(Args_delete_list)
+
+
+
+###### 恢复用   curl -X POST http://10.42.71.37:9200/_snapshot/ues_snapshot/logstash-java-useraggregationserver-service-info-2020-06-20/_restore
+#                                                                 仓库名                          镜像名	
