@@ -100,3 +100,5 @@ ansible/
 ansible -i  目标主机列表 类似于/etc/ansible/hosts文件里面的主机列表 
 ansible-playbook -i  目标主机列表 类似于/etc/ansible/hosts文件里面的主机列表 
 
+##### 例子  /usr/bin/ansible-playbook /etc/ansible/aha-live-server.yml --limit=liveserver1 --extra-vars "JOB_NAME=${JOB_NAME} USE_SERIAL=${USE_SERIAL}" 
+
