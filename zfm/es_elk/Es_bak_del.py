@@ -86,4 +86,4 @@ if __name__ == '__main__':
 
 
 ###### 恢复用   curl -X POST http://10.42.71.37:9200/_snapshot/ues_snapshot/logstash-java-useraggregationserver-service-info-2020-06-20/_restore
-#                                                                 仓库名                          镜像名	
+#  curl http://10.10.94.41:9200/_snapshot?pretty --user elastic:hEcQSIyMwqQ3      带账户密码的es仓库查看                                                                 仓库名                          镜像名	
