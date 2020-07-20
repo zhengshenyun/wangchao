@@ -87,3 +87,37 @@ if __name__ == '__main__':
 
 ###### 恢复用   curl -X POST http://10.42.71.37:9200/_snapshot/ues_snapshot/logstash-java-useraggregationserver-service-info-2020-06-20/_restore
 #  curl http://10.10.94.41:9200/_snapshot?pretty --user elastic:hEcQSIyMwqQ3      带账户密码的es仓库查看                                                                 仓库名                          镜像名	
+查询所有仓库信息：
+
+GET /_snapshot?pretty
+CopyErrorSuccess
+查询一个仓库信息：
+
+GET /_snapshot/<repository>?pretty
+CopyErrorSuccess
+查询一个仓库中所有快照：
+
+GET /_snapshot/<repository>/_all?pretty
+CopyErrorSuccess
+查询一个指定快照：
+
+GET /_snapshot/<repository>/<snapshot>?pretty
+CopyErrorSuccess
+创建一个快照：
+
+PUT /_snapshot/<repository>/<snapshot>
+CopyErrorSuccess
+创建指定索引的一个快照：
+
+PUT /_snapshot/<repository>/<snapshot>
+{
+    "indices": "<index1>[,index2]..."
+}
+CopyErrorSuccess
+恢复一个指定快照：
+
+POST /_snapshot/<repository>/<snapshot>/_restore
+CopyErrorSuccess
+删除一个指定快照：
+
+DELETE /_snapshot/<repository>/<snapshot>
