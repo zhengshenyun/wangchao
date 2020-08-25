@@ -608,3 +608,7 @@ echo "export PS1=\"[\u@\H \W]# \"" >> /root/.bash_profile       ##########   hos
 paste file1 file2 file3 > file4   这个蛮不错的  合并文件
 
 hyupdsrv  上传web界面
+
+--------------------------------
+pip uninstall -y certif
+pip install certifi==2015.04.28
