@@ -37,6 +37,11 @@ relabel_configs:      #############这个参数很有用   可以对label标签�
         target_label: hostname
 
 
+- source_labels: [__meta_consul_service_metadata_wang]
+
+ curl -X PUT -d '{"meta":{"wang":"chao"},"id": "fuckk","name": "prometheus-nodefuckk","address": "10.10.44.192","port":9894,"tags": ["/aha-account/actuator/prometheus"],"checks": [{"http": "http://10.10.44.192:9894/aha-account/actuator/prometheus","interval": "5s"}]}' http://10.10.129.240:8500/v1/agent/service/register
+
+更多的请参照 https://www.jianshu.com/p/085edb535070
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 scrape_configs:
   - job_name: qas_discover
