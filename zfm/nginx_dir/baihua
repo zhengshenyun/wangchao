@@ -1,3 +1,3 @@
 server_name aha.top ~[a-z].aha.top;    nginx server_name匹配规则   匹配正则要按照这样
 
-nginx 解析域名 他回去反解析成ip 但是他不会改host啊
+nginx 解析域名 他会去反解析成ip 但是他不会改host啊
