@@ -65,5 +65,6 @@ curl -X PUT http://119.3.242.247:32011/v1/agent/service/deregister/exporter     
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------   grafana 配置的一些问题  ------------------------------------------------------------------------------------------
+jvm_classes_loaded{application="accountserver",} 16465.0  比如这个是prometheus得出的数据 那自定义变量可以用 label_values(application) 来进行筛选了
 
 container_cpu_user_seconds_total{id="/system.slice/rpcbind.service"}   ###  这个 id其实       rate(container_cpu_user_seconds_total{id!=""}[5m]) * 10  下面的 Legend  取像id这样的值就好了 (必须是筛选出来后大家都有的key  或者是那种全局的labels)  可以当成是labels
