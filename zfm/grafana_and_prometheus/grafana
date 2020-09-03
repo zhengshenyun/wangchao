@@ -42,6 +42,7 @@ relabel_configs:      #############这个参数很有用   可以对label标签�
  curl -X PUT -d '{"meta":{"wang":"chao"},"id": "fuckk","name": "prometheus-nodefuckk","address": "10.10.44.192","port":9894,"tags": ["/aha-account/actuator/prometheus"],"checks": [{"http": "http://10.10.44.192:9894/aha-account/actuator/prometheus","interval": "5s"}]}' http://10.10.129.240:8500/v1/agent/service/register
 
 更多的请参照 https://www.jianshu.com/p/085edb535070
+https://blog.csdn.net/aixiaoyang168/article/details/103022342  好的标签relable文章
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 scrape_configs:
   - job_name: qas_discover
@@ -68,3 +69,5 @@ curl -X PUT http://119.3.242.247:32011/v1/agent/service/deregister/exporter     
 jvm_classes_loaded{application="accountserver",} 16465.0  比如这个是prometheus得出的数据 那自定义变量可以用 label_values(application) 来进行筛选了
 
 container_cpu_user_seconds_total{id="/system.slice/rpcbind.service"}   ###  这个 id其实       rate(container_cpu_user_seconds_total{id!=""}[5m]) * 10  下面的 Legend  取像id这样的值就好了 (必须是筛选出来后大家都有的key  或者是那种全局的labels)  可以当成是labels
+
+
