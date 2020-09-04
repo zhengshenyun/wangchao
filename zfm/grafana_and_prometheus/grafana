@@ -36,6 +36,27 @@ relabel_configs:      #############这个参数很有用   可以对label标签�
       - source_labels: [__meta_consul_node]
         target_label: hostname
 
+relabel_configs:
+      - source_labels: [__meta_consul_service_metadata_context_path]
+        regex: '(.+)'
+        target_label: __metrics_path__
+        replacement: ${1}
+        action: replace
+      - source_labels: [__meta_consul_service_metadata_context_path]
+        regex:  .*/.*
+        action: keep
+      - source_labels: [__address__]
+        regex: 10\.10.*
+        replacement: 'pro'
+        target_label: env
+        action: replace
+      - source_labels: [__address__]
+        regex: 10\.10\.(142|158|58)\.(161|133|75).*
+        replacement: 'uat'
+        target_label: env
+        action: replace
+
+
 
 - source_labels: [__meta_consul_service_metadata_wang]
 
