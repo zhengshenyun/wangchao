@@ -18,5 +18,4 @@ print('Hello %s from Jenkins %s' % (user['fullName'], version))
 上面得到的是 (u'name: wangchao-test-test', 'URL: ', u'TEST/edu/wangchao-test-test')
 
 server.build_job('TEST/edu/wangchao-test-test',{'actions':'ddddd'})   ############  后面的为jenkins上面的标识 
-
-
+TEST/edu/wangchao-test-test 为自己创建的 不是横标的
