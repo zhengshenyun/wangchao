@@ -92,4 +92,5 @@ jvm_classes_loaded{application="accountserver",} 16465.0  比如这个是prometh
 
 container_cpu_user_seconds_total{id="/system.slice/rpcbind.service"}   ###  这个 id其实       rate(container_cpu_user_seconds_total{id!=""}[5m]) * 10  下面的 Legend  取像id这样的值就好了 (必须是筛选出来后大家都有的key  或者是那种全局的labels)  可以当成是labels
 
-
+Env prod Application None Instance None  JVM Memory Pools Non-Heap All JVM Memory Pools Heap All 
+grafana上面选择的这些标签是对应着总数据来说的 比如 现在今天数据都没有prod 但他还是显示出来了 
