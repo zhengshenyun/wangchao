@@ -67,3 +67,6 @@
   when: ans_keep_releases > 0
 ...
 
+
+
+/usr/bin/ansible-playbook /etc/ansible/aha-live-server.yml --limit=liveserver4 --extra-vars 'JOB_NAME=aha-live-server USE_SERIAL=1'
