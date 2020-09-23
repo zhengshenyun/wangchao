@@ -1,5 +1,20 @@
 ---
 
+- name: "dic is not exist"
+  #shell: "stat /data/jenkins-workspace-tager/{{ env }}-{{ ans_project_name }}/mar_targer"
+  stat: path="/data/jenkins-workspace-tager/{{ env }}-{{ ans_project_name }}/mar_targer"
+  delegate_to: 127.0.0.1
+  #ignore_errors: yes
+  register: dic_is_not
+
+- name: "mysql init"
+  shell: "cd {{ ans_jenkins_workspace }}/{{ env }}-{{ ans_project_name }};/usr/local/gradle-4.7/bin/gradle migrate{{ env|lower }}"
+  delegate_to: 127.0.0.1
+  register: shell_output
+  when: dic_is_not.stat.exists == True
+
+
+
 - set_fact:
     ROLLBACK_VERSION: "{{ lookup('pipe', 'date +%Y%m%d-%H%M%S') }}"
   run_once: true
