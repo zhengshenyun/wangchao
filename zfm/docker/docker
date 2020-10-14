@@ -203,3 +203,8 @@ spec:
 -------------------------------------------------------- 改变docker 存储目录 -------------------------------------------------
 vim /usr/lib/systemd/system/docker.service
 ExecStart=/usr/bin/dockerd --graph /data/docker -H fd:// --containerd=/run/containerd/containerd.sock
+
+
+---------------------------------------------------------  docker 里面太干净 用这种方法 -----------
+docker inspect -f {{.State.Pid}} nginx
+nsenter -n -t5645
