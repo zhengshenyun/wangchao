@@ -43,6 +43,12 @@ EOF
 
 {i.split('=')[0]:i.split('=')[1] for i in a.split('&')}    ##########  url  变成字典格式   前面a 是一个字符串  比如 a=aa&b=bb&c=cc
 
+head = {"Content-Type": "application/json"}
+	payload_start = { "avatar": "http://www.baidu.com/png/123123.jpg", "client_type": 1, "mobile": 15618040094, "name": "asd", "open_id": "openasdasdasda123123", "session_id": "eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9", "session_name": "jun的iphone7", "user_id": 1350320, "version": "V2"}
+	payload = json.dumps(payload_start)
+	res = requests.post("http://%s:9893/passportserver/authorization/grant" %Ip, data=payload, headers=head)
+
+
 payload = {xxx:xxx,xxx:xxx}
 r = requests.get('http://httpbin.org/get', params=payload)
 r = requests.post('http://httpbin.org/get', data=payload)
