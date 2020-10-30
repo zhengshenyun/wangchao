@@ -1,6 +1,15 @@
+__________________________________________________________________
+! potation01,02    |	potation01,02	|	potation01,02     |
+!	大         | 集        群   单  |       机     器         |
+!    topic01	   |	topic02		|	topic03		  |
+!_________________________________________________________________|
+
+
+
+
 kafka 自带的zookeeper我就感觉很好了 没必要重新安装zookeeper
 
-Broker ： 安装Kafka服务的那台集群就是一个broker（broker的id要全局唯一）
+Broker ： 安装Kafka服务的那台集群就是一个broker（broker的id要全局唯一）  每个broker对应一台服务器 (三台集群 就有3个broke)
 Producer：消息的生产者，负责将数据写入到broker中（push）
 Consumer：消息的消费者，负责从kafka中读取数据（pull），老版本的消费者需要依赖zk，新版本的不需要
 Topic:主题，相当于是数据的一个分类，不同topic存放不同的数据
