@@ -1,0 +1,24 @@
+apollo-configservice：提供配置获取接口，提供配置更新推送接口，接口服务对象为Apollo客户端
+apollo-adminservice：提供配置管理接口，提供配置修改、发布等接口，接口服务对象为Portal，以及Eureka
+apollo-portal：提供Web界面供用户管理配置
+apollo-client：Apollo提供的客户端程序，为应用提供配置获取、实时更新等功能
+
+用户在Portal操作配置发布
+Portal调用Admin Service的接口操作发布
+Admin Service发布配置后，发送ReleaseMessage给各个Config Service
+Config Service收到ReleaseMessage后，通知对应的客户端
+
+环境	服务器	服务	端口
+/	192.168.35.206	apollo-portal	9102
+DEV	192.168.35.207	apollo-configservice apollo-adminservice	9100 9101
+FAT	192.168.35.208	apollo-configservice apollo-adminservice	9100 9101
+UAT	192.168.35.209	apollo-configservice apollo-adminservice	9100 9101
+PRO	192.168.35.210	apollo-configservice apollo-adminservice	9100 9101
+
+
+
+/	192.168.35.226	apollo-portal	ApolloPortalDB	3306
+DEV	192.168.35.227	apollo-configservice apollo-adminservice	ApolloConfigDB	3306
+FAT	192.168.35.228	apollo-configservice apollo-adminservice	ApolloConfigDB	3306
+UAT	192.168.35.229	apollo-configservice apollo-adminservice	ApolloConfigDB	3306
+PRO	192.168.35.230	apollo-configservice apollo-adminservice	ApolloConfigDB	3306
