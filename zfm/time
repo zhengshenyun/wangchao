@@ -619,3 +619,5 @@ hyupdsrv  上传web界面
 pip uninstall -y certif
 pip install certifi==2015.04.28
 像上面这样写是可以的 但是必须要加参数 verify=False
+
+java -version 2>&1 |grep version
