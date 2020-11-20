@@ -4,7 +4,7 @@
 
 那如果想要转成gbk模式   那就先要
 
-a = "xxxx"  是utf8
+a = "xxxx"  是utf8   utf8也是unicode的一种变现方式
 
 
 那就先转吧 a.decode("utf8") 这样就转成unicode模式
