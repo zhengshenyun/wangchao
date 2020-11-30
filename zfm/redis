@@ -15,3 +15,17 @@
 
 #################redis集群的添加和移除###########
 https://blog.csdn.net/wangzi19933/article/details/54287181
+
+###########################   控制台sh脚本往redis批量写入数据    #######################
+#!/bin/bash
+#for ((i=0;i<1000;i++))
+#do
+#echo -en "helloworld" | redis-cli -x set name$i >>redis.log
+#done
+#[root@uat-1 ~]# redis-cli
+#127.0.0.1:6379> get name1
+#"helloworld"
+#127.0.0.1:6379> get name2
+#"helloworld"
+#127.0.0.1:6379> 
+#
