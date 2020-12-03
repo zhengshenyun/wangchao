@@ -114,10 +114,21 @@ CopyErrorSuccess
 
 GET /_snapshot/<repository>/<snapshot>?pretty
 CopyErrorSuccess
+
+
+
+
+
 创建一个快照：
 
 PUT /_snapshot/<repository>/<snapshot>
 CopyErrorSuccess
+
+
+
+
+
+
 创建指定索引的一个快照：
 
 PUT /_snapshot/<repository>/<snapshot>
@@ -125,10 +136,20 @@ PUT /_snapshot/<repository>/<snapshot>
     "indices": "<index1>[,index2]..."
 }
 CopyErrorSuccess
+
+
+
+
+
 恢复一个指定快照：
 
 POST /_snapshot/<repository>/<snapshot>/_restore
 CopyErrorSuccess
+
+
+
+
+
 删除一个指定快照：
 
 DELETE /_snapshot/<repository>/<snapshot>
