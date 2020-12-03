@@ -91,14 +91,25 @@ if __name__ == '__main__':
 
 GET /_snapshot?pretty
 CopyErrorSuccess
+
+
+
+
 查询一个仓库信息：
 
 GET /_snapshot/<repository>?pretty
 CopyErrorSuccess
+
+
+
+
 查询一个仓库中所有快照：
 
 GET /_snapshot/<repository>/_all?pretty
 CopyErrorSuccess
+
+
+
 查询一个指定快照：
 
 GET /_snapshot/<repository>/<snapshot>?pretty
