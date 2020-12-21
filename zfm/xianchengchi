@@ -1,0 +1,21 @@
+#!/usr/bin/python
+#encoding=utf8
+from concurrent.futures import ThreadPoolExecutor,as_completed,wait
+import threading,time,requests
+URLS = ['http://www.baiduuuuuu.com', 'http://www.qquuuuuuuuu.com', 'http://www.sinauuuuuuu.com.cn','http://www.baiduuuuuuuu.com', 'http://www.qquuuuuuu.com', 'http://www.sinauuuuuu.com.cn','http://www.baiduuuuuuuu.com', 'http://www.qquuuuu.com', 'http://www.sinauuuuuu.com.cn','http://www.baiduuuuuuuu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn','http://www.baidu.com', 'http://www.qq.com', 'http://www.sina.com.cn']
+def get_html(url):
+    #time.sleep(2)
+    print('thread id:',threading.currentThread().ident,' 访问了:',url)
+    return requests.get(url)            #这里使用了requests 模块
+ex = ThreadPoolExecutor(max_workers=8)   #最多3个线程
+future_tasks = [ex.submit(get_html,url) for url in URLS]    #创建3个future对象
+for future in as_completed(future_tasks):       #迭代生成器
+    try:
+        resp = future.result()
+    except Exception as e:
+        print('%s'%e)
+    else:
+        print('%s has %d bytes!'%(resp.url, len(resp.text)))
+
+wait(future_tasks, return_when=as_completed)
+print("-====================================-")
