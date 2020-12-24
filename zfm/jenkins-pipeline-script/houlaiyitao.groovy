@@ -72,7 +72,7 @@ node('jenkins_slave_01') {
          // 通过yaml文件匹配传输路径   开发乱的一逼
          if ("tgz" in tmp_name.tokenize('.')) {
          sh (script: """scp -P 8888 ${env.WORKSPACE}/target/${tgzdata}/${env.JOB_BASE_NAME} root@172.20.20.30:/superking/${package_type}""",returnStdout: true)
-         return
+         return  // 这个是退出本次stage
          }else {
          try {
                  //sh (script: """scp -P 22 ${env.WORKSPACE}/${gitroot}/target/${env.JOB_BASE_NAME} root@172.20.20.30:/superking/${package_type}""",returnStdout: true)
