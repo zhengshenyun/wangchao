@@ -208,3 +208,9 @@ ExecStart=/usr/bin/dockerd --graph /data/docker -H fd:// --containerd=/run/conta
 ---------------------------------------------------------  docker 里面太干净 用这种方法 -----------
 docker inspect -f {{.State.Pid}} nginx
 nsenter -n -t5645
+
+
+-----------------------------------------------------------
+谈一下自己对run -itd /bin/bash的认知
+
+-t 意思是打开一个伪的tty 如果后面不是/bin/bash那就不能打开一个伪的tty 所以-t的时候/bin/bash能一直运行 应为模拟了一个逼在连接到内部的终端了
