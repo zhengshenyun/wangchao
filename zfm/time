@@ -632,5 +632,4 @@ pip install loguru     #################最新的日志记录
 yum install -y mariadb.x86_64 mariadb-libs.x86_64   mysql安装客户端
 grant all on *.* to jhtest@'%' identified by '123456';
 
-
-mongo 127.0.0.1/admin -u root -p
+mongo 127.0.0.1/admin -u hjm_dev -p hjm_dev
