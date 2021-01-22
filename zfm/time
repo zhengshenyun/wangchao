@@ -639,3 +639,6 @@ mongo 127.0.0.1/admin -u hjm_dev -p hjm_dev
 jvm的内存空间，而是会占用操作系统空闲的内存空间  每个线程 1M
 
 java -XX:+PrintFlagsFinal -version | grep ThreadStackSize   查看java一个线程的内存  
+
+----------------------------------------------------------------------------------------------
+curl -X POST -H "Content-Type: application/json" -d '{"msg_type": "text","title": "jaeger","content": {"text": "'"$i"' jaeger-agent is down"}}' https://open.feishu.cn/open-apis/bot/v2/hook/34d49821-666f-4a16-9262-771d05dc082c   '里面添加$i变量'
