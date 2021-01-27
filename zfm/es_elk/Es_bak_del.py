@@ -158,3 +158,13 @@ DELETE /_snapshot/<repository>/<snapshot>
 
 批量删除镜像
 for i in `awk -F '[""]' '{print $2}' aaa.txt | grep -v 2020-12| grep -v 2020-11|grep -v 2020-10 `;do curl -X DELETE http://10.42.71.37:9200/_snapshot/ues_snapshot/$i;done
+
+--------------------------------------------------------------------
+PUT /_cluster/settings
+{
+  "persistent": {
+    "cluster": {
+      "max_shards_per_node":60000
+    }
+  }
+}
