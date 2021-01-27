@@ -1,0 +1,1 @@
+curl -XDELETE 'http://192.169.13.59:9200/cib_log*'      ######删除所有cib_log的索引
