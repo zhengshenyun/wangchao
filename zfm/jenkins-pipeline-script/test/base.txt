@@ -146,3 +146,11 @@ for (int i = 0; i < 5; i++) {
 
  )))))))2  或者用下面的
 	 sh "sshpass -p 'Ssic@2018'  ssh 172.20.61.173  \"docker ps | grep provider.war|awk '{print \\\$1}'\""
+
+
+-----------------------------------------------------------
+list = "sh /var/jenkins_home/git_data/test_project.sh".execute().text.readLines()
+//return [list]
+list.each{
+  println it
+}
