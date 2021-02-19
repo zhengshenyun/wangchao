@@ -1,6 +1,6 @@
-apollo-configservice：提供配置获取接口，提供配置更新推送接口，接口服务对象为Apollo客户端
+apollo-configservice：提供配置获取接口，提供配置更新推送接口，接口服务对象为Apollo客户端 对应有个apolloconfigdb
 apollo-adminservice：提供配置管理接口，提供配置修改、发布等接口，接口服务对象为Portal，以及Eureka
-apollo-portal：提供Web界面供用户管理配置
+apollo-portal：提供Web界面供用户管理配置 对应有个apolloportaldb
 apollo-client：Apollo提供的客户端程序，为应用提供配置获取、实时更新等功能
 
 用户在Portal操作配置发布
