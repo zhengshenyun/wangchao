@@ -1,3 +1,14 @@
 https://blog.csdn.net/TH_NUM/article/details/78195568  ##########   安装
 https://www.cnblogs.com/wujf-myblog/p/10214551.html   #######  安装模块
 yum -y install php72w-pecl-redis
+
+-------------------   安装kafka扩展  --------------------
+git clone https://github.com/edenhill/librdkafka.git
+./configure
+make
+make install
+
+
+pecl install rdkafka
+ //然后在php.ini写入
+extension=rdkafka.so
