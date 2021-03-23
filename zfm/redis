@@ -34,3 +34,7 @@ https://blog.csdn.net/wangzi19933/article/details/54287181
 #那后续不需要操作啥 直接恢复就好了 dump 备个份
 
 #######################    redis 如果只开启了rdb 现在有数据情况下开启aof 一定要在shell交互模式先热开启 这样就会有aof文件 在改配置文件 如果直接改配置文件 那redis数据会全部清空 #############
+#
+#
+#
+#rdb 恢复文件  stop redis服务 替换dump.rdb   启动redis   必须按照这个步骤 其他的都不行
