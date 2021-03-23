@@ -645,5 +645,4 @@ curl -X POST -H "Content-Type: application/json" -d '{"msg_type": "text","title"
 ----------------------------------------------------------------------------------
 20 0 * * * /usr/bin/python /opt/es_bak_del_script/Es_bak_del.py >/opt/es_bak_del_script/logs/`date +"\%Y\%m\%d"`.log     crontab 如果要打印时间
 ------------------------------------------------------------------------------------------
-
 usermod [-G] [GroupName] [UserName]    加入用户组
