@@ -37,3 +37,25 @@ Consumer Group：消费者组，一个topic可以有多个消费者同时消费�
 上面2句话的意思就是说 创建一个Consumer Group 是消费整个topic里面的数据的 消费组里面的消费者针对着一个分区 所以多个消费组肯定实惠消费重复数据的
 
 同一个Consumer Group 可以分布在不同的机器 如果是2个Consumer Group那肯定会重复消费   但是增加Consumer Group但是是相同的Consumer Group id那就是相互抢资源 你在工作 别人只能休息
+
+
+
+
+-----------------docker 安装 kafka ---------------------
+这里使用了wurstmeister/kafka和wurstmeister/zookeeper这两个版本的镜像
+
+docker pull wurstmeister/zookeeper
+
+docker pull wurstmeister/kafka
+
+docker pull sheepkiller/kafka-manager
+
+在命令中运行docker images验证三个镜像已经安装完毕
+
+docker run -d --name zookeeper --publish 2181:2181 \--volume /etc/localtime:/etc/localtime \--restart=always \wurstmeister/zookeeper
+
+docker run -d --name kafka --publish 9082:9092 \--link zookeeper:zookeeper \--env KAFKA_BROKER_ID=100 \--env HOST_IP=192.168.1.108 \--env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 \--env KAFKA_ADVERTISED_HOST_NAME=192.168.1.108 \--env KAFKA_ADVERTISED_PORT=9082 \--restart=always \--volume /etc/localtime:/etc/localtime \wurstmeister/kafka
+
+docker run -d --name kafka-manager \--link zookeeper:zookeeper \--link kafka:kafka -p 9001:9000 \--restart=always \--env ZK_HOSTS=zookeeper:2181 \sheepkiller/kafka-manager
+
+http://192.168.1.108:9001/
