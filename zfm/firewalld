@@ -1,0 +1,3 @@
+firewall-cmd --permanent  --add-port=9100/tcp
+firewall-cmd --reload
+iptables -nL
