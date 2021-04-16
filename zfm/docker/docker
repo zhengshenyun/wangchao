@@ -152,7 +152,7 @@ https://www.jianshu.com/p/7374f7481d18
 
 这边 push 的时候 会用到harbor里面的hostname  所以 harbor hostname要能ping通 或者能解析
 
-docker login xxxx:8888
+docker login xxxx:8888            ######### harbor.yml里面hostname:要写上 xxxxx:8888
 docker push 10.6.2.111:8888/flask/flask-num01
 在命令行上面 push的时候 必须先要在harbor上面---项目---新建项目-----创建flask目录层级  然后才能推上去 
 
