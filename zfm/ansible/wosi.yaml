@@ -85,3 +85,13 @@
 
 
 /usr/bin/ansible-playbook /etc/ansible/aha-live-server.yml --limit=liveserver4 --extra-vars 'JOB_NAME=aha-live-server USE_SERIAL=1'
+
+
+
+#------------------------ pm2 启动判断   start----------------
+- name: "重新启动 pm2 进程"
+  shell: source /etc/profile && /usr/local/node-v10.14.1-linux-x64/bin/pm2 restart pm2.json
+  args:
+    chdir: "/opt/hjm/{{ aha_project_name }}/current"
+  when: ans_project_name_name == "aha-mkt-nuxtweb"
+  #when: ans_project_name_name != "aha-mkt-nuxtweb"
