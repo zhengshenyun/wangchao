@@ -95,3 +95,8 @@
     chdir: "/opt/hjm/{{ aha_project_name }}/current"
   when: ans_project_name_name == "aha-mkt-nuxtweb"
   #when: ans_project_name_name != "aha-mkt-nuxtweb"
+
+
+- command: /opt/application/upgrade_db.py
+  run_once: true
+  delegate_to: web01.example.org

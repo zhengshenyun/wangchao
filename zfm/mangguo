@@ -169,6 +169,8 @@ bsondump  mongo  mongod  mongodump  mongoexport  mongofiles  mongoimport  mongoo
 
 ------------------------架构图(所以可以清楚地看见 其实分片结构都是事先设置好的)------------------------
 
+mongo 120.131.0.64:27017 -u root -p KingSoft@1314
+
 服务器	    	234	235		235
 组件1	mongos	mongos	mongos
 组件2	config server	config server	config server
