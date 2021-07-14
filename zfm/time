@@ -649,3 +649,19 @@ curl -X POST -H "Content-Type: application/json" -d '{"msg_type": "text","title"
 usermod [-G] [GroupName] [UserName]    加入用户组
 
 ansible all  -m shell -a 'echo "10.10.36.52 prod" | sudo tee -a /etc/hosts'    
+
+
+str转bytes
+使用函数encode
+
+In [2]: s1 = "123abc456ffff"                                                                                                                                                                                                                                                           
+In [4]: b = s1.encode("utf-8")                                                                                                                                                  
+In [5]: print(b)                                                                                                                                                         
+
+bytes转str
+使用函数decode
+
+In [6]: s2 = b.decode("utf-8")                                                                                                                                           
+In [7]: print(s2)                                                                                                                                                        
+123abc456ffff
+--------------------------------------------------------------------------------------------
