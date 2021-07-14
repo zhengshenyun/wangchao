@@ -1,0 +1,146 @@
+# my global config
+
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+  external_labels:
+    origin_prometheus: 'prometheus-node'
+
+# Alertmanager configuration
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ["192.168.10.240:9093"]
+
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+
+rule_files:
+  - "rules/*rules.yml"
+#  - "prometheus_rules.yml"
+
+
+# A scrape configuration containing exactly one endpoint to scrape:
+
+
+# Here it's Prometheus itself.
+
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  #- job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+  #  static_configs:
+  #  - targets: ['172.20.0.247:9100']
+
+  - job_name: 'consul-prometheus'
+    consul_sd_configs:
+      - server:   '192.168.10.183:8500'
+        services: []
+    relabel_configs:
+      #- source_labels: ['__meta_consul_service']
+      #  regex:  .*server
+      #  action:  keep  
+      - source_labels: [__meta_consul_service_metadata_context_path]
+        regex: '(.+)'
+        target_label: __metrics_path__
+        replacement: ${1}
+        action: replace  
+      - source_labels: [__meta_consul_service_metadata_context_path]
+        regex:  .*/.*
+        action: keep
+      - source_labels: [__address__]
+        regex: 192.168*
+        action: keep
+  - job_name: 'node_exporter'
+    consul_sd_configs:
+      - server:   '192.168.10.183:8500'
+        services: []
+    relabel_configs:
+      #- source_labels: ['__meta_consul_service']
+      #  regex:  .*server
+      #  action:  keep  
+      - source_labels: [__meta_consul_service_metadata_context_path]
+        regex: '(.+)'
+        target_label: __metrics_path__
+        replacement: ${1}
+        action: replace
+      - source_labels: [__address__]
+        regex: .*:9100
+        action: keep
+
+  - job_name: 'java_exporter'
+    consul_sd_configs:
+      - server:   '192.168.10.183:8500'
+        services: []
+    relabel_configs:
+      #- source_labels: ['__meta_consul_service']
+      #  regex:  .*server
+      #  action:  keep  
+      - source_labels: [__meta_consul_service_metadata_context_path]
+        regex: '(.+)'
+        target_label: __metrics_path__
+        replacement: ${1}
+        action: replace
+      - source_labels: [__address__]
+        regex: .*:8300
+        action: drop
+      - source_labels: [__address__]
+        regex: .*:9100
+        action: drop
+      - source_labels: [__address__]
+        regex: .*:9256
+        action: drop
+      - source_labels: [__address__]
+        regex: 192\.168\.10\.110(.*)
+        action: drop
+
+  - job_name: pushgateway
+    honor_labels: true
+    static_configs:
+      - targets: ['192.168.10.240:9091']
+        labels:
+          instance: pushgateway 
+
+  - job_name: prod-nginx
+    consul_sd_configs:
+      - server:   '192.168.10.183:8500'
+        services: []
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: .*:9256
+        action: keep
+
+  - job_name: prod-php
+    consul_sd_configs:
+      - server:   '192.168.10.183:8500'
+        services: []
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: .*:9256
+        action: keep
+      - source_labels: [__address__]
+        regex: '192.168.10.49'
+        action: drop
+      - source_labels: [__address__]
+        regex: '192.168.10.162'
+        action: drop
+      - source_labels: [__address__]
+        regex: 192\.168\.20\.(29|158|18|171|175|192|45|41).*
+        action: drop
+
+  - job_name: prod-mysql
+    consul_sd_configs:
+      - server:   '192.168.10.183:8500'
+        services: []
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: (.*):222(.*)
+        action: keep
+      - source_labels: [__meta_consul_service]
+        regex: (.*)
+        target_label: "instance"
+        action: replace
+
