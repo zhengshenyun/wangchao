@@ -35,3 +35,12 @@ location / {
 友情提醒下
 
 此处提一下 在上面的代码中即使将 proxy_pass 放在 带有 break 的 rewrite上面它也是会执行的，这就要扯到nginx的执行流程了。大家有兴趣可以了解下。
+
+
+
+------------------------------------------------------------------------------------------------------------------
+rewrite ^/(.*)$         http://www.mi.com/$1; 这种在server段的直接就302跳转了 不再往后面继续匹配
+
+server段的rewrite标记 break和last都是一样的 直接去找location 不会在匹配server段的其他rewrite
+
+location段的rewrite标记 如果是last 那就其他rewrite不会匹配 直接去找location |||||||||||||  如果是break 那就走当前的location 不会再跳出去找其他的location
