@@ -31,3 +31,9 @@
 
 4  如果是要数据持久化   consul agent -server -ui -bootstrap-expect=1 -data-dir=/tmp/consul -node=agent-one -advertise=172.16.128.247 -bind=0.0.0.0 -client=0.0.0.0
  1)  默认的持久化链接   https://blog.csdn.net/achenyuan/article/details/80389410
+
+
+5 集群docker安装
+docker run -d --name consul01 -h=consul01 --net=host -e CONSUL_BIND_INTERFACE=eth0 consul agent -server=true -client=0.0.0.0 -bind=192.168.10.104 -ui -bootstrap-expect=3    [consul-01执行 本机ip 192.168.10.104]
+docker run -d --name consul02 -h=consul02 --net=host -e CONSUL_BIND_INTERFACE=eth0 consul agent -server=true -client=0.0.0.0 -join=192.168.10.104 -ui   [consul-02执行]
+docker run -d --name consul03 -h=consul03 --net=host -e CONSUL_BIND_INTERFACE=eth0 consul agent -server=true -client=0.0.0.0 -join=192.168.10.104 -ui   [consul-03执行]
