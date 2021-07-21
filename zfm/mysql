@@ -1,0 +1,1 @@
+mysqldump --set-gtid-purged=OFF  -h 192.168.10.37 -u root -p78XQ2ha2hd2dw3 apolloconfigdb  > ./apolloconfigdb.sql
