@@ -218,3 +218,14 @@ nsenter -n -t5645
 docker 查看网络
 docker network ls
 docker network inspect ID(上面查出的)
+
+------------------------------------------------------------docker 查看启动命令-----------------------------------------
+# pip
+$ pip install runlike
+# by docker
+$ alias runlike="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike"
+runlike -p id
+
+---------------查看dockerfile文件----------------
+$ alias whaler="docker run -t --rm -v /var/run/docker.sock:/var/run/docker.sock:ro pegleg/whaler"
+whaler -sV=1.36 id
