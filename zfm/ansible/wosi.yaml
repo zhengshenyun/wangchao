@@ -100,3 +100,11 @@
 - command: /opt/application/upgrade_db.py
   run_once: true
   delegate_to: web01.example.org
+
+
+- name: "9、See index.jsp page"
+  shell: "curl  {{ ans_java_test_url }}"
+  register: jsp
+  until: jsp is succeeded
+  retries: 20
+  delay: 3
