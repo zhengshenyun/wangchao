@@ -43,7 +43,7 @@ pyasn1==0.4.2
 pycparser==2.18
 pycurl==7.19.0
 pydub==0.20.0
-Pygments==2.2.0
+Pygments==2.7.4
 pygpgme==0.1
 pyinstall==0.1.4
 pylint==1.7.4
