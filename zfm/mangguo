@@ -177,3 +177,22 @@ mongo 120.131.0.64:27017 -u root -p KingSoft@1314
 组件3	shard server1主	shard server1副	shard server1仲裁
 组件4	shard server2仲裁  shard server2主	shard server2副
 组件5	shard server3副	shard server3仲裁	shard server3主
+
+
+
+
+-------------------------------------------------------------       mongodb 3.x 4.x  创建用户 是一样的   ------------------------------------------------------
+执行如下命令启动MongoDB：
+docker run --name mongo-test -d -p 27017:27017 -v /storage/mongo/data:/data/db mongo:3.4.3 --auth
+接下来，我们需要进入容器的命令行去创建用户名和密码：########### 直接不加任何东西进去进去的是test库
+use admin
+//创建管理员
+db.createUser({user:'mongo_admin',pwd:'mongo_admin',roles:[{role:"userAdminAnyDatabase",db:"admin"}]});
+//以admin登录
+db.auth('mongo_admin','mongo_admin')
+//创建并切换数据库
+use test                      ---------------> 是否切换成当前的db(admin/wangcho)库无所谓,关键的是上一部,一定要db.auth() 以前我认为的切换db再创建是错误的
+//创建用户，分配权限
+db.createUser({user:"mongo_test",pwd:"mongo_test",roles:[{role:"dbOwner",db:"test"}]})
+
+
